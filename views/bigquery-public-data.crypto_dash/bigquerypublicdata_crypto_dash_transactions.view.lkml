@@ -1,14 +1,14 @@
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
-# explore: bigquerypublicdata_crypto_bitcoin_transactions {
+# explore: bigquerypublicdata_crypto_dash_transactions {
 #   hidden: yes
-#     join: transactions__bigquerypublicdata_crypto_bitcoin_inputs {
+#     join: transactions__bigquerypublicdata_crypto_dash_inputs {
 #       view_label: "Transactions: Inputs"
-#       sql: LEFT JOIN UNNEST(${transactions.inputs}) as transactions__bigquerypublicdata_crypto_bitcoin_inputs ;;
+#       sql: LEFT JOIN UNNEST(${transactions.inputs}) as transactions__bigquerypublicdata_crypto_dash_inputs ;;
 #       relationship: one_to_many
 #     }
-#     join: transactions__bigquerypublicdata_crypto_bitcoin_outputs {
+#     join: transactions__bigquerypublicdata_crypto_dash_outputs {
 #       view_label: "Transactions: Outputs"
-#       sql: LEFT JOIN UNNEST(${transactions.outputs}) as transactions__bigquerypublicdata_crypto_bitcoin_outputs ;;
+#       sql: LEFT JOIN UNNEST(${transactions.outputs}) as transactions__bigquerypublicdata_crypto_dash_outputs ;;
 #       relationship: one_to_many
 #     }
 #     join: transactions__inputs__addresses {
@@ -22,9 +22,8 @@
 #       relationship: one_to_many
 #     }
 # }
-view: bitcoin_transactions {
-  label: "Bitcoin Transactions"
-  sql_table_name: `bigquery-public-data.crypto_bitcoin.transactions` ;;
+view: dash_transactions {
+  sql_table_name: `bigquery-public-data.crypto_dash.transactions` ;;
 
   dimension: block_hash {
     type: string
@@ -42,14 +41,14 @@ view: bitcoin_transactions {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.block_timestamp ;;
   }
-  # dimension_group: block_timestamp_month {
-  #   type: time
-  #   description: "Month of the block which contains this transaction"
-  #   timeframes: [raw, date, week, month, quarter, year]
-  #   convert_tz: no
-  #   datatype: date
-  #   sql: ${TABLE}.block_timestamp_month ;;
-  # }
+  dimension_group: block_timestamp_month {
+    type: time
+    description: "Month of the block which contains this transaction"
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.block_timestamp_month ;;
+  }
   dimension: fee {
     type: number
     description: "The fee paid by this transaction"
@@ -118,31 +117,31 @@ view: bitcoin_transactions {
   }
 }
 
-# view: transactions__bigquerypublicdata_crypto_bitcoin_inputs {
+# view: transactions__bigquerypublicdata_crypto_dash_inputs {
 
 #   dimension: addresses {
 #     hidden: yes
-#     sql: ${TABLE}.addresses ;;
+#     sql: addresses ;;
 #   }
 #   dimension: index {
 #     type: number
 #     description: "0-indexed number of an input within a transaction"
-#     sql: ${TABLE}.index ;;
+#     sql: index ;;
 #   }
 #   dimension: required_signatures {
 #     type: number
 #     description: "The number of signatures required to authorize the spent output"
-#     sql: ${TABLE}.required_signatures ;;
+#     sql: required_signatures ;;
 #   }
 #   dimension: script_asm {
 #     type: string
 #     description: "Symbolic representation of the bitcoin's script language op-codes"
-#     sql: ${TABLE}.script_asm ;;
+#     sql: script_asm ;;
 #   }
 #   dimension: script_hex {
 #     type: string
 #     description: "Hexadecimal representation of the bitcoin's script language op-codes"
-#     sql: ${TABLE}.script_hex ;;
+#     sql: script_hex ;;
 #   }
 #   dimension: sequence {
 #     type: number
@@ -159,65 +158,65 @@ view: bitcoin_transactions {
 #     description: "The hash of the transaction which contains the output that this input spends"
 #     sql: spent_transaction_hash ;;
 #   }
-#   dimension: transactions__bigquerypublicdata_crypto_bitcoin_inputs {
+#   dimension: transactions__bigquerypublicdata_crypto_dash_inputs {
 #     type: string
 #     description: "Transaction inputs"
 #     hidden: yes
-#     sql: transactions__bigquerypublicdata_crypto_bitcoin_inputs ;;
+#     sql: transactions__bigquerypublicdata_crypto_dash_inputs ;;
 #   }
 #   dimension: type {
 #     type: string
 #     description: "The address type of the spent output"
-#     sql: ${TABLE}.type ;;
+#     sql: type ;;
 #   }
 #   dimension: value {
 #     type: number
 #     description: "The value in base currency attached to the spent output"
-#     sql: ${TABLE}.value ;;
+#     sql: value ;;
 #   }
 # }
 
-# view: transactions__bigquerypublicdata_crypto_bitcoin_outputs {
+# view: transactions__bigquerypublicdata_crypto_dash_outputs {
 
 #   dimension: addresses {
 #     hidden: yes
-#     sql: ${TABLE}.addresses ;;
+#     sql: addresses ;;
 #   }
 #   dimension: index {
 #     type: number
 #     description: "0-indexed number of an output within a transaction used by a later transaction to refer to that specific output"
-#     sql: ${TABLE}.index ;;
+#     sql: index ;;
 #   }
 #   dimension: required_signatures {
 #     type: number
 #     description: "The number of signatures required to authorize spending of this output"
-#     sql: ${TABLE}.required_signatures ;;
+#     sql: required_signatures ;;
 #   }
 #   dimension: script_asm {
 #     type: string
 #     description: "Symbolic representation of the bitcoin's script language op-codes"
-#     sql: ${TABLE}.script_asm ;;
+#     sql: script_asm ;;
 #   }
 #   dimension: script_hex {
 #     type: string
 #     description: "Hexadecimal representation of the bitcoin's script language op-codes"
-#     sql: ${TABLE}.script_hex ;;
+#     sql: script_hex ;;
 #   }
-#   dimension: transactions__bigquerypublicdata_crypto_bitcoin_outputs {
+#   dimension: transactions__bigquerypublicdata_crypto_dash_outputs {
 #     type: string
 #     description: "Transaction outputs"
 #     hidden: yes
-#     sql: transactions__bigquerypublicdata_crypto_bitcoin_outputs ;;
+#     sql: transactions__bigquerypublicdata_crypto_dash_outputs ;;
 #   }
 #   dimension: type {
 #     type: string
 #     description: "The address type of the output"
-#     sql: ${TABLE}.type ;;
+#     sql: type ;;
 #   }
 #   dimension: value {
 #     type: number
 #     description: "The value in base currency attached to this output"
-#     sql: ${TABLE}.value ;;
+#     sql: value ;;
 #   }
 # }
 

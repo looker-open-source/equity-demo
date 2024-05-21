@@ -1,6 +1,5 @@
-view: bitcoin_blocks {
-  label: "Bitcoin Blocks"
-  sql_table_name: `bigquery-public-data.crypto_bitcoin.blocks` ;;
+view: litecoin_blocks {
+  sql_table_name: `bigquery-public-data.crypto_litecoin.blocks` ;;
 
   dimension: bits {
     type: string
@@ -48,14 +47,14 @@ view: bitcoin_blocks {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.timestamp ;;
   }
-  # dimension_group: timestamp_month {
-  #   type: time
-  #   description: "Month of the block creation timestamp specified in block header"
-  #   timeframes: [raw, date, week, month, quarter, year]
-  #   convert_tz: no
-  #   datatype: date
-  #   sql: ${TABLE}.timestamp_month ;;
-  # }
+  dimension_group: timestamp_month {
+    type: time
+    description: "Month of the block creation timestamp specified in block header"
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.timestamp_month ;;
+  }
   dimension: transaction_count {
     type: number
     description: "Number of transactions included in this block"
