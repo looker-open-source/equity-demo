@@ -42,14 +42,14 @@ view: bigquerypublicdata_crypto_bitcoin_transactions {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.block_timestamp ;;
   }
-  dimension_group: block_timestamp_month {
-    type: time
-    description: "Month of the block which contains this transaction"
-    timeframes: [raw, date, week, month, quarter, year]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.block_timestamp_month ;;
-  }
+  # dimension_group: block_timestamp_month {
+  #   type: time
+  #   description: "Month of the block which contains this transaction"
+  #   timeframes: [raw, date, week, month, quarter, year]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: ${TABLE}.block_timestamp_month ;;
+  # }
   dimension: fee {
     type: number
     description: "The fee paid by this transaction"

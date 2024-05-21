@@ -20,5 +20,7 @@ include: "/**/*.view.lkml"                 # include all views in this project
 # }
 #creating a test explore with one view for now
 explore: bigquerypublicdata_crypto_bitcoin_blocks {
-  label: "Bitcoin"
+  label: "Coin Data"
 }
+
+#join blocks to transaction on hash, one block to many transactions
