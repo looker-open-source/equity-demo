@@ -7,7 +7,7 @@
 #       relationship: one_to_many
 #     }
 # }
-view: bigquerypublicdata_crypto_bitcoin_outputs {
+view: bitcoin_outputs {
   sql_table_name: `bigquery-public-data.crypto_bitcoin.outputs` ;;
 
   dimension: addresses {
@@ -60,10 +60,10 @@ view: bigquerypublicdata_crypto_bitcoin_outputs {
   }
 }
 
-view: outputs__addresses {
+# view: outputs__addresses {
 
-  dimension: outputs__addresses {
-    type: string
-    sql: outputs__addresses ;;
-  }
-}
+#   dimension: outputs__addresses {
+#     type: string
+#     sql: outputs__addresses ;;
+#   }
+# }

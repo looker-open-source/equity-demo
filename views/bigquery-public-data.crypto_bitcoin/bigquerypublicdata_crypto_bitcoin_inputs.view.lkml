@@ -7,7 +7,7 @@
 #       relationship: one_to_many
 #     }
 # }
-view: bigquerypublicdata_crypto_bitcoin_inputs {
+view: bitcoin_inputs {
   sql_table_name: `bigquery-public-data.crypto_bitcoin.inputs` ;;
 
   dimension: addresses {
@@ -72,10 +72,10 @@ view: bigquerypublicdata_crypto_bitcoin_inputs {
   }
 }
 
-view: inputs__addresses {
+# view: inputs__addresses {
 
-  dimension: inputs__addresses {
-    type: string
-    sql: inputs__addresses ;;
-  }
-}
+#   dimension: inputs__addresses {
+#     type: string
+#     sql: inputs__addresses ;;
+#   }
+# }

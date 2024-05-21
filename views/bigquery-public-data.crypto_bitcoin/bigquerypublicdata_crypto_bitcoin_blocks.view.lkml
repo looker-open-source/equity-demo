@@ -1,4 +1,5 @@
 view: bigquerypublicdata_crypto_bitcoin_blocks {
+  label: "Bitcoin Blocks"
   sql_table_name: `bigquery-public-data.crypto_bitcoin.blocks` ;;
 
   dimension: bits {
