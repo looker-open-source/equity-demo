@@ -23,7 +23,7 @@ explore: bitcoin_blocks {
   label: "Coin Data"
   join: bitcoin_transactions {
     relationship: one_to_many
-    sql_on: ${bitcoin_blocks.hash} = ${bitcoin_transactions.hash} ;;
+    sql_on: ${bitcoin_blocks.hash} = ${bitcoin_transactions.block_hash} ;;
   }
 }
 
