@@ -1,4 +1,5 @@
 view: bigquerypublicdata_crypto_dogecoin_blocks {
+  label: "Dogecoin Blocks"
   sql_table_name: `bigquery-public-data.crypto_dogecoin.blocks` ;;
 
   dimension: bits {

@@ -72,10 +72,10 @@ view: bigquerypublicdata_crypto_dogecoin_inputs {
   }
 }
 
-view: inputs__addresses {
+# view: inputs__addresses {
 
-  dimension: inputs__addresses {
-    type: string
-    sql: inputs__addresses ;;
-  }
-}
+#   dimension: inputs__addresses {
+#     type: string
+#     sql: inputs__addresses ;;
+#   }
+# }
