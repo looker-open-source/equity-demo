@@ -2,32 +2,33 @@ view: bitcoin_blocks {
   label: "Bitcoin Blocks"
   sql_table_name: `bigquery-public-data.crypto_bitcoin.blocks` ;;
 
-  dimension: bits {
-    type: string
-    description: "Difficulty threshold specified in block header"
-    sql: ${TABLE}.bits ;;
-  }
-  dimension: coinbase_param {
-    type: string
-    description: "Data specified in the coinbase transaction of this block"
-    sql: ${TABLE}.coinbase_param ;;
-  }
+  # dimension: bits {
+  #   type: string
+  #   description: "Difficulty threshold specified in block header"
+  #   sql: ${TABLE}.bits ;;
+  # }
+  # dimension: coinbase_param {
+  #   type: string
+  #   description: "Data specified in the coinbase transaction of this block"
+  #   sql: ${TABLE}.coinbase_param ;;
+  # }
   dimension: hash {
     primary_key: yes
     type: string
     description: "Hash of this block"
     sql: ${TABLE}.`hash` ;;
   }
-  dimension: merkle_root {
-    type: string
-    description: "The root node of a Merkle tree, where leaves are transaction hashes"
-    sql: ${TABLE}.merkle_root ;;
-  }
-  dimension: nonce {
-    type: string
-    description: "Difficulty solution specified in block header"
-    sql: ${TABLE}.nonce ;;
-  }
+  #commenting out dimensions I don't think I'll need
+  # dimension: merkle_root {
+  #   type: string
+  #   description: "The root node of a Merkle tree, where leaves are transaction hashes"
+  #   sql: ${TABLE}.merkle_root ;;
+  # }
+  # dimension: nonce {
+  #   type: string
+  #   description: "Difficulty solution specified in block header"
+  #   sql: ${TABLE}.nonce ;;
+  # }
   dimension: number {
     type: number
     description: "The number of the block"
@@ -74,5 +75,6 @@ view: bitcoin_blocks {
   }
   measure: count {
     type: count
+    drill_fields: [hash, transaction_count, weight, size, stripped_size]
   }
 }

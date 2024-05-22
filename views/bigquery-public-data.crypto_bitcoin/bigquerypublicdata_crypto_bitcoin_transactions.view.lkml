@@ -44,16 +44,17 @@ view: bitcoin_transactions {
     hidden: yes
     sql: ${TABLE}.inputs ;;
   }
-  dimension: is_coinbase {
-    type: yesno
-    description: "true if this transaction is a coinbase transaction"
-    sql: ${TABLE}.is_coinbase ;;
-  }
-  dimension: lock_time {
-    type: number
-    description: "Earliest time that miners can include the transaction in their hashing of the Merkle root to attach it in the latest block of the blockchain"
-    sql: ${TABLE}.lock_time ;;
-  }
+  #commenting out dimensions I'm not sure I'll use to remove clutter
+  # dimension: is_coinbase {
+  #   type: yesno
+  #   description: "true if this transaction is a coinbase transaction"
+  #   sql: ${TABLE}.is_coinbase ;;
+  # }
+  # dimension: lock_time {
+  #   type: number
+  #   description: "Earliest time that miners can include the transaction in their hashing of the Merkle root to attach it in the latest block of the blockchain"
+  #   sql: ${TABLE}.lock_time ;;
+  # }
   dimension: output_count {
     type: number
     description: "The number of outputs in the transaction"
@@ -73,11 +74,11 @@ view: bitcoin_transactions {
     description: "The size of this transaction in bytes"
     sql: ${TABLE}.size ;;
   }
-  dimension: version {
-    type: number
-    description: "Protocol version specified in block which contained this transaction"
-    sql: ${TABLE}.version ;;
-  }
+  # dimension: version {
+  #   type: number
+  #   description: "Protocol version specified in block which contained this transaction"
+  #   sql: ${TABLE}.version ;;
+  # }
   dimension: virtual_size {
     type: number
     description: "The virtual transaction size (differs from size for witness transactions)"
@@ -85,6 +86,7 @@ view: bitcoin_transactions {
   }
   measure: count {
     type: count
+    drill_fields: [block_hash, block_number, size, virtual_size, hash, output_count, output_value, input_count, input_value, fee]
   }
 }
 
