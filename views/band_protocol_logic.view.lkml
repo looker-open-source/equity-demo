@@ -69,4 +69,14 @@ measure: average_rate {
   type: average
   sql: ${rate} ;;
 }
+measure: max_rate {
+  description: "Max Rate"
+  type: max
+  sql: ${rate} ;;
+}
+  measure: min_rate {
+    description: "Min Rate"
+    type: min
+    sql: ${rate} ;;
+  }
 }
