@@ -47,6 +47,9 @@ explore: bitcoin_blocks {
   }
 }
 
+explore: oracle_requests {
+  label: "Band Protocol"
+}
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
 # explore: bigquerypublicdata_crypto_bitcoin_transactions {
 #   hidden: yes
