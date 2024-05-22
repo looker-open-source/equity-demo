@@ -13,8 +13,10 @@ view: band_protocol_logic {
     block_timestamp_truncated,
     oracle_request_id,
     FROM `public-data-finance.crypto_band.oracle_requests`
-    WHERE request.oracle_script_id = 3 --need to look into why 3 is plugged in here
-      AND decoded_result.calldata IS NOT NULL
+    WHERE
+    --request.oracle_script_id = 3 --need to look into why 3 is plugged in here
+    --  AND
+      decoded_result.calldata IS NOT NULL
       AND decoded_result.result IS NOT NULL
     ),
     -- zip symbols and rates
