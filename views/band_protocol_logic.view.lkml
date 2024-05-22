@@ -12,7 +12,7 @@ view: band_protocol_logic {
     ) AS rates,
     block_timestamp,
     oracle_request_id,
-    FROM oracle_requests
+    FROM `public-data-finance.crypto_band.oracle_requests`
     WHERE request.oracle_script_id = 3 --need to look into why 3 is plugged in here
       AND decoded_result.calldata IS NOT NULL
       AND decoded_result.result IS NOT NULL
