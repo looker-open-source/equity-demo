@@ -13,6 +13,7 @@ view: bitcoin_blocks {
     sql: ${TABLE}.coinbase_param ;;
   }
   dimension: hash {
+    primary_key: yes
     type: string
     description: "Hash of this block"
     sql: ${TABLE}.`hash` ;;
