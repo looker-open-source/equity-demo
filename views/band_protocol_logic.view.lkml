@@ -42,11 +42,11 @@ view: band_protocol_logic {
         zipped.rate AS rate,
     FROM adjusted_rates
 --WHERE zipped.symbol = 'ETH'
-    ORDER BY block_timestamp DESC  ;;
+    ORDER BY block_timestamp_truncated DESC  ;;
     }
 dimension: block_timestamp_truncated {
   type: string
-  sql: ${TABLE}.block_timestamp ;;
+  sql: ${TABLE}.block_timestamp_truncated ;;
 }
 dimension: oracle_request_id {
   primary_key: yes
