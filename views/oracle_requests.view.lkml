@@ -35,10 +35,10 @@ view: oracle_requests {
     type: number
     sql: ${TABLE}.block_height ;;
   }
-  dimension: block_timestamp {
-    type: string
-    sql: ${TABLE}.block_timestamp ;;
-  }
+  # dimension: block_timestamp {
+  #   type: string
+  #   sql: ${TABLE}.block_timestamp ;;
+  # }
   dimension_group: block_timestamp_truncated {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
