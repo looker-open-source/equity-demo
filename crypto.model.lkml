@@ -29,12 +29,12 @@ explore: bitcoin_blocks {
       view_label: "Bitcoin: Inputs"
       sql: LEFT JOIN UNNEST(${bitcoin_transactions.inputs}) as crypto_bitcoin_inputs ;;
       relationship: one_to_many
-    }
-    join: crypto_bitcoin_outputs {
+  }
+  join: crypto_bitcoin_outputs {
       view_label: "Bitcoin: Outputs"
       sql: LEFT JOIN UNNEST(${bitcoin_transactions.outputs}) as crypto_bitcoin_outputs ;;
       relationship: one_to_many
-    }
+  }
     # join: transactions__inputs__addresses {
     #   view_label: "Transactions: Inputs Addresses"
     #   sql: LEFT JOIN UNNEST(${transactions__inputs.addresses}) as transactions__inputs__addresses ;;
