@@ -62,4 +62,9 @@ dimension: rate {
   type: number
   sql: ${TABLE}.rate ;;
 }
+measure: average_rate {
+  description: "Average Rate"
+  type: average
+  sql: ${rate} ;;
+}
 }
