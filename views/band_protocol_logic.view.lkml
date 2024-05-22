@@ -10,7 +10,7 @@ view: band_protocol_logic {
         SELECT CAST(JSON_EXTRACT_SCALAR(rate_as_json, '$') AS FLOAT64)
         FROM UNNEST(JSON_EXTRACT_ARRAY(decoded_result.result, "$.rates")) AS rate_as_json
     ) AS rates,
-    block_timestamp,
+    block_timestamp_truncated,
     oracle_request_id,
     FROM `public-data-finance.crypto_band.oracle_requests`
     WHERE request.oracle_script_id = 3 --need to look into why 3 is plugged in here
@@ -19,7 +19,7 @@ view: band_protocol_logic {
     ),
     -- zip symbols and rates
     zipped_rates AS (
-        SELECT block_timestamp,
+        SELECT block_timestamp_truncated,
             oracle_request_id,
             struct(symbol, rates[OFFSET(off)] AS rate) AS zipped,
             multiplier,
@@ -30,13 +30,13 @@ view: band_protocol_logic {
     -- adjust for multiplier
     adjusted_rates AS (
         SELECT
-            block_timestamp,
+            block_timestamp_truncated,
             oracle_request_id,
             struct(zipped.symbol, IEEE_DIVIDE(zipped.rate, multiplier) AS rate) AS zipped,
         FROM zipped_rates
     )
     SELECT
-        block_timestamp,
+        block_timestamp_truncated,
         oracle_request_id,
         zipped.symbol AS symbol,
         zipped.rate AS rate,
@@ -44,8 +44,8 @@ view: band_protocol_logic {
 --WHERE zipped.symbol = 'ETH'
     ORDER BY block_timestamp DESC  ;;
     }
-dimension: block_timestamp {
-  type: date_time
+dimension: block_timestamp_truncated {
+  type: string
   sql: ${TABLE}.block_timestamp ;;
 }
 dimension: oracle_request_id {
