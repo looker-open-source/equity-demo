@@ -50,6 +50,10 @@ view: oracle_requests {
     group_label: "Decoded Result"
     group_item_label: "Calldata"
   }
+  dimension: symbol_as_json {
+    type: string
+    sql: JSON_EXTRACT_ARRAY(decoded_result.calldata, "$.symbols");;
+  }
   dimension: decoded_result__result {
     type: string
     sql: ${TABLE}.decoded_result.result ;;
