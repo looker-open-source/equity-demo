@@ -44,10 +44,11 @@ view: band_protocol_logic {
 --WHERE zipped.symbol = 'ETH'
     ORDER BY block_timestamp_truncated DESC  ;;
     }
-dimension: block_timestamp_truncated {
-  type: string
-  sql: ${TABLE}.block_timestamp_truncated ;;
-}
+  dimension_group: block_timestamp_truncated {
+    type: time
+    timeframes: [raw, time, date, week, month, quarter, year]
+    sql: ${TABLE}.block_timestamp_truncated ;;
+  }
 dimension: oracle_request_id {
   primary_key: yes
   type: number
