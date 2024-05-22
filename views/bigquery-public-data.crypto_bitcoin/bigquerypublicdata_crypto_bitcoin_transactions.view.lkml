@@ -89,8 +89,8 @@ view: bitcoin_transactions {
     drill_fields: [block_hash, block_number, size, virtual_size, hash, output_count, output_value, input_count, input_value, fee]
   }
 }
-
-view: crypto_bitcoin_inputs {
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------
+view: bitcoin_inputs {
 
   dimension: addresses {
     hidden: yes
@@ -101,21 +101,22 @@ view: crypto_bitcoin_inputs {
     description: "0-indexed number of an input within a transaction"
     sql: ${TABLE}.index ;;
   }
-  dimension: required_signatures {
-    type: number
-    description: "The number of signatures required to authorize the spent output"
-    sql: ${TABLE}.required_signatures ;;
-  }
-  dimension: script_asm {
-    type: string
-    description: "Symbolic representation of the bitcoin's script language op-codes"
-    sql: ${TABLE}.script_asm ;;
-  }
-  dimension: script_hex {
-    type: string
-    description: "Hexadecimal representation of the bitcoin's script language op-codes"
-    sql: ${TABLE}.script_hex ;;
-  }
+  #commenting out fields I don't think I'll need in order to de-clutter
+  # dimension: required_signatures {
+  #   type: number
+  #   description: "The number of signatures required to authorize the spent output"
+  #   sql: ${TABLE}.required_signatures ;;
+  # }
+  # dimension: script_asm {
+  #   type: string
+  #   description: "Symbolic representation of the bitcoin's script language op-codes"
+  #   sql: ${TABLE}.script_asm ;;
+  # }
+  # dimension: script_hex {
+  #   type: string
+  #   description: "Hexadecimal representation of the bitcoin's script language op-codes"
+  #   sql: ${TABLE}.script_hex ;;
+  # }
   dimension: sequence {
     type: number
     description: "A number intended to allow unconfirmed time-locked transactions to be updated before being finalized; not currently used except to disable locktime in a transaction"
@@ -148,8 +149,8 @@ view: crypto_bitcoin_inputs {
     sql: ${TABLE}.value ;;
   }
 }
-
-view: crypto_bitcoin_outputs {
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------
+view: bitcoin_outputs {
 
   dimension: addresses {
     hidden: yes
@@ -160,21 +161,22 @@ view: crypto_bitcoin_outputs {
     description: "0-indexed number of an output within a transaction used by a later transaction to refer to that specific output"
     sql: ${TABLE}.index ;;
   }
-  dimension: required_signatures {
-    type: number
-    description: "The number of signatures required to authorize spending of this output"
-    sql: ${TABLE}.required_signatures ;;
-  }
-  dimension: script_asm {
-    type: string
-    description: "Symbolic representation of the bitcoin's script language op-codes"
-    sql: ${TABLE}.script_asm ;;
-  }
-  dimension: script_hex {
-    type: string
-    description: "Hexadecimal representation of the bitcoin's script language op-codes"
-    sql: ${TABLE}.script_hex ;;
-  }
+  #commenting out fields I don't think I'll need
+  # dimension: required_signatures {
+  #   type: number
+  #   description: "The number of signatures required to authorize spending of this output"
+  #   sql: ${TABLE}.required_signatures ;;
+  # }
+  # dimension: script_asm {
+  #   type: string
+  #   description: "Symbolic representation of the bitcoin's script language op-codes"
+  #   sql: ${TABLE}.script_asm ;;
+  # }
+  # dimension: script_hex {
+  #   type: string
+  #   description: "Hexadecimal representation of the bitcoin's script language op-codes"
+  #   sql: ${TABLE}.script_hex ;;
+  # }
   dimension: transactions__bigquerypublicdata_crypto_bitcoin_outputs {
     type: string
     description: "Transaction outputs"
@@ -192,21 +194,21 @@ view: crypto_bitcoin_outputs {
     sql: ${TABLE}.value ;;
   }
 }
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+view: bitcoin_inputs_addresses {
 
-# view: crypto_bitcoin_inputs_addresses {
+  dimension: transactions__inputs__addresses {
+    type: string
+    description: "Addresses which own the spent output"
+    sql: transactions__inputs__addresses ;;
+  }
+}
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+view: bitcoin_outputs_addresses {
 
-#   dimension: transactions__inputs__addresses {
-#     type: string
-#     description: "Addresses which own the spent output"
-#     sql: transactions__inputs__addresses ;;
-#   }
-# }
-
-# view: crypto_bitcoin_outputs_addresses {
-
-#   dimension: transactions__outputs__addresses {
-#     type: string
-#     description: "Addresses which own this output"
-#     sql: transactions__outputs__addresses ;;
-#   }
-# }
+  dimension: transactions__outputs__addresses {
+    type: string
+    description: "Addresses which own this output"
+    sql: transactions__outputs__addresses ;;
+  }
+}

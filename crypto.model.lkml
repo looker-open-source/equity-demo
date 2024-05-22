@@ -25,26 +25,26 @@ explore: bitcoin_blocks {
     relationship: one_to_many
     sql_on: ${bitcoin_blocks.hash} = ${bitcoin_transactions.block_hash} ;;
   }
-  join: crypto_bitcoin_inputs {
+  join: bitcoin_inputs {
       view_label: "Bitcoin: Inputs"
-      sql: LEFT JOIN UNNEST(${bitcoin_transactions.inputs}) as crypto_bitcoin_inputs ;;
+      sql: LEFT JOIN UNNEST(${bitcoin_transactions.inputs}) as bitcoin_inputs ;;
       relationship: one_to_many
   }
-  join: crypto_bitcoin_outputs {
+  join: bitcoin_outputs {
       view_label: "Bitcoin: Outputs"
-      sql: LEFT JOIN UNNEST(${bitcoin_transactions.outputs}) as crypto_bitcoin_outputs ;;
+      sql: LEFT JOIN UNNEST(${bitcoin_transactions.outputs}) as bitcoin_outputs ;;
       relationship: one_to_many
   }
-    # join: transactions__inputs__addresses {
-    #   view_label: "Transactions: Inputs Addresses"
-    #   sql: LEFT JOIN UNNEST(${transactions__inputs.addresses}) as transactions__inputs__addresses ;;
-    #   relationship: one_to_many
-    # }
-    # join: transactions__outputs__addresses {
-    #   view_label: "Transactions: Outputs Addresses"
-    #   sql: LEFT JOIN UNNEST(${transactions__outputs.addresses}) as transactions__outputs__addresses ;;
-    #   relationship: one_to_many
-    # }
+  join: bitcoin_inputs_addresses {
+      view_label: "Transactions: Inputs Addresses"
+      sql: LEFT JOIN UNNEST(${bitcoin_inputs.addresses}) as bitcoin_inputs_addresses ;;
+      relationship: one_to_many
+  }
+  join: bitcoin_outputs_addresses {
+      view_label: "Transactions: Outputs Addresses"
+      sql: LEFT JOIN UNNEST(${bitcoin_outputs.addresses}) as bitcoin_outputs_addresses ;;
+      relationship: one_to_many
+  }
 }
 
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
