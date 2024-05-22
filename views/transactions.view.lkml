@@ -56,6 +56,7 @@ view: transactions {
     sql: ${TABLE}.transaction_type ;;
   }
   dimension: txhash {
+    primary_key: yes
     type: string
     sql: ${TABLE}.txhash ;;
   }
