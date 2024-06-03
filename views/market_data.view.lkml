@@ -24,9 +24,9 @@ view: market_data {
   }
   dimension: ath_date {
     label: "All-time High Date"
-    type: string
+    type: date
     description: "Date of all-time high"
-    sql: ${TABLE}.ath_date ;;
+    sql: CAST(SUBSTRING(${TABLE}.ath_date,1,10) AS DATE FORMAT 'YYYY-MM-DD');;
   }
   dimension: atl {
     label: "All-time Low"
@@ -44,9 +44,9 @@ view: market_data {
   }
   dimension: atl_date {
     label: "All-time Low Date"
-    type: string
+    type: date
     description: "Date of all-time low"
-    sql: ${TABLE}.atl_date ;;
+    sql: CAST(SUBSTRING(${TABLE}.atl_date,1,10) AS DATE FORMAT 'YYYY-MM-DD');;
   }
   dimension: circulating_supply {
     type: number
@@ -77,8 +77,8 @@ view: market_data {
     html: <img src="{{value}}";;
   }
   dimension: last_updated {
-    type: string
-    sql: ${TABLE}.last_updated ;;
+    type: date
+    sql: CAST(SUBSTRING(${TABLE}.last_updated,1,10) AS DATE FORMAT 'YYYY-MM-DD');;
   }
   dimension: low_24h {
     label: "24hr Low"
