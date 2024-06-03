@@ -5,37 +5,37 @@ view: market_data {
   dimension: id {
     primary_key: yes
     type: string
-    description: "coin id"
+    description: "Coin id"
     sql: ${TABLE}.id ;;
   }
   dimension: ath {
     type: number
-    description: "all-time high"
+    description: "All-time high"
     sql: ${TABLE}.ath ;;
   }
   dimension: ath_change_percentage {
     type: number
-    description: "the drop in percents of the price of a cryptocurrency compared to its maximum price (ATH) of all time"
+    description: "The drop in percents of the price of a cryptocurrency compared to its maximum price (ATH) of all time"
     sql: ${TABLE}.ath_change_percentage ;;
   }
   dimension: ath_date {
     type: string
-    description: "date of all-time high"
+    description: "Date of all-time high"
     sql: ${TABLE}.ath_date ;;
   }
   dimension: atl {
     type: number
-    description: "all-time low"
+    description: "All-time low"
     sql: ${TABLE}.atl ;;
   }
   dimension: atl_change_percentage {
     type: number
-    description: "the rise in percents of the price of a cryptocurrency compared to its minimum price (ATL) of all time"
+    description: "The rise in percents of the price of a cryptocurrency compared to its minimum price (ATL) of all time"
     sql: ${TABLE}.atl_change_percentage ;;
   }
   dimension: atl_date {
     type: string
-    description: "date of all-time low"
+    description: "Date of all-time low"
     sql: ${TABLE}.atl_date ;;
   }
   dimension: circulating_supply {
@@ -44,12 +44,12 @@ view: market_data {
   }
   dimension: current_price {
     type: number
-    description: "current price"
+    description: "Current price"
     sql: ${TABLE}.current_price ;;
   }
   dimension: fully_diluted_valuation {
     type: number
-    description: "fully dilated valuation"
+    description: "Fully dilated valuation"
     sql: ${TABLE}.fully_diluted_valuation ;;
   }
   dimension: high_24h {
@@ -84,7 +84,7 @@ view: market_data {
   }
   dimension: market_cap_rank {
     type: number
-    description: "market cap rank"
+    description: "Market cap rank"
     sql: ${TABLE}.market_cap_rank ;;
   }
   dimension: max_supply {
@@ -93,7 +93,7 @@ view: market_data {
   }
   dimension: name {
     type: string
-    description: "coin name"
+    description: "Coin name"
     sql: ${TABLE}.name ;;
   }
   dimension: price_change_24h {
@@ -118,7 +118,7 @@ view: market_data {
   }
   dimension: symbol {
     type: string
-    description: "coin symbol"
+    description: "Coin symbol"
     sql: ${TABLE}.symbol ;;
   }
   dimension: total_supply {
