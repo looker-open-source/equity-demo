@@ -63,6 +63,11 @@ view: bitcoin_blocks {
     description: "Number of transactions included in this block"
     sql: ${TABLE}.transaction_count ;;
   }
+  measure: avg_transaction_count {
+    type: average
+    label: "Average Transaction Count"
+    sql: ${transaction_count} ;;
+  }
   dimension: version {
     type: number
     description: "Protocol version specified in block header"
