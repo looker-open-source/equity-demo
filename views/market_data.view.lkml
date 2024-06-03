@@ -11,6 +11,7 @@ view: market_data {
   dimension: ath {
     label: "All-time High"
     type: number
+    value_format: "$#.00;($#.00)"
     description: "All-time high"
     sql: ${TABLE}.ath ;;
   }
@@ -29,6 +30,7 @@ view: market_data {
   dimension: atl {
     label: "All-time Low"
     type: number
+    value_format: "$#.00;($#.00)"
     description: "All-time low"
     sql: ${TABLE}.atl ;;
   }
@@ -51,6 +53,7 @@ view: market_data {
   dimension: current_price {
     type: number
     description: "Current price"
+    value_format: "$#.00;($#.00)"
     sql: ${TABLE}.current_price ;;
   }
   dimension: fully_diluted_valuation {
@@ -61,6 +64,7 @@ view: market_data {
   dimension: high_24h {
     label: "24hr High"
     description: "Highest price in the last 24hrs"
+    value_format: "$#.00;($#.00)"
     type: number
     sql: ${TABLE}.high_24h ;;
   }
@@ -76,6 +80,7 @@ view: market_data {
   dimension: low_24h {
     label: "24hr Low"
     description: "Lowest price in the last 24hrs"
+    value_format: "$#.00;($#.00)"
     type: number
     sql: ${TABLE}.low_24h ;;
   }
