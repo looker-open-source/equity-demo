@@ -24,6 +24,18 @@ view: bitcoin_transactions {
     description: "The fee paid by this transaction"
     sql: ${TABLE}.fee ;;
   }
+  measure: avg_fee {
+    type: average
+    label: "Average Fee"
+    description: "Average fee"
+    sql: ${fee} ;;
+  }
+  measure: total_fee {
+    type: sum
+    label: "Total Fee"
+    description: "Total Fees"
+    sql:${fee}  ;;
+  }
   dimension: hash {
     primary_key: yes
     type: string
@@ -39,6 +51,12 @@ view: bitcoin_transactions {
     type: number
     description: "Total value of inputs in the transaction"
     sql: ${TABLE}.input_value ;;
+  }
+  measure: avg_input_value {
+    type: average
+    label: "Average Input Value"
+    description: "Average Input Value"
+    sql: ${input_value} ;;
   }
   dimension: inputs {
     hidden: yes
@@ -64,6 +82,12 @@ view: bitcoin_transactions {
     type: number
     description: "Total value of outputs in the transaction"
     sql: ${TABLE}.output_value ;;
+  }
+  measure: avg_output_value {
+    type: average
+    label: "Average Output Value"
+    description: "Average output value"
+    sql: ${output_value} ;;
   }
   dimension: outputs {
     hidden: yes
