@@ -49,6 +49,7 @@ view: market_data {
     sql: CAST(SUBSTRING(${TABLE}.atl_date,1,10) AS DATE FORMAT 'YYYY-MM-DD');;
   }
   dimension: circulating_supply {
+    description: "The total number of coins or tokens that are actively available for trade and are being used in the market and in general public."
     type: number
     sql: ${TABLE}.circulating_supply ;;
   }
@@ -59,8 +60,9 @@ view: market_data {
     sql: ${TABLE}.current_price ;;
   }
   dimension: fully_diluted_valuation {
+    description: "Fully diluted valuation (FDV) is the total value of a cryptocurrency project assuming all of its tokens are in circulation. The total supply of tokens may change due to the minting of new tokens, or due to token burning, which removes tokens from circulation."
     type: number
-    description: "Fully dilated valuation"
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.fully_diluted_valuation ;;
   }
   dimension: high_24h {
@@ -89,7 +91,8 @@ view: market_data {
   }
   dimension: market_cap {
     type: number
-    description: "market cap"
+    value_format: "$#,##0.00;($#,##0.00)"
+    description: "Market cap is the total value of all the coins that have been mined. It's calculated by multiplying the number of coins in circulation by the current market price of a single coin."
     sql: ${TABLE}.market_cap ;;
   }
   dimension: market_cap_change_24h {
@@ -107,11 +110,14 @@ view: market_data {
   }
   dimension: market_cap_rank {
     type: number
+    value_format: "0"
     description: "Market cap rank"
     sql: ${TABLE}.market_cap_rank ;;
   }
   dimension: max_supply {
+    description: "The limit of tokens that can be created for a particular cryptocurrency, providing insight into its scarcity and potential inflation rate. Max supply denotes the absolute maximum number of coins or tokens that will ever exist for a particular cryptocurrency."
     type: number
+    value_format: "0"
     sql: ${TABLE}.max_supply ;;
   }
   dimension: name {
@@ -128,7 +134,8 @@ view: market_data {
   dimension: price_change_percentage_1h_in_currency {
     label: "Price Change Percentage in currency - 1hr"
     description: "Percent price change in the last 1hr in currency"
-    type: string
+    type: number
+    value_format: "0.00\%"
     sql: ${TABLE}.price_change_percentage_1h_in_currency ;;
   }
   dimension: price_change_percentage_24h {
@@ -141,13 +148,15 @@ view: market_data {
   dimension: price_change_percentage_24h_in_currency {
     label: "Price Change Percentage in currency - 24hrs"
     description: "Percent price change in the last 24hrs in currency"
-    type: string
+    type: number
+    value_format: "0.00\%"
     sql: ${TABLE}.price_change_percentage_24h_in_currency ;;
   }
   dimension: price_change_percentage_7d_in_currency {
-    label: "Price Change Percentage in currency - 7 dayss"
+    label: "Price Change Percentage in currency - 7 days"
     description: "Percent price change in the last 7 days in currency"
-    type: string
+    value_format: "0.00\%"
+    type: number
     sql: ${TABLE}.price_change_percentage_7d_in_currency ;;
   }
   dimension: symbol {
@@ -157,9 +166,12 @@ view: market_data {
   }
   dimension: total_supply {
     type: number
+    value_format: "0"
+    description: "Total Supply refers to the total amount of coins or tokens of a specific cryptocurrency that have been created or mined, that are in circulation, including those that are locked or reserved."
     sql: ${TABLE}.total_supply ;;
   }
   dimension: total_volume {
+    description: "Total volume, also known as trading volume, is a key metric in the cryptocurrency market that measures the total amount of a cryptocurrency that has been traded within a specific time frame, usually daily. It's calculated by adding up all buy and sell transactions of a particular cryptocurrency asset during that period. For example, if Bitcoin has a daily trading volume of 50,000 BTC, that means 50,000 bitcoins were traded on that day."
     type: number
     sql: ${TABLE}.total_volume ;;
   }
