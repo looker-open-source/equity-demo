@@ -18,6 +18,7 @@ view: market_data {
   dimension: ath_change_percentage {
     label: "All-time High Change Percentage"
     type: number
+    value_format: "0.00\%"
     description: "The drop in percents of the price of a cryptocurrency compared to its maximum price (ATH) of all time"
     sql: ${TABLE}.ath_change_percentage ;;
   }
@@ -37,6 +38,7 @@ view: market_data {
   dimension: atl_change_percentage {
     label: "All-time Low Change Percentage"
     type: number
+    value_format: "0.00\%"
     description: "The rise in percents of the price of a cryptocurrency compared to its minimum price (ATL) of all time"
     sql: ${TABLE}.atl_change_percentage ;;
   }
@@ -99,6 +101,7 @@ view: market_data {
   dimension: market_cap_change_percentage_24h {
     label: "Market Cap Change Percentage - 24hrs"
     description: "Percentage change in the Market Cap in the last 24hrs"
+    value_format: "0.00\%"
     type: number
     sql: ${TABLE}.market_cap_change_percentage_24h ;;
   }
@@ -131,6 +134,7 @@ view: market_data {
   dimension: price_change_percentage_24h {
     label: "Price Change Percentage - 24h"
     description: "Percent price change in the last 24hrs"
+    value_format: "0.00\%"
     type: number
     sql: ${TABLE}.price_change_percentage_24h ;;
   }
