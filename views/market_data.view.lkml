@@ -72,6 +72,7 @@ view: market_data {
     type: string
     description: "URI for image"
     sql: ${TABLE}.image ;;
+    html: <img src="{{value}}";;
   }
   dimension: last_updated {
     type: string
