@@ -51,6 +51,7 @@ view: market_data {
   dimension: circulating_supply {
     description: "The total number of coins or tokens that are actively available for trade and are being used in the market and in general public."
     type: number
+    value_format: "#,##0"
     sql: ${TABLE}.circulating_supply ;;
   }
   dimension: current_price {
@@ -117,7 +118,7 @@ view: market_data {
   dimension: max_supply {
     description: "The limit of tokens that can be created for a particular cryptocurrency, providing insight into its scarcity and potential inflation rate. Max supply denotes the absolute maximum number of coins or tokens that will ever exist for a particular cryptocurrency."
     type: number
-    value_format: "0"
+    value_format: "#,##0"
     sql: ${TABLE}.max_supply ;;
   }
   dimension: name {
@@ -129,6 +130,7 @@ view: market_data {
     label: "Price Change - 24hrs"
     description: "Price change in the last 24hrs"
     type: string
+    value_format: "#,##0"
     sql: ${TABLE}.price_change_24h ;;
   }
   dimension: price_change_percentage_1h_in_currency {
@@ -166,13 +168,14 @@ view: market_data {
   }
   dimension: total_supply {
     type: number
-    value_format: "0"
+    value_format: "#,##0"
     description: "Total Supply refers to the total amount of coins or tokens of a specific cryptocurrency that have been created or mined, that are in circulation, including those that are locked or reserved."
     sql: ${TABLE}.total_supply ;;
   }
   dimension: total_volume {
     description: "Total volume, also known as trading volume, is a key metric in the cryptocurrency market that measures the total amount of a cryptocurrency that has been traded within a specific time frame, usually daily. It's calculated by adding up all buy and sell transactions of a particular cryptocurrency asset during that period. For example, if Bitcoin has a daily trading volume of 50,000 BTC, that means 50,000 bitcoins were traded on that day."
     type: number
+    value_format: "#,##0"
     sql: ${TABLE}.total_volume ;;
   }
   measure: count {
