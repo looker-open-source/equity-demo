@@ -48,39 +48,4 @@ explore: bitcoin_blocks {
 }
 explore: market_data {
   label: "Market Data"
-  join: crypto_history {
-    view_label: "Crypto History"
-    relationship: one_to_one
-    sql_on: ${market_data.id} = ${crypto_history.id} ;;
   }
-  join: crypto_history__prices__amount {
-    view_label: "Crypto History: Prices Amount"
-    sql: LEFT JOIN UNNEST(${crypto_history.prices__amount}) as crypto_history__prices__amount ;;
-    relationship: one_to_many
-  }
-  join: crypto_history__prices__epoch_time {
-    view_label: "Crypto History: Prices Epoch Time"
-    sql: LEFT JOIN UNNEST(${crypto_history.prices__epoch_time}) as crypto_history__prices__epoch_time ;;
-    relationship: one_to_many
-  }
-  join: crypto_history__market_caps__amount {
-    view_label: "Crypto History: Market Caps Amount"
-    sql: LEFT JOIN UNNEST(${crypto_history.market_caps__amount}) as crypto_history__market_caps__amount ;;
-    relationship: one_to_many
-  }
-  join: crypto_history__total_volumes__amount {
-    view_label: "Crypto History: Total Volumes Amount"
-    sql: LEFT JOIN UNNEST(${crypto_history.total_volumes__amount}) as crypto_history__total_volumes__amount ;;
-    relationship: one_to_many
-  }
-  join: crypto_history__market_caps__epoch_time {
-    view_label: "Crypto History: Market Caps Epoch Time"
-    sql: LEFT JOIN UNNEST(${crypto_history.market_caps__epoch_time}) as crypto_history__market_caps__epoch_time ;;
-    relationship: one_to_many
-  }
-  join: crypto_history__total_volumes__epoch_time {
-    view_label: "Crypto History: Total Volumes Epoch Time"
-    sql: LEFT JOIN UNNEST(${crypto_history.total_volumes__epoch_time}) as crypto_history__total_volumes__epoch_time ;;
-    relationship: one_to_many
-  }
-}
