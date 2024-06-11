@@ -6,16 +6,23 @@ view: history_pdt {
   derived_table: {
     sql: SELECT
     id
+    ,prices_amount
+    ,prices_epoch_time
+    ,market_caps_amount
+    ,market_caps_epoch_time
+    ,total_volumes_amount
+    ,total_volumes_epoch_time
     FROM `kirby-looker-core-argolis.crypto_mvp.coin_gecko_history`
-    LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.coin_gecko_history.prices.amount`)
-    LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.coin_gecko_history.prices.epoch_time`)
-    LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.coin_gecko_history.market_caps.amount`)
-    LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.coin_gecko_history.market_caps.epoch_time`)
-    LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.coin_gecko_history.total_volumes.amount`)
-    LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.coin_gecko_history.total_volumes.price`);;
+    LEFT JOIN UNNEST(prices.amount) as prices_amount
+    LEFT JOIN UNNEST(prices.epoch_time) as prices_epoch_time
+    LEFT JOIN UNNEST(market_caps.amount) as market_caps_amount
+    LEFT JOIN UNNEST(market_caps.epoch_time) as market_caps_epoch_time
+    LEFT JOIN UNNEST(total_volumes.amount) as total_volumes_amount
+    LEFT JOIN UNNEST(total_volumes.epoch_time) as total_volumes_epoch_time;;
   }
 
   dimension: id {
+    primary_key: yes
     type: string
     description: "Coin ID"
     sql: ${TABLE}.id ;;
