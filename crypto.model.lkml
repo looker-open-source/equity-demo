@@ -48,22 +48,30 @@ explore: bitcoin_blocks {
 }
 explore: market_data {
   label: "Market Data"
-  join: history_pdt {
-    view_label: "History"
-    relationship: one_to_one
-    sql_on: ${market_data.id}=${history_pdt.id} ;;
-    }
-    #join: coin_gecko_history__prices__amount {
-      #view_label: "Coin Gecko History: Prices Amount"
+  cancel_grouping_fields: [
+    coin_gecko_history__prices__amount.coin_gecko_history__prices__amount
+  ]
+    join: coin_gecko_history {
 
-      #sql: LEFT JOIN UNNEST(${coin_gecko_history.prices__amount}) as coin_gecko_history__prices__amount ;;
-      #relationship: one_to_many
+      view_label: "History"
+      relationship: one_to_many
+      sql_on: ${market_data.id}=${coin_gecko_history.id};;
+    }
+  # join: history_pdt {
+    #view_label: "History"
+    #relationship: one_to_one
+    #sql_on: ${market_data.id}=${history_pdt.id} ;;
     #}
-    #join: coin_gecko_history__prices__epoch_time {
-      #view_label: "Coin Gecko History: Prices Epoch Time"
-      #sql: LEFT JOIN UNNEST(${coin_gecko_history.prices__epoch_time}) as coin_gecko_history__prices__epoch_time ;;
-      #relationship: one_to_many
-    #}
+    join: coin_gecko_history__prices__amount {
+      view_label: "Coin Gecko History: Prices Amount"
+      sql: LEFT JOIN  UNNEST(${coin_gecko_history.prices__amount})as coin_gecko_history__prices__amount ;;
+      relationship: one_to_many
+    }
+    join: coin_gecko_history__prices__epoch_time {
+      view_label: "Coin Gecko History: Prices Epoch Time"
+      sql: LEFT JOIN UNNEST(${coin_gecko_history.prices__epoch_time}) as coin_gecko_history__prices__epoch_time ;;
+      relationship: one_to_many
+    }
     #join: coin_gecko_history__market_caps__amount {
       #view_label: "Coin Gecko History: Market Caps Amount"
       #sql: LEFT JOIN UNNEST(${coin_gecko_history.market_caps__amount}) as coin_gecko_history__market_caps__amount ;;

@@ -3,43 +3,50 @@ view: coin_gecko_history {
   drill_fields: [id]
 
   dimension: id {
-    primary_key: yes
     type: string
+    # primary_key: yes
     description: "coin id"
     sql: ${TABLE}.id ;;
   }
+
+  dimension: pk {
+    hidden: yes
+    primary_key: yes
+    type: number
+    sql: GENERATE_UUID() ;;
+  }
   dimension: market_caps__amount {
-    #hidden: yes
+    hidden: yes
     sql: ${TABLE}.market_caps.amount ;;
     group_label: "Market Caps"
     group_item_label: "Amount"
   }
   dimension: market_caps__epoch_time {
-    #hidden: yes
+    hidden: yes
     sql: ${TABLE}.market_caps.epoch_time ;;
     group_label: "Market Caps"
     group_item_label: "Epoch Time"
   }
   dimension: prices__amount {
-   # hidden: yes
+    hidden: yes
     sql: ${TABLE}.prices.amount ;;
     group_label: "Prices"
     group_item_label: "Amount"
   }
   dimension: prices__epoch_time {
-    #hidden: yes
+    hidden: yes
     sql: ${TABLE}.prices.epoch_time ;;
     group_label: "Prices"
     group_item_label: "Epoch Time"
   }
   dimension: total_volumes__amount {
-   # hidden: yes
+    hidden: yes
     sql: ${TABLE}.total_volumes.amount ;;
     group_label: "Total Volumes"
     group_item_label: "Amount"
   }
   dimension: total_volumes__epoch_time {
-    #hidden: yes
+    hidden: yes
     sql: ${TABLE}.total_volumes.epoch_time ;;
     group_label: "Total Volumes"
     group_item_label: "Epoch Time"
@@ -57,6 +64,21 @@ view: coin_gecko_history__prices__amount {
     type: number
     sql: coin_gecko_history__prices__amount ;;
   }
+  measure: total_amount {
+    type: sum
+    sql: ${coin_gecko_history__prices__amount} ;;
+  }
+  # dimension: uuid {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.uuid ;;
+  # }
+  dimension: pk {
+    hidden: yes
+    primary_key: yes
+    type: string
+    sql: CONCAT(CAST(GENERATE_UUID() AS STRING), ' ',CAST( ${coin_gecko_history__prices__amount} AS STRING));;
+  }
 }
 
 view: coin_gecko_history__prices__epoch_time {
@@ -66,21 +88,32 @@ view: coin_gecko_history__prices__epoch_time {
     type: string
     sql: coin_gecko_history__prices__epoch_time ;;
   }
+  # dimension: pk {
+  #   hidden: yes
+  #   primary_key: yes
+  #   type: number
+  #   sql: GENERATE_UUID() ;;
+  # }
+  dimension: coin_gecko_history_prices_date {
+    type: date
+    hidden: yes
+    group_label: "Prices"
+    # sql: CAST(DATEADD(SECOND, ${coin_gecko_history__prices__epoch_time}/1000, '1970/1/1') AS DATE) ;;
+    sql: TIMESTAMP_MILLIS(${coin_gecko_history__prices__epoch_time}) ;;
+  }
+  dimension_group: price_date {
+    label: "Date"
+    type: time
+    timeframes: [date,week,month,year]
+    sql: CAST(${coin_gecko_history_prices_date} AS TIMESTAMP) ;;
+  }
+  dimension: pk {
+    hidden: yes
+    primary_key: yes
+    type: string
+    sql: CONCAT(CAST(GENERATE_UUID() AS STRING), ' ',CAST( ${coin_gecko_history__prices__epoch_time} AS STRING));;
+  }
 }
- # dimension: coin_gecko_history_prices_date {
-   # type: date
-   # hidden: yes
-    #group_label: "Prices"
-    #sql: CAST(DATEADD(SECOND, ${coin_gecko_history__prices__epoch_time}/1000, '1970/1/1') AS DATE) ;;
-   # sql: TIMESTAMP_MILLIS(${coin_gecko_history__prices__epoch_time}) ;;
-  #}
-  #dimension_group: price_date {
-   # label: "Date"
-   # type: time
-    #timeframes: [date,week,month,year]
-    #sql: CAST(${coin_gecko_history_prices_date} AS TIMESTAMP) ;;
-  #}
-#}
 
 view: coin_gecko_history__market_caps__amount {
 

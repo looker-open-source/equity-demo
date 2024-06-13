@@ -4,7 +4,7 @@ view: history_pdt {
   #
   #
   derived_table: {
-    sql: SELECT
+    sql:SELECT
     id
     ,prices_amount
     ,prices_epoch_time
@@ -18,7 +18,7 @@ view: history_pdt {
     LEFT JOIN UNNEST(market_caps.amount) as market_caps_amount
     LEFT JOIN UNNEST(market_caps.epoch_time) as market_caps_epoch_time
     LEFT JOIN UNNEST(total_volumes.amount) as total_volumes_amount
-    LEFT JOIN UNNEST(total_volumes.epoch_time) as total_volumes_epoch_time;;
+    LEFT JOIN UNNEST(total_volumes.epoch_time) as total_volumes_epoch_time ;;
   }
 
   dimension: id {
@@ -26,6 +26,19 @@ view: history_pdt {
     type: string
     description: "Coin ID"
     sql: ${TABLE}.id ;;
+  }
+
+  dimension: price {
+    group_label: "Prices"
+    type: number
+    description: "Price"
+    sql: ${TABLE}.prices_amount ;;
+  }
+  dimension: market_cap {
+    group_label: "Market Cap"
+    type: number
+    description: "Market Cap"
+    sql: ${TABLE}.market_cap_amount ;;
   }
 # view: history_pdt {
 #   # Or, you could make this view a derived table, like this:
