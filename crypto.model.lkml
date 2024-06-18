@@ -62,34 +62,34 @@ explore: market_data {
     #relationship: one_to_one
     #sql_on: ${market_data.id}=${history_pdt.id} ;;
     #}
-    join: history__prices__amount {
-      view_label: "Coin Gecko History: Prices Amount"
-      sql: LEFT JOIN  UNNEST(${history.prices__amount})as history__prices__amount ;;
+    join: prices {
+      #view_label: "Coin Gecko History: Prices Amount"
+      sql: LEFT JOIN  UNNEST(${history.prices__amount})as prices ;;
       relationship: one_to_many
     }
-    join: history__prices__epoch_time {
-      view_label: "Coin Gecko History: Prices Epoch Time"
-      sql: LEFT JOIN UNNEST(${history.prices__epoch_time}) as history__prices__epoch_time ;;
+    join: epoch_time {
+      #view_label: "Coin Gecko History: Prices Epoch Time"
+      sql: LEFT JOIN UNNEST(${history.prices__epoch_time}) as epoch_time ;;
       relationship: one_to_many
     }
-    join: history__market_caps__amount {
-      view_label: "Coin Gecko History: Market Caps Amount"
-      sql: LEFT JOIN UNNEST(${history.market_caps__amount}) as history__market_caps__amount ;;
+    join: market_caps {
+      #view_label: "Coin Gecko History: Market Caps Amount"
+      sql: LEFT JOIN UNNEST(${history.market_caps__amount}) as market_caps ;;
       relationship: one_to_many
     }
-    join: history__total_volumes__amount {
-      view_label: "Coin Gecko History: Total Volumes Amount"
-      sql: LEFT JOIN UNNEST(${history.total_volumes__amount}) as history__total_volumes__amount ;;
+    join: total_volumes {
+      #view_label: "Coin Gecko History: Total Volumes Amount"
+      sql: LEFT JOIN UNNEST(${history.total_volumes__amount}) as total_volumes ;;
       relationship: one_to_many
     }
-    join: history__market_caps__epoch_time {
-      view_label: "Coin Gecko History: Market Caps Epoch Time"
-      sql: LEFT JOIN UNNEST(${history.market_caps__epoch_time}) as history__market_caps__epoch_time ;;
-      relationship: one_to_many
-    }
-    join: history__total_volumes__epoch_time {
-      view_label: "Coin Gecko History: Total Volumes Epoch Time"
-      sql: LEFT JOIN UNNEST(${history.total_volumes__epoch_time}) as history__total_volumes__epoch_time ;;
-      relationship: one_to_many
-    }
+    # join: history__market_caps__epoch_time {
+    #   view_label: "Coin Gecko History: Market Caps Epoch Time"
+    #   sql: LEFT JOIN UNNEST(${history.market_caps__epoch_time}) as history__market_caps__epoch_time ;;
+    #   relationship: one_to_many
+    # }
+    # join: history__total_volumes__epoch_time {
+    #   view_label: "Coin Gecko History: Total Volumes Epoch Time"
+    #   sql: LEFT JOIN UNNEST(${history.total_volumes__epoch_time}) as history__total_volumes__epoch_time ;;
+    #   relationship: one_to_many
+    # }
   }

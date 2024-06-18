@@ -1,37 +1,4 @@
-# Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
-# explore: history {
-#   hidden: yes
-#     join: history__prices__amount {
-#       view_label: "History: Prices Amount"
-#       sql: LEFT JOIN UNNEST(${history.prices__amount}) as history__prices__amount ;;
-#       relationship: one_to_many
-#     }
-#     join: history__prices__epoch_time {
-#       view_label: "History: Prices Epoch Time"
-#       sql: LEFT JOIN UNNEST(${history.prices__epoch_time}) as history__prices__epoch_time ;;
-#       relationship: one_to_many
-#     }
-#     join: history__market_caps__amount {
-#       view_label: "History: Market Caps Amount"
-#       sql: LEFT JOIN UNNEST(${history.market_caps__amount}) as history__market_caps__amount ;;
-#       relationship: one_to_many
-#     }
-#     join: history__total_volumes__amount {
-#       view_label: "History: Total Volumes Amount"
-#       sql: LEFT JOIN UNNEST(${history.total_volumes__amount}) as history__total_volumes__amount ;;
-#       relationship: one_to_many
-#     }
-#     join: history__market_caps__epoch_time {
-#       view_label: "History: Market Caps Epoch Time"
-#       sql: LEFT JOIN UNNEST(${history.market_caps__epoch_time}) as history__market_caps__epoch_time ;;
-#       relationship: one_to_many
-#     }
-#     join: history__total_volumes__epoch_time {
-#       view_label: "History: Total Volumes Epoch Time"
-#       sql: LEFT JOIN UNNEST(${history.total_volumes__epoch_time}) as history__total_volumes__epoch_time ;;
-#       relationship: one_to_many
-#     }
-# }
+
 view: history {
   sql_table_name: `kirby-looker-core-argolis.crypto_mvp.history` ;;
   drill_fields: [id]
@@ -83,50 +50,83 @@ view: history {
   }
 }
 
-view: history__prices__amount {
+view: prices {
 
-  dimension: history__prices__amount {
+  dimension: price {
     type: number
-    sql: history__prices__amount ;;
+    sql: history__prices_amount ;;
   }
 }
 
-view: history__prices__epoch_time {
+view: epoch_time {
 
-  dimension: history__prices__epoch_time {
-    type: number
-    sql: history__prices__epoch_time ;;
+  dimension: epoch_time {
+    hidden: yes
+    type: string
+    sql: history__prices_epoch_time ;;
+  }
+  dimension: date  {
+    hidden: yes
+    type: date
+    sql:  DATE(TIMESTAMP_MILLIS(${epoch_time}));;
+  }
+  dimension_group: Timeframes {
+    type: time
+    timeframes: [date, week, month, quarter, year]
+    sql: CAST(${date} AS TIMESTAMP) ;;
   }
 }
 
-view: history__market_caps__amount {
+view: market_caps {
 
-  dimension: history__market_caps__amount {
+  dimension: market_cap {
     type: number
-    sql: history__market_caps__amount ;;
+    sql: history__market_caps_amount ;;
   }
 }
 
-view: history__total_volumes__amount {
+view: total_volumes {
 
-  dimension: history__total_volumes__amount {
+  dimension: total_volume {
     type: number
-    sql: history__total_volumes__amount ;;
+    sql: history__total_volumes_amount ;;
   }
 }
 
-view: history__market_caps__epoch_time {
+# view: history__market_caps__epoch_time {
 
-  dimension: history__market_caps__epoch_time {
-    type: number
-    sql: history__market_caps__epoch_time ;;
-  }
-}
+#   dimension: history__market_caps__epoch_time {
+#     hidden: yes
+#     type: string
+#     sql: history__market_caps__epoch_time ;;
+#   }
+#   dimension: date  {
+#     hidden: yes
+#     type: date
+#     sql:  DATE(TIMESTAMP_MILLIS(${history__market_caps__epoch_time}));;
+#   }
+#   dimension_group: Timeframes {
+#     type: time
+#     timeframes: [date, week, month, quarter, year]
+#     sql: CAST(${date} AS TIMESTAMP) ;;
+#   }
+# }
 
-view: history__total_volumes__epoch_time {
+# view: history__total_volumes__epoch_time {
 
-  dimension: history__total_volumes__epoch_time {
-    type: number
-    sql: history__total_volumes__epoch_time ;;
-  }
-}
+#   dimension: history__total_volumes__epoch_time {
+#     hidden: yes
+#     type: string
+#     sql: history__total_volumes__epoch_time ;;
+#   }
+#   dimension: date  {
+#     hidden: yes
+#     type: date
+#     sql:  DATE(TIMESTAMP_MILLIS(${history__total_volumes__epoch_time}));;
+#   }
+#   dimension_group: Timeframes {
+#     type: time
+#     timeframes: [date, week, month, quarter, year]
+#     sql: CAST(${date} AS TIMESTAMP) ;;
+#   }
+# }
