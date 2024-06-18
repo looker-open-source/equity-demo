@@ -12,7 +12,7 @@ view: history_pdt {
     ,market_caps_epoch_time
     ,total_volumes_amount
     ,total_volumes_epoch_time
-    FROM `kirby-looker-core-argolis.crypto_mvp.coin_gecko_history`
+    FROM `kirby-looker-core-argolis.crypto_mvp.history`
     LEFT JOIN UNNEST(prices.amount) as prices_amount
     LEFT JOIN UNNEST(prices.epoch_time) as prices_epoch_time
     LEFT JOIN UNNEST(market_caps.amount) as market_caps_amount
