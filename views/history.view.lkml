@@ -54,16 +54,18 @@ view: prices {
 
   dimension: price {
     type: number
-    sql: history__prices_amount ;;
+    value_format: "$#,##0.00"
+    sql: price ;;
   }
 }
 
 view: epoch_time {
+  view_label: "Date Information"
 
   dimension: epoch_time {
     hidden: yes
     type: string
-    sql: history__prices_epoch_time ;;
+    sql: epoch_time ;;
   }
   dimension: date  {
     hidden: yes
@@ -81,7 +83,8 @@ view: market_caps {
 
   dimension: market_cap {
     type: number
-    sql: history__market_caps_amount ;;
+    value_format: "$#,##0.00"
+    sql: market_cap ;;
   }
 }
 
@@ -89,7 +92,8 @@ view: total_volumes {
 
   dimension: total_volume {
     type: number
-    sql: history__total_volumes_amount ;;
+    value_format: "$#,##0.00"
+    sql: total_volume ;;
   }
 }
 
