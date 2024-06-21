@@ -1,5 +1,6 @@
 view: history_with_date_crossjoin {
   derived_table: {
+    # datagroup_trigger: history
     sql: with date_cte as
 (SELECT day
 FROM UNNEST(
@@ -78,6 +79,59 @@ INNER JOIN total_volumes_amount_unnested
 ON date_and_id_cte.id = total_volumes_amount_unnested.id AND market_cap_amount_unnested.market_caps_amount_offset = total_volumes_amount_unnested.total_volumes_amount_offset
 ;;
 }
+  dimension: coin_id {
+    type: string
+    sql: ${TABLE}.id ;;
+  }
+  dimension: date {
+    hidden: yes
+    type: date
+    sql: ${TABLE}.day ;;
+  }
+  dimension_group: dates{
+    type: time
+    intervals: [day, week, month, quarter, year]
+    sql: ${date} ;;
+  }
+  dimension: price_date {
+    hidden: yes
+    type: date
+    sql: ${TABLE}.price_date ;;
+  }
+  dimension: prices_epoch_offset {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.prices_epoch_offset ;;
+  }
+  dimension: price {
+    type: number
+    sql: ${TABLE}.prices_amount ;;
+  }
+  dimension: price_offset {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.prices_amount_offset ;;
+  }
+  dimension: market_cap {
+    type: number
+    sql: ${TABLE}.market_caps_amount ;;
+  }
+  dimension: market_cap_offset {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.market_caps_amount_offset ;;
+  }
+  dimension: total_volume {
+    type: number
+    sql: ${TABLE}.total_volumes_amount ;;
+  }
+  dimension: total_volume_offset {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.total_volumes_amount_offset ;;
+  }
+
+
 }
 #
 #   # Define your dimensions and measures here, like this:
