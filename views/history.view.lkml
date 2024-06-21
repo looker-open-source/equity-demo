@@ -31,104 +31,104 @@
 #       sql: LEFT JOIN UNNEST(${history.total_volumes__epoch_time}) as history__total_volumes__epoch_time ;;
 #       relationship: one_to_many
 #     }
+# # }
+# view: history {
+#   sql_table_name: `kirby-looker-core-argolis.crypto_mvp.history` ;;
+#   drill_fields: [id]
+
+#   dimension: id {
+#     primary_key: yes
+#     type: string
+#     sql: ${TABLE}.id ;;
+#   }
+#   dimension: market_caps__amount {
+#     hidden: yes
+#     sql: ${TABLE}.market_caps.amount ;;
+#     group_label: "Market Caps"
+#     group_item_label: "Amount"
+#   }
+#   dimension: market_caps__epoch_time {
+#     hidden: yes
+#     sql: ${TABLE}.market_caps.epoch_time ;;
+#     group_label: "Market Caps"
+#     group_item_label: "Epoch Time"
+#   }
+#   dimension: prices__amount {
+#     hidden: yes
+#     sql: ${TABLE}.prices.amount ;;
+#     group_label: "Prices"
+#     group_item_label: "Amount"
+#   }
+#   dimension: prices__epoch_time {
+#     hidden: yes
+#     sql: ${TABLE}.prices.epoch_time ;;
+#     group_label: "Prices"
+#     group_item_label: "Epoch Time"
+#   }
+#   dimension: total_volumes__amount {
+#     hidden: yes
+#     sql: ${TABLE}.total_volumes.amount ;;
+#     group_label: "Total Volumes"
+#     group_item_label: "Amount"
+#   }
+#   dimension: total_volumes__epoch_time {
+#     hidden: yes
+#     sql: ${TABLE}.total_volumes.epoch_time ;;
+#     group_label: "Total Volumes"
+#     group_item_label: "Epoch Time"
+#   }
+#   measure: count {
+#     type: count
+#     drill_fields: [id]
+#   }
 # }
-view: history {
-  sql_table_name: `kirby-looker-core-argolis.crypto_mvp.history` ;;
-  drill_fields: [id]
 
-  dimension: id {
-    primary_key: yes
-    type: string
-    sql: ${TABLE}.id ;;
-  }
-  dimension: market_caps__amount {
-    hidden: yes
-    sql: ${TABLE}.market_caps.amount ;;
-    group_label: "Market Caps"
-    group_item_label: "Amount"
-  }
-  dimension: market_caps__epoch_time {
-    hidden: yes
-    sql: ${TABLE}.market_caps.epoch_time ;;
-    group_label: "Market Caps"
-    group_item_label: "Epoch Time"
-  }
-  dimension: prices__amount {
-    hidden: yes
-    sql: ${TABLE}.prices.amount ;;
-    group_label: "Prices"
-    group_item_label: "Amount"
-  }
-  dimension: prices__epoch_time {
-    hidden: yes
-    sql: ${TABLE}.prices.epoch_time ;;
-    group_label: "Prices"
-    group_item_label: "Epoch Time"
-  }
-  dimension: total_volumes__amount {
-    hidden: yes
-    sql: ${TABLE}.total_volumes.amount ;;
-    group_label: "Total Volumes"
-    group_item_label: "Amount"
-  }
-  dimension: total_volumes__epoch_time {
-    hidden: yes
-    sql: ${TABLE}.total_volumes.epoch_time ;;
-    group_label: "Total Volumes"
-    group_item_label: "Epoch Time"
-  }
-  measure: count {
-    type: count
-    drill_fields: [id]
-  }
-}
+# view: history__prices__amount {
 
-view: history__prices__amount {
+#   dimension: id {
+#     primary_key: yes
+#     sql: CONCAT(CAST(${history__prices__amount} AS STRING), '|', CAST(${offset} AS STRING)) ;;
+#   }
 
-  dimension: id {
-    primary_key: yes
-    sql: CONCAT(CAST(${history__prices__amount} AS STRING), '|', CAST(${offset} AS STRING)) ;;
-  }
+#   dimension: offset {
+#     type: number
+#     sql: history__prices__amount_offset ;;
+#   }
 
-  dimension: offset {
-    type: number
-    sql: history__prices__amount_offset ;;
-  }
+#   dimension: history__prices__amount {
+#     type: number
+#     sql: history__prices__amount ;;
+#   }
+# }
 
-  dimension: history__prices__amount {
-    type: number
-    sql: history__prices__amount ;;
-  }
-}
+# view: history__prices__epoch_time {
 
-view: history__prices__epoch_time {
+#   dimension: id {
+#     primary_key: yes
+#     sql: CONCAT(CAST(${history__prices__epoch_time} AS STRING), '|', CAST(${offset} AS STRING)) ;;
+#   }
 
-  dimension: id {
-    primary_key: yes
-    sql: CONCAT(CAST(${history__prices__epoch_time} AS STRING), '|', CAST(${offset} AS STRING)) ;;
-  }
+#   dimension: offset {
+#     type: number
+#     sql: history__prices__epoch_time_offset ;;
+#   }
 
-  dimension: offset {
-    type: number
-    sql: history__prices__epoch_time_offset ;;
-  }
-
-  dimension: history__prices__epoch_time {
-    #hidden: yes
-    type: string
-    sql: history__prices__epoch_time ;;
-  }
-  dimension: price_date {
-    #hidden: yes
-    type: date
-    sql: TIMESTAMP_MILLIS(${history__prices__epoch_time}) ;;
-  }
-  dimension_group: price_date_data {
-    type: time
-    timeframes: [date,week,month,quarter,year]
-    sql: ${price_date} ;;
-  }
-}
+#   dimension: history__prices__epoch_time {
+#     #hidden: yes
+#     type: string
+#     sql: history__prices__epoch_time ;;
+#   }
+#   dimension: price_date {
+#     #hidden: yes
+#     type: date
+#     sql: TIMESTAMP_MILLIS(${history__prices__epoch_time}) ;;
+#   }
+#   dimension_group: price_date_data {
+#     type: time
+#     timeframes: [date,week,month,quarter,year]
+#     sql: ${price_date} ;;
+#   }
+# }
 
 # view: history__market_caps__amount {
 

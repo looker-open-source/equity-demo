@@ -46,26 +46,20 @@ explore: bitcoin_blocks {
       relationship: one_to_many
   }
 }
-explore: market_data {
-  label: "Market Data"
-  # join: history {
-  #   relationship: one_to_many
-  #   sql_on: ${market_data.id} = ${history.id} ;;
-  # }
-  }
+explore: market_data {}
 
-  explore: history {
-    label: "History Data"
-  join: history__prices__amount {
-    view_label: "History: Prices Amount"
-    sql: CROSS JOIN UNNEST(${history.prices__amount}) as history__prices__amount WITH OFFSET as history__prices__amount_offset ;;
-    relationship: one_to_many
-  }
-  join: history__prices__epoch_time {
-    view_label: "History: Prices Epoch Time"
-    sql: CROSS JOIN UNNEST(${history.prices__epoch_time}) as history__prices__epoch_time WITH OFFSET as history__prices__epoch_time_offset ;;
-    relationship: one_to_many
-  }
+  # explore: history {
+  #   label: "History Data"
+  # join: history__prices__amount {
+  #   view_label: "History: Prices Amount"
+  #   sql: CROSS JOIN UNNEST(${history.prices__amount}) as history__prices__amount WITH OFFSET as history__prices__amount_offset ;;
+  #   relationship: one_to_many
+  # }
+  # join: history__prices__epoch_time {
+  #   view_label: "History: Prices Epoch Time"
+  #   sql: CROSS JOIN UNNEST(${history.prices__epoch_time}) as history__prices__epoch_time WITH OFFSET as history__prices__epoch_time_offset ;;
+  #   relationship: one_to_many
+  # }
   # join: history__market_caps__amount {
   #   view_label: "History: Market Caps Amount"
   #   sql: LEFT JOIN UNNEST(${history.market_caps__amount}) as history__market_caps__amount ;;
@@ -93,4 +87,4 @@ explore: market_data {
   #   sql_on: ${market_data.id}=${history_pdt.id} ;;
   #   }
 
-  }
+  # }
