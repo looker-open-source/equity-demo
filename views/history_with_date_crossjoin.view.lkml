@@ -1,6 +1,6 @@
 view: history_with_date_crossjoin {
   derived_table: {
-    # datagroup_trigger: history
+    #datagroup_trigger: history
     sql: with date_cte as
 (SELECT day
 FROM UNNEST(
@@ -132,7 +132,7 @@ ON date_and_id_cte.id = total_volumes_amount_unnested.id AND market_cap_amount_u
   }
 
 
-}
+ }
 #
 #   # Define your dimensions and measures here, like this:
 #   dimension: user_id {
