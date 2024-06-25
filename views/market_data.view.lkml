@@ -24,9 +24,9 @@ view: market_data {
   }
   dimension: ath_date {
     label: "All-time High Date"
-    type: date
+    type: string
     description: "Date of all-time high"
-    sql: CAST(SUBSTRING(${TABLE}.ath_date,1,10) AS DATE FORMAT 'YYYY-MM-DD');;
+    sql: SUBSTRING(${TABLE}.ath_date,1,10);;
   }
   dimension: atl {
     label: "All-time Low"
@@ -44,9 +44,9 @@ view: market_data {
   }
   dimension: atl_date {
     label: "All-time Low Date"
-    type: date
+    type: string
     description: "Date of all-time low"
-    sql: CAST(SUBSTRING(${TABLE}.atl_date,1,10) AS DATE FORMAT 'YYYY-MM-DD');;
+    sql: SUBSTRING(${TABLE}.atl_date,1,10);;
   }
   dimension: circulating_supply {
     description: "The total number of coins or tokens that are actively available for trade and are being used in the market and in general public."
