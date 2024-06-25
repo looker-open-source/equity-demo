@@ -39,8 +39,8 @@ explore: history_with_date_crossjoin {
 }
 datagroup: history {
   max_cache_age: "24 hours"
-  sql_trigger: SELECT max(${TABLE}.day) FROM history_with_date_crossjoin ;;
-  # interval_trigger: "24 hours"
+  #sql_trigger: SELECT max(${TABLE}.day) FROM history_with_date_crossjoin ;;
+  interval_trigger: "24 hours"
   label: "History PDT datagroup"
   description: "Datagroup for history with date crossjoin PDT"
 }
