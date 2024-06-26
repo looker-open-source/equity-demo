@@ -83,15 +83,11 @@ ON date_and_id_cte.id = total_volumes_amount_unnested.id AND market_cap_amount_u
     type: string
     sql: ${TABLE}.id ;;
   }
-  dimension: day {
-    # hidden: yes
-    type: date
-    sql: ${TABLE}.day ;;
-  }
-  dimension_group: dates{
-    type: time
-    intervals: [day, week, month, quarter, year]
-    sql: ${day} ;;
+  dimension_group: history_date {
+  type: time
+  timeframes: [date, week, month, year]
+  datatype: date
+  sql: ${TABLE}.day;;
   }
   dimension: price_date {
      hidden: yes
