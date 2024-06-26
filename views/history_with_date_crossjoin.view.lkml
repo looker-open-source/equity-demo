@@ -80,6 +80,7 @@ ON date_and_id_cte.id = total_volumes_amount_unnested.id AND market_cap_amount_u
 ;;
 }
   dimension: coin_id {
+    description: "Coin ID"
     type: string
     sql: ${TABLE}.id ;;
   }
@@ -100,7 +101,9 @@ ON date_and_id_cte.id = total_volumes_amount_unnested.id AND market_cap_amount_u
     sql: ${TABLE}.prices_epoch_offset ;;
   }
   dimension: price {
+    description: "Price information for given date"
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.prices_amount ;;
   }
   dimension: price_offset {
@@ -109,7 +112,9 @@ ON date_and_id_cte.id = total_volumes_amount_unnested.id AND market_cap_amount_u
     sql: ${TABLE}.prices_amount_offset ;;
   }
   dimension: market_cap {
+    description: "Market cap information for given date"
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.market_caps_amount ;;
   }
   dimension: market_cap_offset {
@@ -118,7 +123,9 @@ ON date_and_id_cte.id = total_volumes_amount_unnested.id AND market_cap_amount_u
     sql: ${TABLE}.market_caps_amount_offset ;;
   }
   dimension: total_volume {
+    description: "Total volume information for given date"
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.total_volumes_amount ;;
   }
   dimension: total_volume_offset {

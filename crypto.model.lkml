@@ -6,7 +6,7 @@ include: "/**/*.view.lkml"                 # include all views in this project
 
 #creating a test explore with one view for now
 explore: bitcoin_blocks {
-  label: "Coin Data"
+  label: "Wallet Data"
   join: bitcoin_transactions {
     relationship: one_to_many
     sql_on: ${bitcoin_blocks.hash} = ${bitcoin_transactions.block_hash} ;;
@@ -32,11 +32,17 @@ explore: bitcoin_blocks {
       relationship: one_to_many
   }
 }
-explore: market_data {}
-
-explore: history_with_date_crossjoin {
-  label: "Historical Data"
+explore: market_data {
+  label: "Coin Data"
+  join: history_with_date_crossjoin {
+    relationship: one_to_many
+    sql_on: ${market_data.id} = ${history_with_date_crossjoin.coin_id} ;;
+  }
 }
+
+#explore: history_with_date_crossjoin {
+  #label: "Historical Coin Data"
+#}
 datagroup: history {
   max_cache_age: "24 hours"
   #sql_trigger: SELECT max(${TABLE}.day) FROM history_with_date_crossjoin ;;
