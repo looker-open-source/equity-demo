@@ -23,10 +23,17 @@ view: market_data {
     sql: ${TABLE}.ath_change_percentage ;;
   }
   dimension: ath_date {
+    hidden: yes
     label: "All-time High Date"
     type: string
     description: "Date of all-time high"
     sql: SUBSTRING(${TABLE}.ath_date,1,10);;
+  }
+  dimension_group: ath_date_choices {
+    type: time
+    timeframes: [date, week, month, year]
+    datatype: date
+    sql: ${ath_date};;
   }
   dimension: atl {
     label: "All-time Low"
@@ -43,10 +50,17 @@ view: market_data {
     sql: ${TABLE}.atl_change_percentage ;;
   }
   dimension: atl_date {
+    hidden: yes
     label: "All-time Low Date"
     type: string
     description: "Date of all-time low"
     sql: SUBSTRING(${TABLE}.atl_date,1,10);;
+  }
+  dimension_group: atl_date_choices {
+    type: time
+    timeframes: [date, week, month, year]
+    datatype: date
+    sql: ${atl_date};;
   }
   dimension: circulating_supply {
     description: "The total number of coins or tokens that are actively available for trade and are being used in the market and in general public."
@@ -80,8 +94,15 @@ view: market_data {
     html: <img src="{{value}}";;
   }
   dimension: last_updated {
-    type: date
-    sql: CAST(SUBSTRING(${TABLE}.last_updated,1,10) AS DATE FORMAT 'YYYY-MM-DD');;
+    hidden: yes
+    type: string
+    sql: SUBSTRING(${TABLE}.last_updated,1,10);;
+  }
+  dimension_group: last_updated_date {
+    type: time
+    timeframes: [date, week, month, year]
+    datatype: date
+    sql: ${last_updated};;
   }
   dimension: low_24h {
     label: "24hr Low"
