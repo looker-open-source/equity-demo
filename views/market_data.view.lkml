@@ -30,6 +30,8 @@ view: market_data {
     sql: SUBSTRING(${TABLE}.ath_date,1,10);;
   }
   dimension_group: ath_date_choices {
+    label: "All-time High"
+    description: "Date of all-time high"
     type: time
     timeframes: [date, week, month, year]
     datatype: date
@@ -57,6 +59,8 @@ view: market_data {
     sql: SUBSTRING(${TABLE}.atl_date,1,10);;
   }
   dimension_group: atl_date_choices {
+    label: "All-time Low"
+    description: "Date of all-time low"
     type: time
     timeframes: [date, week, month, year]
     datatype: date
@@ -99,6 +103,8 @@ view: market_data {
     sql: SUBSTRING(${TABLE}.last_updated,1,10);;
   }
   dimension_group: last_updated_date {
+    label: "Last Updated"
+    description: "Date for which this data was last updated"
     type: time
     timeframes: [date, week, month, year]
     datatype: date
