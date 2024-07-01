@@ -4,10 +4,22 @@ view: bitcoin_blocks {
   label: "Bitcoin Blocks"
   sql_table_name: `bigquery-public-data.crypto_bitcoin.blocks` ;;
 
+
   dimension: id {
+    hidden: yes
     primary_key: no
     type: string
     sql: "bitcoin" ;;
+  }
+  dimension: coin_id {
+    primary_key: no
+    type: string
+    sql: ${id} ;;
+    link: {
+      label: "Filtered Coin Data by ID"
+      url: "https://b772aff5-4b93-454c-9b34-147289eb2172.looker.app/dashboards/RZbF4ReRz00O3655QMLfG7?ID={{value}}"
+      # url: "https://instance_name.looker.com/dashboards/694?State={{ _filters['users.state'] | url_encode }}&Date={{ _filters['orders.date'] | url_encode }}"
+    }
   }
 # }
 
