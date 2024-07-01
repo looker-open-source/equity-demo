@@ -1,6 +1,6 @@
-# include: blocks_base.view
+include: blocks_base.view
 view: bitcoin_blocks {
-  # extends: [blocks_base]
+  extends: [blocks_base]
   label: "Bitcoin Blocks"
   sql_table_name: `bigquery-public-data.crypto_bitcoin.blocks` ;;
 
@@ -21,12 +21,12 @@ view: bitcoin_blocks {
   #   description: "Data specified in the coinbase transaction of this block"
   #   sql: ${TABLE}.coinbase_param ;;
   # }
-  dimension: hash {
-    primary_key: yes
-    type: string
-    description: "Hash of this block"
-    sql: ${TABLE}.`hash` ;;
-  }
+  # dimension: hash {
+  #   primary_key: yes
+  #   type: string
+  #   description: "Hash of this block"
+  #   sql: ${TABLE}.`hash` ;;
+  # }
 #   #commenting out dimensions I don't think I'll need
 #   # dimension: merkle_root {
 #   #   type: string
