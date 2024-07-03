@@ -385,13 +385,13 @@ view: full_public_dataset {
     }
     dimension: transaction_count{
       type: number
-      value_format: "0.##"
+      value_format: "#,##0"
       description: "Number of transactions included in this block"
       sql: ${TABLE}.transaction_count ;;
     }
     measure: avg_transaction_count {
       type: average
-      value_format: "0.000,\" K\""
+      value_format: "#,##0"
       label: "Average Transaction Count"
       sql: ${transaction_count} ;;
     }
@@ -407,7 +407,7 @@ view: full_public_dataset {
     }
     dimension: transaction_size{
       type: number
-      value_format: "0.000,,\" M\""
+      value_format: "#,##0"
       description: "The size of this transaction in bytes"
       sql: ${TABLE}.transaction_size ;;
     }
