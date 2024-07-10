@@ -329,6 +329,173 @@ view: full_public_dataset {
     ON litecoin_transaction_base.transaction_hash = litecoin_input_addresses.transaction_hash
     INNER JOIN litecoin_output_addresses
     ON litecoin_transaction_base.transaction_hash = litecoin_output_addresses.transaction_hash)
+    ,
+    dash_block_base as (
+    select
+    "dash" as coin_id
+    ,`hash` as block_hash
+    ,size as block_size
+    ,number as block_number
+    ,timestamp as block_timestamp
+    ,transaction_count
+    FROM `bigquery-public-data.crypto_dash.blocks`)
+    ,
+    dash_transaction_base as (
+    select
+    `hash` as transaction_hash
+    ,size as transaction_size
+    ,block_hash
+    ,block_number
+    ,block_timestamp
+    ,input_count
+    ,output_count
+    ,input_value
+    ,output_value
+    ,is_coinbase
+    ,fee
+    FROM `bigquery-public-data.crypto_dash.transactions`)
+    ,
+    dash_input_addresses as (
+    select
+    transaction_hash
+    ,block_hash
+    ,block_number
+    ,block_timestamp
+    ,spent_transaction_hash
+    ,addresses
+    ,addresses_offset
+    ,value
+    FROM `bigquery-public-data.crypto_dash.inputs`
+    LEFT JOIN UNNEST(`bigquery-public-data.crypto_dash.inputs`.addresses) as addresses WITH OFFSET as addresses_offset)
+    ,
+    dash_output_addresses as (
+    select
+    transaction_hash
+    ,block_hash
+    ,block_number
+    ,block_timestamp
+    ,addresses
+    ,addresses_offset
+    ,value
+    FROM `bigquery-public-data.crypto_dash.outputs`
+    LEFT JOIN UNNEST(`bigquery-public-data.crypto_dash.outputs`.addresses) as addresses WITH OFFSET as addresses_offset)
+    ,
+    full_dash as(
+    select
+    dash_block_base.coin_id
+    ,dash_block_base.block_hash
+    ,dash_block_base.block_size
+    ,dash_block_base.block_number
+    ,dash_block_base.block_timestamp
+    ,dash_block_base.transaction_count
+    ,dash_transaction_base.transaction_hash
+    ,dash_transaction_base.transaction_size
+    ,dash_transaction_base.input_count
+    ,dash_transaction_base.output_count
+    ,dash_transaction_base.input_value
+    ,dash_transaction_base.output_value
+    ,dash_transaction_base.is_coinbase
+    ,dash_transaction_base.fee
+    ,dash_input_addresses.spent_transaction_hash
+    ,dash_input_addresses.addresses as input_addresses
+    ,dash_input_addresses.addresses_offset as input_addresses_offset
+    ,dash_input_addresses.value as input_address_value
+    ,dash_output_addresses.addresses as output_addresses
+    ,dash_output_addresses.addresses_offset as output_addresses_offset
+    ,dash_output_addresses.value as output_address_value
+
+    FROM dash_block_base
+    INNER JOIN dash_transaction_base
+    ON dash_block_base.block_hash = dash_transaction_base.block_hash
+    INNER JOIN dash_input_addresses
+    ON dash_transaction_base.transaction_hash = dash_input_addresses.transaction_hash
+    INNER JOIN dash_output_addresses
+    ON dash_transaction_base.transaction_hash = dash_output_addresses.transaction_hash)
+    ,
+    zcash_block_base as (
+    select
+    "zcash" as coin_id
+    ,`hash` as block_hash
+    ,size as block_size
+    ,number as block_number
+    ,timestamp as block_timestamp
+    ,transaction_count
+    FROM `bigquery-public-data.crypto_zcash.blocks`)
+    ,
+    zcash_transaction_base as (
+    select
+    `hash` as transaction_hash
+    ,size as transaction_size
+    ,block_hash
+    ,block_number
+    ,block_timestamp
+    ,input_count
+    ,output_count
+    ,input_value
+    ,output_value
+    ,is_coinbase
+    ,fee
+    FROM `bigquery-public-data.crypto_zcash.transactions`)
+    ,
+    zcash_input_addresses as (
+    select
+    transaction_hash
+    ,block_hash
+    ,block_number
+    ,block_timestamp
+    ,spent_transaction_hash
+    ,addresses
+    ,addresses_offset
+    ,value
+    FROM `bigquery-public-data.crypto_zcash.inputs`
+    LEFT JOIN UNNEST(`bigquery-public-data.crypto_zcash.inputs`.addresses) as addresses WITH OFFSET as addresses_offset)
+    ,
+    zcash_output_addresses as (
+    select
+    transaction_hash
+    ,block_hash
+    ,block_number
+    ,block_timestamp
+    ,addresses
+    ,addresses_offset
+    ,value
+    FROM `bigquery-public-data.crypto_zcash.outputs`
+    LEFT JOIN UNNEST(`bigquery-public-data.crypto_zcash.outputs`.addresses) as addresses WITH OFFSET as addresses_offset)
+    ,
+    full_zcash as(
+    select
+    zcash_block_base.coin_id
+    ,zcash_block_base.block_hash
+    ,zcash_block_base.block_size
+    ,zcash_block_base.block_number
+    ,zcash_block_base.block_timestamp
+    ,zcash_block_base.transaction_count
+    ,zcash_transaction_base.transaction_hash
+    ,zcash_transaction_base.transaction_size
+    ,zcash_transaction_base.input_count
+    ,zcash_transaction_base.output_count
+    ,zcash_transaction_base.input_value
+    ,zcash_transaction_base.output_value
+    ,zcash_transaction_base.is_coinbase
+    ,zcash_transaction_base.fee
+    ,zcash_input_addresses.spent_transaction_hash
+    ,zcash_input_addresses.addresses as input_addresses
+    ,zcash_input_addresses.addresses_offset as input_addresses_offset
+    ,zcash_input_addresses.value as input_address_value
+    ,zcash_output_addresses.addresses as output_addresses
+    ,zcash_output_addresses.addresses_offset as output_addresses_offset
+    ,zcash_output_addresses.value as output_address_value
+
+    FROM zcash_block_base
+    INNER JOIN zcash_transaction_base
+    ON zcash_block_base.block_hash = zcash_transaction_base.block_hash
+    INNER JOIN zcash_input_addresses
+    ON zcash_transaction_base.transaction_hash = zcash_input_addresses.transaction_hash
+    INNER JOIN zcash_output_addresses
+    ON zcash_transaction_base.transaction_hash = zcash_output_addresses.transaction_hash)
+
+
+
 
 
     select
@@ -346,6 +513,14 @@ view: full_public_dataset {
     select
     *
     FROM full_litecoin
+     UNION ALL
+    select
+    *
+    FROM full_dash
+    UNION ALL
+     select
+    *
+    FROM full_zcash
     ;;
   }
 
