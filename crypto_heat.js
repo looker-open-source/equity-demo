@@ -22,10 +22,10 @@ looker.plugins.visualizations.add({
 
       // Parse the data
       const parsedData = data.map(row => ({
-        id: row[queryResponse.fields.dimensions[0].name].value,
-        current_price: row[queryResponse.fields.measures[0].name].value,
-        market_cap: row[queryResponse.fields.measures[1].name].value,
-        price_change_24h: row[queryResponse.fields.measures[2].name].value
+        id: row[queryResponse.fields.dimensions[0].id].value,
+        current_price: row[queryResponse.fields.measures[0].current_price].value,
+        market_cap: row[queryResponse.fields.measures[1].market_cap].value,
+        price_change_24h: row[queryResponse.fields.measures[2].price_change_24h].value
       }));
 
       // Sort data by market cap (descending)
