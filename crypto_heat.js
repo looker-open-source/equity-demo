@@ -1,10 +1,10 @@
 looker.plugins.visualizations.add({
-    id: 'crypto_heatmap',
-    label: 'Crypto Heatmap',
+    id: "crypto_heatmap",
+    label: "Crypto Heatmap",
     options: {
       font_size: {
-        type: 'number',
-        label: 'Font Size',
+        type: "number",
+        label: "Font Size",
         default: 12
       }
     },
