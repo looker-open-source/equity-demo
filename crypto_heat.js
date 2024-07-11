@@ -10,9 +10,21 @@ looker.plugins.visualizations.add({
     },
     create: function(element, config) {
       element.innerHTML = '<div id="heatmap"></div>';
+      const script = document.createElement('script');
+      script.src = 'https://d3js.org/d3.v4.min.js';
+      script.async = true;
+      document.body.appendChild(script);
     },
     updateAsync: function(data, element, config, queryResponse, details, done) {
       this.clearErrors();
+
+       // Check if D3 library is loaded
+        let intervalId = setInterval(() => {
+            if (typeof d3 !== 'undefined') {
+                clearInterval(intervalId);
+                renderVisualisation(data, element, doneRendering);
+            }
+        }, 100);
 
       // Check for data
       if (!data || data.length === 0) {
