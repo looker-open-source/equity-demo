@@ -1,8 +1,8 @@
 view: full_public_dataset {
   derived_table: {
     datagroup_trigger: history
-    cluster_keys: [ "coin_id"]
-    partition_keys: [ "block_timestamp" ]
+    # cluster_keys: [ "coin_id"]
+    # partition_keys: [ "block_timestamp" ]
     sql:with bitcoin_block_base as (
     select
     "bitcoin" as coin_id
