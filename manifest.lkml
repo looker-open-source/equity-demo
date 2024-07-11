@@ -6,6 +6,12 @@ visualization: {
   label: "Crypto Heatmap"
   file: "crypto_heat.js"
 }
+
+visualization: {
+  id: "hello_world"
+  label: "Hello World"
+  file: "hello_world.js"
+}
 # # Use local_dependency: To enable referencing of another project
 # # on this instance with include: statements
 #
