@@ -56,26 +56,26 @@ looker.plugins.visualizations.add({
     },
     updateAsync: function(data, element, config, queryResponse, details, done) {
       this.clearErrors();
-  
+
       if (queryResponse.fields.dimensions.length < 4) {
         this.addError({title: "Invalid Data", message: "This chart requires at least 4 dimensions: ID, current price, price change percentage, and market cap."});
         return;
       }
-  
+
       const cryptoData = data[0];
       const dimensionFields = queryResponse.fields.dimensions;
-  
+
       let cryptoId, currentPrice, priceChange, marketCap;
-  
+
       dimensionFields.forEach(field => {
         switch(field.name.toLowerCase()) {
-          case 'id':
-            cryptoId = cryptoData[field.name].value;
+          case 'ID':
+            cryptoID = cryptoData[field.name].value;
             break;
           case 'current_price':
             currentPrice = parseFloat(cryptoData[field.name].value);
             break;
-          case 'price_change_percentage_24hr':
+          case 'price_change_percentage_24h':
             priceChange = parseFloat(cryptoData[field.name].value);
             break;
           case 'market_cap':
@@ -83,24 +83,24 @@ looker.plugins.visualizations.add({
             break;
         }
       });
-  
+
       if (!cryptoId || !currentPrice || priceChange === undefined || !marketCap) {
         this.addError({title: "Missing Data", message: "Please ensure all required fields (ID, current price, price change percentage, and market cap) are included."});
         return;
       }
-  
+
       const card = element.querySelector('.crypto-card');
       card.style.fontSize = config.font_size;
-  
+
       card.querySelector('.crypto-title').textContent = cryptoId;
       card.querySelector('.crypto-price').textContent = `$${currentPrice.toLocaleString()}`;
-  
+
       const changeElement = card.querySelector('.crypto-change');
       changeElement.textContent = `${priceChange.toFixed(2)}%`;
       changeElement.classList.add(priceChange >= 0 ? 'positive' : 'negative');
-  
+
       card.querySelector('.crypto-market-cap').textContent = `Market Cap: $${marketCap.toLocaleString()}`;
-  
+
       done();
     }
   });
