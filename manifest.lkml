@@ -13,6 +13,13 @@ visualization: {
   file: "hello_world.js"
   # url: "https://localhost:8081/looker_hello_world_viz_min.js"
 }
+
+visualization: {
+  id: "crypto_data_card"
+  label:"Crypto Data Card"
+  file: "crypto_data_card.js"
+  }
+
 # # Use local_dependency: To enable referencing of another project
 # # on this instance with include: statements
 #
