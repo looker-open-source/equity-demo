@@ -1,4 +1,4 @@
-ooker.plugins.visualizations.add({
+looker.plugins.visualizations.add({
     id: 'crypto_heatmap',
     label: 'Crypto Heatmap',
     options: {
