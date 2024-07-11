@@ -10,8 +10,8 @@ visualization: {
 visualization: {
   id: "hello_world"
   label: "Hello World"
-  # file: "hello_world.js"
-  url: "https://localhost:8081/looker_hello_world_viz_min.js"
+  file: "hello_world.js"
+  # url: "https://localhost:8081/looker_hello_world_viz_min.js"
 }
 # # Use local_dependency: To enable referencing of another project
 # # on this instance with include: statements
