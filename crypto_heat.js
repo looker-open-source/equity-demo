@@ -1,10 +1,10 @@
-looker.plugins.visualizations.add({
-    id: "crypto_heatmap",
-    label: "Crypto Heatmap",
+ooker.plugins.visualizations.add({
+    id: 'crypto_heatmap',
+    label: 'Crypto Heatmap',
     options: {
       font_size: {
-        type: "number",
-        label: "Font Size",
+        type: 'number',
+        label: 'Font Size',
         default: 12
       }
     },
@@ -22,10 +22,10 @@ looker.plugins.visualizations.add({
 
       // Parse the data
       const parsedData = data.map(row => ({
-        id: row[queryResponse.fields.dimensions[0].id].value,
-        current_price: row[queryResponse.fields.measures[0].current_price].value,
-        market_cap: row[queryResponse.fields.measures[1].market_cap].value,
-        price_change_24h: row[queryResponse.fields.measures[2].price_change_24h].value
+        coin_id: row[queryResponse.fields.dimensions[0].name].value,
+        current_price: row[queryResponse.fields.dimensions[1].name].value,
+        market_cap: row[queryResponse.fields.dimensions[2].name].value,
+        price_change_24h: row[queryResponse.fields.dimensions[3].name].value
       }));
 
       // Sort data by market cap (descending)
@@ -81,7 +81,7 @@ looker.plugins.visualizations.add({
         .attr("y", d => (d.y1 - d.y0) / 2)
         .attr("text-anchor", "middle")
         .attr("dominant-baseline", "middle")
-        .text(d => d.data.id)
+        .text(d => d.data.coin_id)
         .style("font-size", config.font_size + "px")
         .style("fill", d => d3.lab(colorScale(d.data.price_change_24h)).l < 50 ? "#fff" : "#000");
 
@@ -102,7 +102,7 @@ looker.plugins.visualizations.add({
           .duration(200)
           .style("opacity", .9);
         tooltip.html(`
-          <strong>${d.data.id}</strong><br/>
+          <strong>${d.data.coin_id}</strong><br/>
           Price: $${d.data.current_price.toLocaleString()}<br/>
           Market Cap: $${d.data.market_cap.toLocaleString()}<br/>
           24h Change: ${d.data.price_change_24h.toFixed(2)}%
