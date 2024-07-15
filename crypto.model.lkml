@@ -17,9 +17,9 @@ explore: market_data {
 }
 
 
-datagroup: history {
-  max_cache_age: "24 hours"
-  interval_trigger: "24 hours"
-  label: "History PDT datagroup"
-  description: "Datagroup for history with date crossjoin PDT"
-}
+# datagroup: history {
+#   max_cache_age: "24 hours"
+#   interval_trigger: "24 hours"
+#   label: "History PDT datagroup"
+#   description: "Datagroup for history with date crossjoin PDT"
+# }
