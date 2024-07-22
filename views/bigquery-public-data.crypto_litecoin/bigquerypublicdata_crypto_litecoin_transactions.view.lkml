@@ -2,6 +2,12 @@
 view: bigquerypublicdata_crypto_litecoin_transactions {
   sql_table_name: `bigquery-public-data.crypto_litecoin.transactions` ;;
 
+  dimension: coin_id {
+    type: string
+    description: "Name of the coin"
+    sql: "litecoin" ;;
+  }
+
   dimension: block_hash {
     type: string
     description: "Hash of the block which contains this transaction"
@@ -12,20 +18,20 @@ view: bigquerypublicdata_crypto_litecoin_transactions {
     description: "Number of the block which contains this transaction"
     sql: ${TABLE}.block_number ;;
   }
-  dimension_group: block_timestamp {
-    type: time
-    description: "Timestamp of the block which contains this transaction"
-    timeframes: [raw, time, date, week, month, quarter, year]
-    sql: ${TABLE}.block_timestamp ;;
-  }
-  # dimension_group: block_timestamp_month {
+  # dimension_group: block_timestamp {
   #   type: time
-  #   description: "Month of the block which contains this transaction"
-  #   timeframes: [raw, date, week, month, quarter, year]
-  #   convert_tz: no
-  #   datatype: date
-  #   sql: ${TABLE}.block_timestamp_month ;;
+  #   description: "Timestamp of the block which contains this transaction"
+  #   timeframes: [raw, time, date, week, month, quarter, year]
+  #   sql: ${TABLE}.block_timestamp ;;
   # }
+  dimension_group: block_timestamp_month {
+    type: time
+    description: "Month of the block which contains this transaction"
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.block_timestamp_month ;;
+  }
   dimension: fee {
     type: number
     description: "The fee paid by this transaction"

@@ -1,15 +1,17 @@
 view: full_public_dataset {
   derived_table: {
-    # datagroup_trigger: history
+    increment_key: "block_timestamp_date"
+    increment_offset: 10
+    datagroup_trigger: history
     # cluster_keys: [ "coin_id"]
-    # partition_keys: [ "block_timestamp" ]
+    partition_keys: [ "block_timestamp" ]
     sql:with bitcoin_block_base as (
     select
     "bitcoin" as coin_id
     ,`hash` as block_hash
     ,size as block_size
     ,number as block_number
-    ,timestamp as block_timestamp
+    ,timestamp_month as block_timestamp
     ,transaction_count
     FROM `bigquery-public-data.crypto_bitcoin.blocks`)
     ,
@@ -19,7 +21,7 @@ view: full_public_dataset {
     ,size as transaction_size
     ,block_hash
     ,block_number
-    ,block_timestamp
+    ,block_timestamp_month as block_timestamp
     ,input_count
     ,output_count
     ,input_value
@@ -92,7 +94,7 @@ view: full_public_dataset {
     ,`hash` as block_hash
     ,size as block_size
     ,number as block_number
-    ,timestamp as block_timestamp
+    ,timestamp_month as block_timestamp
     ,transaction_count
     FROM `bigquery-public-data.crypto_bitcoin_cash.blocks`)
     ,
@@ -102,7 +104,7 @@ view: full_public_dataset {
     ,size as transaction_size
     ,block_hash
     ,block_number
-    ,block_timestamp
+    ,block_timestamp_month as block_timestamp
     ,input_count
     ,output_count
     ,input_value
@@ -174,7 +176,7 @@ view: full_public_dataset {
     ,`hash` as block_hash
     ,size as block_size
     ,number as block_number
-    ,timestamp as block_timestamp
+    ,timestamp_month as block_timestamp
     ,transaction_count
     FROM `bigquery-public-data.crypto_dogecoin.blocks`)
     ,
@@ -184,7 +186,7 @@ view: full_public_dataset {
     ,size as transaction_size
     ,block_hash
     ,block_number
-    ,block_timestamp
+    ,block_timestamp_month as block_timestamp
     ,input_count
     ,output_count
     ,input_value
@@ -256,7 +258,7 @@ view: full_public_dataset {
     ,`hash` as block_hash
     ,size as block_size
     ,number as block_number
-    ,timestamp as block_timestamp
+    ,timestamp_month as block_timestamp
     ,transaction_count
     FROM `bigquery-public-data.crypto_litecoin.blocks`)
     ,
@@ -266,7 +268,7 @@ view: full_public_dataset {
     ,size as transaction_size
     ,block_hash
     ,block_number
-    ,block_timestamp
+    ,block_timestamp_month as block_timestamp
     ,input_count
     ,output_count
     ,input_value
@@ -338,7 +340,7 @@ view: full_public_dataset {
     ,`hash` as block_hash
     ,size as block_size
     ,number as block_number
-    ,timestamp as block_timestamp
+    ,timestamp_month as block_timestamp
     ,transaction_count
     FROM `bigquery-public-data.crypto_dash.blocks`)
     ,
@@ -348,7 +350,7 @@ view: full_public_dataset {
     ,size as transaction_size
     ,block_hash
     ,block_number
-    ,block_timestamp
+    ,block_timestamp_month as block_timestamp
     ,input_count
     ,output_count
     ,input_value
@@ -420,7 +422,7 @@ view: full_public_dataset {
     ,`hash` as block_hash
     ,size as block_size
     ,number as block_number
-    ,timestamp as block_timestamp
+    ,timestamp_month as block_timestamp
     ,transaction_count
     FROM `bigquery-public-data.crypto_zcash.blocks`)
     ,
@@ -430,7 +432,7 @@ view: full_public_dataset {
     ,size as transaction_size
     ,block_hash
     ,block_number
-    ,block_timestamp
+    ,block_timestamp_month as block_timestamp
     ,input_count
     ,output_count
     ,input_value
@@ -554,12 +556,20 @@ view: full_public_dataset {
       description: "The number of the block"
       sql: ${TABLE}.block_number ;;
     }
-    dimension_group:  block_timestamp{
-      type: time
-      description: "Block creation timestamp specified in block header"
-      timeframes: [raw, time, date, week, month, quarter, year]
-      sql: ${TABLE}.block_timestamp ;;
-    }
+    # dimension_group:  block_timestamp{
+    #   type: time
+    #   description: "Block creation timestamp specified in block header"
+    #   timeframes: [raw, time, date, week, month, quarter, year]
+    #   sql: ${TABLE}.block_timestamp ;;
+    # }
+  dimension_group: block_timestamp {
+    type: time
+    description: "Month of the block which contains this transaction"
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.block_timestamp ;;
+  }
     dimension: transaction_count{
       type: number
       value_format: "#,##0"

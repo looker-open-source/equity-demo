@@ -15,11 +15,19 @@ explore: market_data {
     sql_on: ${market_data.id} = ${history_with_date_crossjoin.coin_id} ;;
   }
 }
-
-
-# datagroup: history {
-#   max_cache_age: "24 hours"
-#   interval_trigger: "24 hours"
-#   label: "History PDT datagroup"
-#   description: "Datagroup for history with date crossjoin PDT"
+# explore: bigquerypublicdata_crypto_litecoin_transactions{
+#   label: "Test"
+#   join: crypto_bitcoin_transactions {
+#     type: full_outer
+#     relationship: many_to_many
+#     sql_on: ${bigquerypublicdata_crypto_litecoin_transactions.block_timestamp_} = ${crypto_bitcoin_transactions.block_timestamp_date} ;;
+#   }
 # }
+
+
+datagroup: history {
+  max_cache_age: "24 hours"
+  interval_trigger: "24 hours"
+  label: "History PDT datagroup"
+  description: "Datagroup for history with date crossjoin PDT"
+}
