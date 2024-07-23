@@ -1,6 +1,6 @@
 view: history_with_date_crossjoin {
   derived_table: {
-    # datagroup_trigger: history
+    datagroup_trigger: history
     sql: with date_cte as
 (SELECT day
 FROM UNNEST(
