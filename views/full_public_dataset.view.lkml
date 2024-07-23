@@ -11,6 +11,7 @@ view: full_public_dataset {
     ,`hash` as block_hash
     ,size as block_size
     ,number as block_number
+    ,timestamp as real_block_timestamp
     ,timestamp_month as block_timestamp
     ,transaction_count
     FROM `bigquery-public-data.crypto_bitcoin.blocks`)
@@ -21,6 +22,7 @@ view: full_public_dataset {
     ,size as transaction_size
     ,block_hash
     ,block_number
+    ,block_timestamp as real_block_timestamp
     ,block_timestamp_month as block_timestamp
     ,input_count
     ,output_count
@@ -61,6 +63,7 @@ view: full_public_dataset {
     ,bitcoin_block_base.block_hash
     ,bitcoin_block_base.block_size
     ,bitcoin_block_base.block_number
+    ,bitcoin_block_base.real_block_timestamp
     ,bitcoin_block_base.block_timestamp
     ,bitcoin_block_base.transaction_count
     ,bitcoin_transaction_base.transaction_hash
@@ -94,6 +97,7 @@ view: full_public_dataset {
     ,`hash` as block_hash
     ,size as block_size
     ,number as block_number
+    ,timestamp as real_block_timestamp
     ,timestamp_month as block_timestamp
     ,transaction_count
     FROM `bigquery-public-data.crypto_bitcoin_cash.blocks`)
@@ -104,6 +108,7 @@ view: full_public_dataset {
     ,size as transaction_size
     ,block_hash
     ,block_number
+    ,block_timestamp as real_block_timestamp
     ,block_timestamp_month as block_timestamp
     ,input_count
     ,output_count
@@ -144,6 +149,7 @@ view: full_public_dataset {
     ,bitcoin_cash_block_base.block_hash
     ,bitcoin_cash_block_base.block_size
     ,bitcoin_cash_block_base.block_number
+    ,bitcoin_cash_block_base.real_block_timestamp
     ,bitcoin_cash_block_base.block_timestamp
     ,bitcoin_cash_block_base.transaction_count
     ,bitcoin_cash_transaction_base.transaction_hash
@@ -176,6 +182,7 @@ view: full_public_dataset {
     ,`hash` as block_hash
     ,size as block_size
     ,number as block_number
+    ,timestamp as real_block_timestamp
     ,timestamp_month as block_timestamp
     ,transaction_count
     FROM `bigquery-public-data.crypto_dogecoin.blocks`)
@@ -186,6 +193,7 @@ view: full_public_dataset {
     ,size as transaction_size
     ,block_hash
     ,block_number
+    ,block_timestamp as real_block_timestamp
     ,block_timestamp_month as block_timestamp
     ,input_count
     ,output_count
@@ -226,6 +234,7 @@ view: full_public_dataset {
     ,dogecoin_block_base.block_hash
     ,dogecoin_block_base.block_size
     ,dogecoin_block_base.block_number
+    ,dogecoin_block_base.real_block_timestamp
     ,dogecoin_block_base.block_timestamp
     ,dogecoin_block_base.transaction_count
     ,dogecoin_transaction_base.transaction_hash
@@ -258,6 +267,7 @@ view: full_public_dataset {
     ,`hash` as block_hash
     ,size as block_size
     ,number as block_number
+    ,timestamp as real_block_timestmp
     ,timestamp_month as block_timestamp
     ,transaction_count
     FROM `bigquery-public-data.crypto_litecoin.blocks`)
@@ -268,6 +278,7 @@ view: full_public_dataset {
     ,size as transaction_size
     ,block_hash
     ,block_number
+    ,block_timestamp as real_block_timestamp
     ,block_timestamp_month as block_timestamp
     ,input_count
     ,output_count
@@ -308,6 +319,7 @@ view: full_public_dataset {
     ,litecoin_block_base.block_hash
     ,litecoin_block_base.block_size
     ,litecoin_block_base.block_number
+    ,litecoin_block_base.real_block_timestamp
     ,litecoin_block_base.block_timestamp
     ,litecoin_block_base.transaction_count
     ,litecoin_transaction_base.transaction_hash
@@ -340,6 +352,7 @@ view: full_public_dataset {
     ,`hash` as block_hash
     ,size as block_size
     ,number as block_number
+    ,timestamp as real_block_timestamp
     ,timestamp_month as block_timestamp
     ,transaction_count
     FROM `bigquery-public-data.crypto_dash.blocks`)
@@ -350,6 +363,7 @@ view: full_public_dataset {
     ,size as transaction_size
     ,block_hash
     ,block_number
+    ,block_timestamp as real_block_timestamp
     ,block_timestamp_month as block_timestamp
     ,input_count
     ,output_count
@@ -390,6 +404,7 @@ view: full_public_dataset {
     ,dash_block_base.block_hash
     ,dash_block_base.block_size
     ,dash_block_base.block_number
+    ,dash_block_base.real_block_timestamp
     ,dash_block_base.block_timestamp
     ,dash_block_base.transaction_count
     ,dash_transaction_base.transaction_hash
@@ -422,6 +437,7 @@ view: full_public_dataset {
     ,`hash` as block_hash
     ,size as block_size
     ,number as block_number
+    ,timestamp as real_block_timestamp
     ,timestamp_month as block_timestamp
     ,transaction_count
     FROM `bigquery-public-data.crypto_zcash.blocks`)
@@ -432,6 +448,7 @@ view: full_public_dataset {
     ,size as transaction_size
     ,block_hash
     ,block_number
+    ,block_timestamp as real_block_timestamp
     ,block_timestamp_month as block_timestamp
     ,input_count
     ,output_count
@@ -472,6 +489,7 @@ view: full_public_dataset {
     ,zcash_block_base.block_hash
     ,zcash_block_base.block_size
     ,zcash_block_base.block_number
+    ,zcash_block_base.real_block_timestamp
     ,zcash_block_base.block_timestamp
     ,zcash_block_base.transaction_count
     ,zcash_transaction_base.transaction_hash
@@ -556,13 +574,15 @@ view: full_public_dataset {
       description: "The number of the block"
       sql: ${TABLE}.block_number ;;
     }
-    # dimension_group:  block_timestamp{
-    #   type: time
-    #   description: "Block creation timestamp specified in block header"
-    #   timeframes: [raw, time, date, week, month, quarter, year]
-    #   sql: ${TABLE}.block_timestamp ;;
-    # }
+    dimension_group:  real_block_timestamp{
+      label: "Timestamp"
+      type: time
+      description: "Block creation timestamp specified in block header"
+      timeframes: [raw, time, date, week, month, quarter, year]
+      sql: ${TABLE}.block_timestamp ;;
+    }
   dimension_group: block_timestamp {
+    hidden: yes
     type: time
     description: "Month of the block which contains this transaction"
     timeframes: [raw, date, week, month, quarter, year]
