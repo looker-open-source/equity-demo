@@ -8,13 +8,13 @@ include: "/**/*.view.lkml"                 # include all views in this project
 explore: full_public_dataset {
   label: "Wallet Data"
 }
-# explore: market_data {
-#   label: "Coin Data"
-#   join: history_with_date_crossjoin {
-#     relationship: one_to_many
-#     sql_on: ${market_data.id} = ${history_with_date_crossjoin.coin_id} ;;
-#   }
-# }
+explore: market_data {
+  label: "Coin Data"
+  join: history_with_date_crossjoin {
+    relationship: one_to_many
+    sql_on: ${market_data.id} = ${history_with_date_crossjoin.coin_id} ;;
+  }
+}
 # explore: bigquerypublicdata_crypto_litecoin_transactions{
 #   label: "Test"
 #   join: crypto_bitcoin_transactions {
