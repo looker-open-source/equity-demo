@@ -578,8 +578,8 @@ view: full_public_dataset {
       label: "Timestamp"
       type: time
       description: "Block creation timestamp specified in block header"
-      timeframes: [raw, time, date, week, month, quarter, year]
-      sql: ${TABLE}.block_timestamp ;;
+      timeframes: [raw, date, week, month, quarter, year]
+      sql: CAST(${TABLE}.real_block_timestamp as TIMESTAMP);;
     }
   dimension_group: block_timestamp {
     hidden: yes
