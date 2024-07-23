@@ -267,7 +267,7 @@ view: full_public_dataset {
     ,`hash` as block_hash
     ,size as block_size
     ,number as block_number
-    ,timestamp as real_block_timestmp
+    ,timestamp as real_block_timestamp
     ,timestamp_month as block_timestamp
     ,transaction_count
     FROM `bigquery-public-data.crypto_litecoin.blocks`)
