@@ -1,6 +1,6 @@
 view: full_public_dataset {
   derived_table: {
-    increment_key: "block_timestamp"
+    increment_key: "real_block_timestamp_date"
     increment_offset: 1
     datagroup_trigger: history
     # cluster_keys: [ "coin_id"]
