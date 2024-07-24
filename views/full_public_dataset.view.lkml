@@ -567,10 +567,10 @@ view: full_public_dataset {
       type: number
       value_format: "0.000,,\" M\""
       description: "The size of block data in bytes"
-      sql: ${TABLE}.block_size ;;
+      sql: CAST(${TABLE}.block_size as NUMERIC) ;;
     }
     dimension: block_number{
-      type: number
+      type: string
       description: "The number of the block"
       sql: ${TABLE}.block_number ;;
     }
@@ -588,19 +588,19 @@ view: full_public_dataset {
     timeframes: [raw, date, week, month, quarter, year]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.block_timestamp ;;
+    sql: CAST(${TABLE}.block_timestamp as TIMESTAMP) ;;
   }
     dimension: transaction_count{
       type: number
       value_format: "#,##0"
       description: "Number of transactions included in this block"
-      sql: ${TABLE}.transaction_count ;;
+      sql: CAST(${TABLE}.transaction_count as INT64) ;;
     }
     measure: avg_transaction_count {
       type: average
       value_format: "#,##0"
       label: "Average Transaction Count"
-      sql: ${transaction_count} ;;
+      sql:CAST( ${transaction_count} as INT64);;
     }
     measure: count {
       type: count
@@ -616,36 +616,40 @@ view: full_public_dataset {
       type: number
       value_format: "#,##0"
       description: "The size of this transaction in bytes"
-      sql: ${TABLE}.transaction_size ;;
+      sql: CAST(${TABLE}.transaction_size as INT64) ;;
     }
     dimension:  input_count{
       type: number
       description: "The number of inputs in the transaction"
-      sql: ${TABLE}.input_count ;;
+      sql: CAST(${TABLE}.input_count as INT64) ;;
     }
     dimension:  output_count{
       type: number
       description: "The number of outputs in the transaction"
-      sql: ${TABLE}.output_count ;;
+      sql: CAST (${TABLE}.output_count as INT64) ;;
     }
     dimension:  input_value{
       type: number
+      value_format: "$#,##0.00;($#,##0.00)"
       description: "Total value of inputs in the transaction"
-      sql: ${TABLE}.input_value ;;
+      sql: CAST(${TABLE}.input_value as NUMERIC) ;;
     }
     measure: avg_input_value {
       type: average
+      value_format: "$#,##0.00;($#,##0.00)"
       label: "Average Input Value"
       description: "Average Input Value"
       sql: ${input_value} ;;
     }
     dimension: output_value{
       type: number
+      value_format: "$#,##0.00;($#,##0.00)"
       description: "Total value of outputs in the transaction"
-      sql: ${TABLE}.output_value ;;
+      sql: CAST(${TABLE}.output_value as NUMERIC) ;;
     }
     measure: avg_output_value {
       type: average
+      value_format: "$#,##0.00;($#,##0.00)"
       label: "Average Output Value"
       description: "Average output value"
       sql: ${output_value} ;;
@@ -657,8 +661,9 @@ view: full_public_dataset {
     }
     dimension: fee{
       type: number
+      value_format: "$#,##0.00;($#,##0.00)"
       description: "The fee paid by this transaction"
-      sql: ${TABLE}.fee ;;
+      sql: CAST(${TABLE}.fee as NUMERIC) ;;
     }
     dimension: spent_transaction_hash{
       type: string
@@ -673,12 +678,13 @@ view: full_public_dataset {
     dimension: input_addresses_offset{
       type: number
       hidden: yes
-      sql: ${TABLE}.input_addresses_offset ;;
+      sql: CAST(${TABLE}.input_addresses_offset as INT64) ;;
     }
     dimension:  input_address_value{
       type: number
+      value_format: "$#,##0.00;($#,##0.00)"
       description: "The value in base currency attached to the spent output"
-      sql: ${TABLE}.input_addresses_value ;;
+      sql: CAST(${TABLE}.input_addresses_value as NUMERIC) ;;
     }
     dimension: output_addresses{
       type: string
@@ -688,12 +694,13 @@ view: full_public_dataset {
     dimension: output_addresses_offset{
       type: number
       hidden: yes
-      sql: ${TABLE}.output_addresses_offset ;;
+      sql: CAST(${TABLE}.output_addresses_offset AS INT64) ;;
     }
     dimension: output_address_value{
       type: number
+      value_format: "$#,##0.00;($#,##0.00)"
       description: "The value in base currency attached to this output"
-      sql: ${TABLE}.output_address_value ;;
+      sql: CAST(${TABLE}.output_address_value as NUMERIC) ;;
     }
 
 
