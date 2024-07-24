@@ -556,6 +556,10 @@ view: full_public_dataset {
         label: "Filtered Coin Data by ID"
         url: "https://b772aff5-4b93-454c-9b34-147289eb2172.looker.app/dashboards/RZbF4ReRz00O3655QMLfG7?ID={{value}}"
       }
+      link: {
+        label: "View on Coinbase"
+        url: "https://www.coinbase.com/price/{{value}}"
+      }
     }
     dimension: block_hash{
       primary_key: no
