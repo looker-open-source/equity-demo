@@ -5,9 +5,9 @@ include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 
-explore: full_public_dataset {
-  label: "Wallet Data"
-}
+# explore: full_public_dataset {
+#   label: "Wallet Data"
+# }
 explore: market_data {
   label: "Coin Data"
   join: history_with_date_crossjoin {
