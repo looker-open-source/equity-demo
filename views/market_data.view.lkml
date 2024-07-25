@@ -162,7 +162,7 @@ view: market_data {
     sql: ${TABLE}.name ;;
     html:
       {% if market_data.name._value == coin_highlight._parameter_value %}
-      <font color="green">{{ value }}</font>
+      <p style="background-color: yellow"><img src="https://img.icons8.com/?size=100&id=qdQpy48X3Rjv&format=png&color=000000" height=20 width=20> {{ rendered_value }}</p>
       {% else %}
       <font color="black">{{ value }}</font>
       {% endif %}
