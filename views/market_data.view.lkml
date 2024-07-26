@@ -7,14 +7,6 @@ view: market_data {
     type: string
     description: "Coin id"
     sql: ${TABLE}.id ;;
-    # link: {
-    #   label: "Price Comparison Data"
-    #   url: "https://b772aff5-4b93-454c-9b34-147289eb2172.looker.app/dashboards/LBbTIdJk3stYt85L3CDo1p?Coin+Highlight={{ value }}"
-    # }
-    link: {
-      label: "View on Coinbase"
-      url: "https://www.coinbase.com/price/{{ value }}"
-    }
   }
   dimension: ath {
     label: "All-time High"
@@ -171,34 +163,39 @@ view: market_data {
       label: "Price Comparison Data"
       url: "https://b772aff5-4b93-454c-9b34-147289eb2172.looker.app/dashboards/LBbTIdJk3stYt85L3CDo1p?Coin+Highlight={{ value }}"
     }
+    link: {
+      label: "View on Coinbase"
+      url: "https://www.coinbase.com/price/{{ value }}"
+    }
   }
 
   parameter: coin_highlight {
     type: unquoted
-    allowed_value: {
-      label: "Bitcoin"
-      value: "Bitcoin"
-    }
-    allowed_value: {
-      label: "Bitcoin Cash"
-      value: "Bitcoin Cash"
-    }
-    allowed_value: {
-      label: "Dogecoin"
-      value: "Dogecoin"
-    }
-    allowed_value: {
-      label: "Litecoin"
-      value: "Litecoin"
-    }
-    allowed_value: {
-      label: "Zcash"
-      value: "Zcash"
-    }
-    allowed_value: {
-      label: "Dash"
-      value: "Dash"
-    }
+    suggest_dimension: market_data.name
+    # allowed_value: {
+    #   label: "Bitcoin"
+    #   value: "Bitcoin"
+    # }
+    # allowed_value: {
+    #   label: "Bitcoin Cash"
+    #   value: "Bitcoin Cash"
+    # }
+    # allowed_value: {
+    #   label: "Dogecoin"
+    #   value: "Dogecoin"
+    # }
+    # allowed_value: {
+    #   label: "Litecoin"
+    #   value: "Litecoin"
+    # }
+    # allowed_value: {
+    #   label: "Zcash"
+    #   value: "Zcash"
+    # }
+    # allowed_value: {
+    #   label: "Dash"
+    #   value: "Dash"
+    # }
   }
 
   dimension: price_change_24h {
