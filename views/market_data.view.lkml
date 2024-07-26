@@ -172,30 +172,6 @@ view: market_data {
   parameter: coin_highlight {
     type: unquoted
     suggest_dimension: market_data.name
-    # allowed_value: {
-    #   label: "Bitcoin"
-    #   value: "Bitcoin"
-    # }
-    # allowed_value: {
-    #   label: "Bitcoin Cash"
-    #   value: "Bitcoin Cash"
-    # }
-    # allowed_value: {
-    #   label: "Dogecoin"
-    #   value: "Dogecoin"
-    # }
-    # allowed_value: {
-    #   label: "Litecoin"
-    #   value: "Litecoin"
-    # }
-    # allowed_value: {
-    #   label: "Zcash"
-    #   value: "Zcash"
-    # }
-    # allowed_value: {
-    #   label: "Dash"
-    #   value: "Dash"
-    # }
   }
 
   dimension: price_change_24h {
