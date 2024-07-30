@@ -90,6 +90,25 @@ ON date_and_id_cte.id = total_volumes_amount_unnested.id AND market_cap_amount_u
   datatype: date
   sql: ${TABLE}.day;;
   }
+  parameter: history_granularity {
+    hidden: yes
+    type: unquoted
+    allowed_value: { label: "Date" value: "date" }
+    allowed_value: { label: "Week" value: "week" }
+    allowed_value: { label: "Month" value: "month" }
+    allowed_value: { label: "Year" value: "year" }
+  }
+  dimension: history_date_granularity {
+    description: "Use this in conjunction with the Timeframe filter"
+    sql:
+      {% if history_granularity._parameter_value == 'date' %} ${history_date_date}
+      {% elsif history_granularity._parameter_value == 'week' %} ${history_date_week}
+      {% elsif history_granularity._parameter_value == 'month' %} ${history_date_month}
+      {% elsif history_granularity._parameter_value == 'year' %} ${history_date_year}
+
+      {% else %} ${history_date_date}
+      {% endif %};;
+  }
   dimension: price_date {
      hidden: yes
     type: date
