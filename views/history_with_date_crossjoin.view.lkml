@@ -91,7 +91,7 @@ ON date_and_id_cte.id = total_volumes_amount_unnested.id AND market_cap_amount_u
   sql: ${TABLE}.day;;
   }
   parameter: history_granularity {
-    hidden: yes
+    # hidden: yes
     type: unquoted
     allowed_value: { label: "Date" value: "date" }
     allowed_value: { label: "Week" value: "week" }
