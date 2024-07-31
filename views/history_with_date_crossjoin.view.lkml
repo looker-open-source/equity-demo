@@ -4,7 +4,7 @@ view: history_with_date_crossjoin {
     sql: with date_cte as
 (SELECT day
 FROM UNNEST(
-    GENERATE_DATE_ARRAY(DATE('2023-06-19'), DATE('2026-06-21'), INTERVAL 1 DAY)
+    GENERATE_DATE_ARRAY(DATE('2023-06-18'), DATE('2026-06-21'), INTERVAL 1 DAY)
 ) AS day )
 ,
 
