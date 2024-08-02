@@ -8,10 +8,14 @@ view: stock_info {
     sql: ${TABLE}.id ;;
   }
   dimension: 52_week_change {
+    label: "Fifty-two Week Change"
+    description: "Percentage change in the company's stock price over the last fifty-two weeks"
     type: string
     sql: ${TABLE}.`52WeekChange` ;;
   }
-  dimension: address1 {
+  dimension: address {
+    description: "Street address"
+    group_label: "Contact Information"
     type: string
     sql: ${TABLE}.address1 ;;
   }
@@ -33,6 +37,7 @@ view: stock_info {
   }
   dimension: average_volume {
     type: string
+    description: "Average volume over the last 24 hours"
     sql: ${TABLE}.averageVolume ;;
   }
   dimension: average_volume10days {
@@ -60,6 +65,7 @@ view: stock_info {
     sql: ${TABLE}.bookValue ;;
   }
   dimension: city {
+    group_label: "Contact Information"
     type: string
     sql: ${TABLE}.city ;;
   }
@@ -72,6 +78,7 @@ view: stock_info {
     sql: ${TABLE}.compensationRisk ;;
   }
   dimension: country {
+    group_label: "Contact Information"
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
@@ -305,6 +312,8 @@ view: stock_info {
     sql: ${TABLE}.pegRatio ;;
   }
   dimension: phone {
+    description: "Phone number associated with company headquarters"
+    group_label: "Contact Information"
     type: string
     sql: ${TABLE}.phone ;;
   }
@@ -429,6 +438,8 @@ view: stock_info {
     sql: ${TABLE}.shortRatio ;;
   }
   dimension: state {
+    description: "State where company is headquartered"
+    group_label: "Contact Information"
     type: string
     sql: ${TABLE}.state ;;
   }
@@ -505,18 +516,24 @@ view: stock_info {
     sql: ${TABLE}.underlyingSymbol ;;
   }
   dimension: uuid {
+    description: "Unique identifier"
     type: string
     sql: ${TABLE}.uuid ;;
   }
   dimension: volume {
     type: string
+    description: "Current Volume"
     sql: ${TABLE}.volume ;;
   }
   dimension: website {
+    description: "Website for the company"
     type: string
     sql: ${TABLE}.website ;;
   }
   dimension: zip {
+    label: "Zipcode"
+    description: "Zipcode"
+    group_label: "Contact Information"
     type: zipcode
     sql: ${TABLE}.zip ;;
   }

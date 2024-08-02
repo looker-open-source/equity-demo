@@ -15,6 +15,10 @@ explore: market_data {
     sql_on: ${market_data.id} = ${history_with_date_crossjoin.coin_id} ;;
   }
 }
+
+explore: stock_info {
+  label: "Equity Information"
+}
 # explore: bigquerypublicdata_crypto_litecoin_transactions{
 #   label: "Test"
 #   join: crypto_bitcoin_transactions {
