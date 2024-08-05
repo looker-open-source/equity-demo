@@ -109,6 +109,17 @@ ON date_and_id_cte.id = close_unnested.id AND date_unnested.date_offset = close_
 INNER JOIN volume_unnested
 ON date_and_id_cte.id = volume_unnested.id AND date_unnested.date_offset = volume_unnested.volume_offset ;;
 }
+  dimension: id {
+    description: "Equity ID"
+    type: string
+    sql: ${TABLE}.id ;;
+  }
+  dimension_group: history_date {
+    type: time
+    timeframes: [date, week, month, year]
+    datatype: date
+    sql: ${TABLE}.day;;
+  }
 #     ,
 # #       ,
 # #   # # You can specify the table name if it's different from the view name:
