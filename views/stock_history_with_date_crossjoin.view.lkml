@@ -79,7 +79,7 @@ SELECT
 
 date_and_id_cte.id
 ,date_and_id_cte.day
-,date_unnested.id
+# ,date_unnested.id
 ,date_unnested.history_date
 ,date_unnested.date_offset
 ,open_unnested.open
