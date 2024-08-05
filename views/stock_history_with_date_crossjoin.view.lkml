@@ -120,6 +120,31 @@ ON date_and_id_cte.id = volume_unnested.id AND date_unnested.date_offset = volum
     datatype: date
     sql: ${TABLE}.day;;
   }
+  dimension: date_offset {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.date_offset ;;
+  }
+  dimension: open {
+    type: number
+    sql: ${TABLE}.open ;;
+  }
+  dimension: close {
+    type: number
+    sql: ${TABLE}.close ;;
+  }
+  dimension: high {
+    type: number
+    sql: ${TABLE}.high ;;
+  }
+  dimension: low {
+    type: number
+    sql: ${TABLE}.low ;;
+  }
+  dimension: volume {
+    type: number
+    sql: ${TABLE}.volume ;;
+  }
 #     ,
 # #       ,
 # #   # # You can specify the table name if it's different from the view name:
