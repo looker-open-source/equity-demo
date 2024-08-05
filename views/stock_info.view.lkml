@@ -28,6 +28,7 @@ view: stock_info {
     sql: ${TABLE}.askSize ;;
   }
   dimension: audit_risk {
+    group_label: "Risk data"
     type: string
     sql: ${TABLE}.auditRisk ;;
   }
@@ -57,6 +58,7 @@ view: stock_info {
     sql: ${TABLE}.bidSize ;;
   }
   dimension: board_risk {
+    group_label: "Risk data"
     type: string
     sql: ${TABLE}.boardRisk ;;
   }
@@ -74,6 +76,7 @@ view: stock_info {
     sql: ${TABLE}.compensationAsOfEpochDate ;;
   }
   dimension: compensation_risk {
+    group_label: "Risk data"
     type: string
     sql: ${TABLE}.compensationRisk ;;
   }
@@ -112,10 +115,13 @@ view: stock_info {
     sql: ${TABLE}.debtToEquity ;;
   }
   dimension: dividend_rate {
+    group_label: "Dividend Data"
+    description: "Dividend rate"
     type: string
     sql: ${TABLE}.dividendRate ;;
   }
   dimension: dividend_yield {
+    group_label: "Dividend Data"
     type: string
     sql: ${TABLE}.dividendYield ;;
   }
@@ -148,10 +154,12 @@ view: stock_info {
     sql: ${TABLE}.enterpriseValue ;;
   }
   dimension: ex_dividend_date {
+    group_label: "Dividend Data"
     type: string
     sql: ${TABLE}.exDividendDate ;;
   }
   dimension: exchange {
+    group_label: "Company info"
     type: string
     sql: ${TABLE}.exchange ;;
   }
@@ -168,6 +176,7 @@ view: stock_info {
     sql: ${TABLE}.fiftyTwoWeekLow ;;
   }
   dimension: financial_currency {
+    group_label: "Company info"
     type: string
     sql: ${TABLE}.financialCurrency ;;
   }
@@ -180,6 +189,7 @@ view: stock_info {
     sql: ${TABLE}.floatShares ;;
   }
   dimension: forward_eps {
+    group_label: "EPS Data"
     type: string
     sql: ${TABLE}.forwardEps ;;
   }
@@ -192,7 +202,9 @@ view: stock_info {
     sql: ${TABLE}.freeCashflow ;;
   }
   dimension: full_time_employees {
-    type: string
+    group_label: "Company details"
+    description: "Number of full-time employees"
+    type: number
     sql: ${TABLE}.fullTimeEmployees ;;
   }
   dimension: gmt_off_set_milliseconds {
@@ -220,22 +232,28 @@ view: stock_info {
     sql: ${TABLE}.impliedSharesOutstanding ;;
   }
   dimension: industry {
+    group_label: "Industry Information"
+    description: "Industry"
     type: string
     sql: ${TABLE}.industry ;;
   }
   dimension: industry_disp {
+    hidden: yes
     type: string
     sql: ${TABLE}.industryDisp ;;
   }
   dimension: industry_key {
+    hidden: yes
     type: string
     sql: ${TABLE}.industryKey ;;
   }
   dimension: last_dividend_date {
+    group_label: "Dividend Data"
     type: string
     sql: ${TABLE}.lastDividendDate ;;
   }
   dimension: last_dividend_value {
+    group_label: "Dividend Data"
     type: string
     sql: ${TABLE}.lastDividendValue ;;
   }
@@ -252,10 +270,12 @@ view: stock_info {
     sql: ${TABLE}.lastSplitFactor ;;
   }
   dimension: long_business_summary {
+    group_label: "Company info"
     type: string
     sql: ${TABLE}.longBusinessSummary ;;
   }
   dimension: long_name {
+    group_label: "Company info"
     type: string
     sql: ${TABLE}.longName ;;
   }
@@ -268,6 +288,7 @@ view: stock_info {
     sql: ${TABLE}.maxAge ;;
   }
   dimension: message_board_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.messageBoardId ;;
   }
@@ -300,6 +321,7 @@ view: stock_info {
     sql: ${TABLE}.operatingMargins ;;
   }
   dimension: overall_risk {
+    group_label: "Risk data"
     type: string
     sql: ${TABLE}.overallRisk ;;
   }
@@ -394,18 +416,22 @@ view: stock_info {
     sql: ${TABLE}.SandP52WeekChange ;;
   }
   dimension: sector {
+    group_label: "Industry Information"
     type: string
     sql: ${TABLE}.sector ;;
   }
   dimension: sector_disp {
+    group_label: "Industry Information"
     type: string
     sql: ${TABLE}.sectorDisp ;;
   }
   dimension: sector_key {
+    group_label: "Industry Information"
     type: string
     sql: ${TABLE}.sectorKey ;;
   }
   dimension: share_holder_rights_risk {
+    group_label: "Risk data"
     type: string
     sql: ${TABLE}.shareHolderRightsRisk ;;
   }
@@ -430,6 +456,7 @@ view: stock_info {
     sql: ${TABLE}.sharesShortPriorMonth ;;
   }
   dimension: short_name {
+    group_label: "Company details"
     type: string
     sql: ${TABLE}.shortName ;;
   }
@@ -444,58 +471,72 @@ view: stock_info {
     sql: ${TABLE}.state ;;
   }
   dimension: symbol {
+    group_label: "Company details"
     type: string
     sql: ${TABLE}.symbol ;;
   }
   dimension: target_high_price {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.targetHighPrice ;;
   }
   dimension: target_low_price {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.targetLowPrice ;;
   }
   dimension: target_mean_price {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.targetMeanPrice ;;
   }
   dimension: target_median_price {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.targetMedianPrice ;;
   }
   dimension: time_zone_full_name {
+    group_label: "Company details"
     type: string
     sql: ${TABLE}.timeZoneFullName ;;
   }
   dimension: time_zone_short_name {
+    group_label: "Company details"
     type: string
     sql: ${TABLE}.timeZoneShortName ;;
   }
   dimension: total_cash {
+    group_label: "Totals"
     type: string
     sql: ${TABLE}.totalCash ;;
   }
   dimension: total_cash_per_share {
+    group_label: "Totals"
     type: string
     sql: ${TABLE}.totalCashPerShare ;;
   }
   dimension: total_debt {
+    group_label: "Totals"
     type: string
     sql: ${TABLE}.totalDebt ;;
   }
   dimension: total_revenue {
+    group_label: "Totals"
     type: string
     sql: ${TABLE}.totalRevenue ;;
   }
   dimension: trailing_annual_dividend_rate {
+    group_label: "Dividend Data"
     type: string
     sql: ${TABLE}.trailingAnnualDividendRate ;;
   }
   dimension: trailing_annual_dividend_yield {
+    group_label: "Dividend Data"
     type: string
     sql: ${TABLE}.trailingAnnualDividendYield ;;
   }
   dimension: trailing_eps {
+    group_label: "EPS Data"
     type: string
     sql: ${TABLE}.trailingEps ;;
   }
@@ -512,10 +553,12 @@ view: stock_info {
     sql: ${TABLE}.twoHundredDayAverage ;;
   }
   dimension: underlying_symbol {
+    hidden: yes
     type: string
     sql: ${TABLE}.underlyingSymbol ;;
   }
   dimension: uuid {
+    hidden: yes
     description: "Unique identifier"
     type: string
     sql: ${TABLE}.uuid ;;
@@ -526,6 +569,7 @@ view: stock_info {
     sql: ${TABLE}.volume ;;
   }
   dimension: website {
+    group_label: "Company details"
     description: "Website for the company"
     type: string
     sql: ${TABLE}.website ;;
