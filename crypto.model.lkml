@@ -18,9 +18,13 @@ explore: market_data {
 
 explore: stock_info {
   label: "Equity Information"
+  join: stock_history_with_date_crossjoin {
+    relationship: one_to_many
+    sql_on: ${stock_info.id} = ${stock_history_with_date_crossjoin.id} ;;
+  }
 }
 
-explore: stock_history_with_date_crossjoin {}
+#explore: stock_history_with_date_crossjoin {}
 # explore: bigquerypublicdata_crypto_litecoin_transactions{
 #   label: "Test"
 #   join: crypto_bitcoin_transactions {
