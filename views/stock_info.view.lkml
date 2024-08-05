@@ -33,7 +33,8 @@ view: stock_info {
     sql: ${TABLE}.auditRisk ;;
   }
   dimension: average_daily_volume10_day {
-    group_label: "Averages"
+    hidden: yes
+    #group_label: "Averages"
     type: string
     sql: ${TABLE}.averageDailyVolume10Day ;;
   }
@@ -95,11 +96,15 @@ view: stock_info {
     sql: ${TABLE}.currency ;;
   }
   dimension: current_price {
-    type: string
+    group_label: "Current Data"
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.currentPrice ;;
   }
   dimension: current_ratio {
-    type: string
+    group_label: "Current Data"
+    description: "Current assests over current liabilities"
+    type: number
     sql: ${TABLE}.currentRatio ;;
   }
   dimension: date_short_interest {
@@ -108,12 +113,14 @@ view: stock_info {
   }
   dimension: day_high {
     group_label: "Highs"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.dayHigh ;;
   }
   dimension: day_low {
     group_label: "Lows"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.dayLow ;;
   }
   dimension: debt_to_equity {
@@ -132,22 +139,27 @@ view: stock_info {
     sql: ${TABLE}.dividendYield ;;
   }
   dimension: earnings_growth {
+    group_label: "Earnings Growth Data"
     type: string
     sql: ${TABLE}.earningsGrowth ;;
   }
   dimension: earnings_quarterly_growth {
+    group_label: "Earnings Growth Data"
     type: string
     sql: ${TABLE}.earningsQuarterlyGrowth ;;
   }
   dimension: ebitda {
+    group_label: "EBITDA Data"
     type: string
     sql: ${TABLE}.ebitda ;;
   }
   dimension: ebitda_margins {
+    group_label: "EBITDA Data"
     type: string
     sql: ${TABLE}.ebitdaMargins ;;
   }
   dimension: enterprise_to_ebitda {
+    group_label: "EBITDA Data"
     type: string
     sql: ${TABLE}.enterpriseToEbitda ;;
   }
@@ -171,17 +183,20 @@ view: stock_info {
   }
   dimension: fifty_day_average {
     group_label: "Averages"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.fiftyDayAverage ;;
   }
   dimension: fifty_two_week_high {
     group_label: "Highs"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.fiftyTwoWeekHigh ;;
   }
   dimension: fifty_two_week_low {
     group_label: "Lows"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.fiftyTwoWeekLow ;;
   }
   dimension: financial_currency {
@@ -194,6 +209,7 @@ view: stock_info {
     sql: ${TABLE}.firstTradeDateEpochUtc ;;
   }
   dimension: float_shares {
+    group_label: "Shares Data"
     type: string
     sql: ${TABLE}.floatShares ;;
   }
@@ -237,6 +253,7 @@ view: stock_info {
     sql: ${TABLE}.heldPercentInstitutions ;;
   }
   dimension: implied_shares_outstanding {
+    group_label: "Shares Data"
     type: string
     sql: ${TABLE}.impliedSharesOutstanding ;;
   }
@@ -289,7 +306,8 @@ view: stock_info {
     sql: ${TABLE}.longName ;;
   }
   dimension: market_cap {
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.marketCap ;;
   }
   dimension: max_age {
@@ -314,12 +332,13 @@ view: stock_info {
     sql: ${TABLE}.nextFiscalYearEnd ;;
   }
   dimension: number_of_analyst_opinions {
-    type: string
+    type: number
     sql: ${TABLE}.numberOfAnalystOpinions ;;
   }
   dimension: open {
     group_label: "Open"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.open ;;
   }
   dimension: operating_cashflow {
@@ -351,7 +370,8 @@ view: stock_info {
   }
   dimension: previous_close {
     group_label: "Close"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.previousClose ;;
   }
   dimension: price_hint {
@@ -388,26 +408,31 @@ view: stock_info {
   }
   dimension: regular_market_day_high {
     group_label: "Highs"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.regularMarketDayHigh ;;
   }
   dimension: regular_market_day_low {
     group_label: "Lows"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.regularMarketDayLow ;;
   }
   dimension: regular_market_open {
     group_label: "Open"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.regularMarketOpen ;;
   }
   dimension: regular_market_previous_close {
     group_label: "Close"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.regularMarketPreviousClose ;;
   }
   dimension: regular_market_volume {
-    type: string
+    type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.regularMarketVolume ;;
   }
   dimension: return_on_assets {
@@ -426,7 +451,7 @@ view: stock_info {
     type: string
     sql: ${TABLE}.revenuePerShare ;;
   }
-  dimension: sand_p52_week_change {
+  dimension: sandp_52_week_change {
     type: string
     sql: ${TABLE}.SandP52WeekChange ;;
   }
@@ -451,22 +476,27 @@ view: stock_info {
     sql: ${TABLE}.shareHolderRightsRisk ;;
   }
   dimension: shares_outstanding {
+    group_label: "Shares Data"
     type: string
     sql: ${TABLE}.sharesOutstanding ;;
   }
   dimension: shares_percent_shares_out {
+    group_label: "Shares Data"
     type: string
     sql: ${TABLE}.sharesPercentSharesOut ;;
   }
   dimension: shares_short {
+    group_label: "Shares Data"
     type: string
     sql: ${TABLE}.sharesShort ;;
   }
   dimension: shares_short_previous_month_date {
+    group_label: "Shares Data"
     type: string
     sql: ${TABLE}.sharesShortPreviousMonthDate ;;
   }
   dimension: shares_short_prior_month {
+    group_label: "Shares Data"
     type: string
     sql: ${TABLE}.sharesShortPriorMonth ;;
   }
@@ -580,7 +610,9 @@ view: stock_info {
     sql: ${TABLE}.uuid ;;
   }
   dimension: volume {
-    type: string
+    type: number
+    value_format: "$#,##0.00;($#,##0.00)"
+    group_label: "Current Data"
     description: "Current Volume"
     sql: ${TABLE}.volume ;;
   }
