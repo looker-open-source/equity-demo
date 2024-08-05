@@ -103,10 +103,12 @@ view: stock_info {
     sql: ${TABLE}.dateShortInterest ;;
   }
   dimension: day_high {
+    group_label: "Highs"
     type: string
     sql: ${TABLE}.dayHigh ;;
   }
   dimension: day_low {
+    group_label: "Lows"
     type: string
     sql: ${TABLE}.dayLow ;;
   }
@@ -159,7 +161,7 @@ view: stock_info {
     sql: ${TABLE}.exDividendDate ;;
   }
   dimension: exchange {
-    group_label: "Company info"
+    group_label: "Company Details"
     type: string
     sql: ${TABLE}.exchange ;;
   }
@@ -168,15 +170,17 @@ view: stock_info {
     sql: ${TABLE}.fiftyDayAverage ;;
   }
   dimension: fifty_two_week_high {
+    group_label: "Highs"
     type: string
     sql: ${TABLE}.fiftyTwoWeekHigh ;;
   }
   dimension: fifty_two_week_low {
+    group_label: "Lows"
     type: string
     sql: ${TABLE}.fiftyTwoWeekLow ;;
   }
   dimension: financial_currency {
-    group_label: "Company info"
+    group_label: "Company Details"
     type: string
     sql: ${TABLE}.financialCurrency ;;
   }
@@ -202,7 +206,7 @@ view: stock_info {
     sql: ${TABLE}.freeCashflow ;;
   }
   dimension: full_time_employees {
-    group_label: "Company details"
+    group_label: "Company Details"
     description: "Number of full-time employees"
     type: number
     sql: ${TABLE}.fullTimeEmployees ;;
@@ -270,12 +274,12 @@ view: stock_info {
     sql: ${TABLE}.lastSplitFactor ;;
   }
   dimension: long_business_summary {
-    group_label: "Company info"
+    group_label: "Company Details"
     type: string
     sql: ${TABLE}.longBusinessSummary ;;
   }
   dimension: long_name {
-    group_label: "Company info"
+    group_label: "Company Details"
     type: string
     sql: ${TABLE}.longName ;;
   }
@@ -309,6 +313,7 @@ view: stock_info {
     sql: ${TABLE}.numberOfAnalystOpinions ;;
   }
   dimension: open {
+    group_label: "Open"
     type: string
     sql: ${TABLE}.open ;;
   }
@@ -340,6 +345,7 @@ view: stock_info {
     sql: ${TABLE}.phone ;;
   }
   dimension: previous_close {
+    group_label: "Close"
     type: string
     sql: ${TABLE}.previousClose ;;
   }
@@ -376,18 +382,22 @@ view: stock_info {
     sql: ${TABLE}.recommendationMean ;;
   }
   dimension: regular_market_day_high {
+    group_label: "Highs"
     type: string
     sql: ${TABLE}.regularMarketDayHigh ;;
   }
   dimension: regular_market_day_low {
+    group_label: "Lows"
     type: string
     sql: ${TABLE}.regularMarketDayLow ;;
   }
   dimension: regular_market_open {
+    group_label: "Open"
     type: string
     sql: ${TABLE}.regularMarketOpen ;;
   }
   dimension: regular_market_previous_close {
+    group_label: "Close"
     type: string
     sql: ${TABLE}.regularMarketPreviousClose ;;
   }
@@ -456,7 +466,7 @@ view: stock_info {
     sql: ${TABLE}.sharesShortPriorMonth ;;
   }
   dimension: short_name {
-    group_label: "Company details"
+    group_label: "Company Details"
     type: string
     sql: ${TABLE}.shortName ;;
   }
@@ -471,7 +481,7 @@ view: stock_info {
     sql: ${TABLE}.state ;;
   }
   dimension: symbol {
-    group_label: "Company details"
+    group_label: "Company Details"
     type: string
     sql: ${TABLE}.symbol ;;
   }
@@ -496,12 +506,12 @@ view: stock_info {
     sql: ${TABLE}.targetMedianPrice ;;
   }
   dimension: time_zone_full_name {
-    group_label: "Company details"
+    group_label: "Company Details"
     type: string
     sql: ${TABLE}.timeZoneFullName ;;
   }
   dimension: time_zone_short_name {
-    group_label: "Company details"
+    group_label: "Company Details"
     type: string
     sql: ${TABLE}.timeZoneShortName ;;
   }
@@ -569,7 +579,7 @@ view: stock_info {
     sql: ${TABLE}.volume ;;
   }
   dimension: website {
-    group_label: "Company details"
+    group_label: "Company Details"
     description: "Website for the company"
     type: string
     sql: ${TABLE}.website ;;
