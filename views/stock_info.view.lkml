@@ -33,15 +33,18 @@ view: stock_info {
     sql: ${TABLE}.auditRisk ;;
   }
   dimension: average_daily_volume10_day {
+    group_label: "Averages"
     type: string
     sql: ${TABLE}.averageDailyVolume10Day ;;
   }
   dimension: average_volume {
+    group_label: "Averages"
     type: string
     description: "Average volume over the last 24 hours"
     sql: ${TABLE}.averageVolume ;;
   }
   dimension: average_volume10days {
+    group_label: "Averages"
     type: string
     sql: ${TABLE}.averageVolume10days ;;
   }
@@ -87,6 +90,7 @@ view: stock_info {
     sql: ${TABLE}.country ;;
   }
   dimension: currency {
+    group_label: "Company Details"
     type: string
     sql: ${TABLE}.currency ;;
   }
@@ -166,6 +170,7 @@ view: stock_info {
     sql: ${TABLE}.exchange ;;
   }
   dimension: fifty_day_average {
+    group_label: "Averages"
     type: string
     sql: ${TABLE}.fiftyDayAverage ;;
   }
@@ -559,6 +564,7 @@ view: stock_info {
     sql: ${TABLE}.trailingPegRatio ;;
   }
   dimension: two_hundred_day_average {
+    group_label: "Averages"
     type: string
     sql: ${TABLE}.twoHundredDayAverage ;;
   }
