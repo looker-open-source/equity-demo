@@ -126,24 +126,54 @@ ON date_and_id_cte.id = volume_unnested.id AND date_unnested.date_offset = volum
     sql: ${TABLE}.date_offset ;;
   }
   dimension: open {
+    value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.open ;;
   }
+  dimension: open_offset {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.open_offset ;;
+  }
   dimension: close {
+    value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.close ;;
   }
+  dimension: close_offset {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.close_offset ;;
+  }
   dimension: high {
+    value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.high ;;
   }
+  dimension: high_offset {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.high_offset ;;
+  }
   dimension: low {
+    value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.low ;;
   }
+  dimension: low_offset {
+    hidden: yes
+    type: number
+    sql:  ${TABLE}.low_offset ;;
+  }
   dimension: volume {
+    value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.volume ;;
+  }
+  dimension: volume_offset {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.volume_offset ;;
   }
 #     ,
 # #       ,
