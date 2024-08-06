@@ -558,6 +558,10 @@ view: stock_info {
       label: "View on Yahoo Finance"
       url: "https://finance.yahoo.com/quote/{{value}}/"
     }
+    link: {
+      label: "Take a Deep Dive"
+      url: "https://b772aff5-4b93-454c-9b34-147289eb2172.looker.app/dashboards/W8b8wacUnIY9GLXVwWDy60?ID={{stock_info.id._value}}"
+    }
   }
   dimension: target_high_price {
     group_label: "Targets"
