@@ -8,6 +8,7 @@ include: "/**/*.view.lkml"                 # include all views in this project
 explore: full_public_dataset {
   label: "Wallet Data"
 }
+
 explore: market_data {
   label: "Coin Data"
   join: history_with_date_crossjoin {
@@ -15,6 +16,10 @@ explore: market_data {
     sql_on: ${market_data.id} = ${history_with_date_crossjoin.coin_id} ;;
   }
 }
+
+# explore: stock_info {
+
+# }
 
 explore: stock_info {
   label: "Equity Information"
@@ -24,15 +29,7 @@ explore: stock_info {
   }
 }
 
-#explore: stock_history_with_date_crossjoin {}
-# explore: bigquerypublicdata_crypto_litecoin_transactions{
-#   label: "Test"
-#   join: crypto_bitcoin_transactions {
-#     type: full_outer
-#     relationship: many_to_many
-#     sql_on: ${bigquerypublicdata_crypto_litecoin_transactions.block_timestamp_} = ${crypto_bitcoin_transactions.block_timestamp_date} ;;
-#   }
-# }
+
 
 
 datagroup: history {

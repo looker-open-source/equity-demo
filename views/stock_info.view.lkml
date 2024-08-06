@@ -1,8 +1,10 @@
 view: stock_info {
-  sql_table_name: `kirby-looker-core-argolis.crypto_mvp.stock_info` ;;
+  label: "Current Stock Info"
+  sql_table_name: `kirby-looker-core-argolis.crypto_mvp.stock_info`  ;;
   drill_fields: [id]
 
   dimension: id {
+    # label: "ID"
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -140,17 +142,20 @@ view: stock_info {
   }
   dimension: earnings_growth {
     group_label: "Earnings Growth Data"
-    type: string
+    type: number
+    value_format: "0.00%"
     sql: ${TABLE}.earningsGrowth ;;
   }
   dimension: earnings_quarterly_growth {
     group_label: "Earnings Growth Data"
-    type: string
+    type: number
+    value_format: "0.00%"
     sql: ${TABLE}.earningsQuarterlyGrowth ;;
   }
   dimension: ebitda {
     group_label: "EBITDA Data"
-    type: string
+    type: number
+    value_format: "0.000,,,\" B\""
     sql: ${TABLE}.ebitda ;;
   }
   dimension: ebitda_margins {
@@ -346,7 +351,9 @@ view: stock_info {
     sql: ${TABLE}.operatingCashflow ;;
   }
   dimension: operating_margins {
-    type: string
+    label: "Operating Margin"
+    type: number
+    value_format: "0.00%"
     sql: ${TABLE}.operatingMargins ;;
   }
   dimension: overall_risk {
@@ -387,7 +394,9 @@ view: stock_info {
     sql: ${TABLE}.priceToSalesTrailing12Months ;;
   }
   dimension: profit_margins {
-    type: string
+    label: "Profit Margin"
+    type: number
+    value_format: "0.00%"
     sql: ${TABLE}.profitMargins ;;
   }
   dimension: quick_ratio {
@@ -436,19 +445,26 @@ view: stock_info {
     sql: ${TABLE}.regularMarketVolume ;;
   }
   dimension: return_on_assets {
-    type: string
+    type: number
+    value_format: "0.00%"
+    description: "Return on assets TTM is a percentage that measures a company's profitability over the trailing 12 months.  It is calculated by dividing a company's net income after taxes by its average total assets and multiplying the result by 100"
     sql: ${TABLE}.returnOnAssets ;;
   }
   dimension: return_on_equity {
-    type: string
+    type: number
+    value_format: "0.00%"
+    description: "Return on equity TTM is a financial metric that measures how well a company uses shareholder equity to generate profits over a trailing 12-month period"
     sql: ${TABLE}.returnOnEquity ;;
   }
   dimension: revenue_growth {
-    type: string
+    type: number
+    description: "Quarterly Revenue Growth"
+    value_format: "0.00%"
     sql: ${TABLE}.revenueGrowth ;;
   }
   dimension: revenue_per_share {
-    type: string
+    type: number
+    value_format: "0.00"
     sql: ${TABLE}.revenuePerShare ;;
   }
   dimension: sandp_52_week_change {
@@ -630,11 +646,7 @@ view: stock_info {
     label: "Zipcode"
     description: "Zipcode"
     group_label: "Contact Information"
-    type: zipcode
+    type: string
     sql: ${TABLE}.zip ;;
+    }
   }
-  measure: count {
-    type: count
-    drill_fields: [id, short_name, time_zone_full_name, long_name, time_zone_short_name]
-  }
-}
