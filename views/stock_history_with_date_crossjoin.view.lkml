@@ -1,5 +1,7 @@
 view: stock_history_with_date_crossjoin {
+  view_label: "Historic Stock Info"
   derived_table: {
+
     # datagroup_trigger: history
     sql: with date_cte as
     (SELECT day
@@ -110,16 +112,22 @@ INNER JOIN volume_unnested
 ON date_and_id_cte.id = volume_unnested.id AND date_unnested.date_offset = volume_unnested.volume_offset ;;
 }
   dimension: id {
-    description: "Equity ID"
+    label: "Symbol"
+    description: "Equity Symbol (ticker)"
     type: string
     sql: ${TABLE}.id ;;
+    link: {
+      label: "View on Yahoo Finance"
+      url: "https://finance.yahoo.com/quote/{{value}}/"
+    }
   }
   dimension: day {
     hidden: yes
     type: string
     sql: ${TABLE}.day ;;
   }
-  dimension_group: history_date {
+  dimension_group: date_selection {
+    label: "Historic"
     type: time
     timeframes: [date, week, month, year]
     datatype: date
@@ -131,6 +139,7 @@ ON date_and_id_cte.id = volume_unnested.id AND date_unnested.date_offset = volum
     sql: ${TABLE}.date_offset ;;
   }
   dimension: open {
+    group_label: "Historic Data"
     value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.open ;;
@@ -141,6 +150,7 @@ ON date_and_id_cte.id = volume_unnested.id AND date_unnested.date_offset = volum
     sql: ${TABLE}.open_offset ;;
   }
   dimension: close {
+    group_label: "Historic Data"
     value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.close ;;
@@ -151,6 +161,7 @@ ON date_and_id_cte.id = volume_unnested.id AND date_unnested.date_offset = volum
     sql: ${TABLE}.close_offset ;;
   }
   dimension: high {
+    group_label: "Historic Data"
     value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.high ;;
@@ -161,6 +172,7 @@ ON date_and_id_cte.id = volume_unnested.id AND date_unnested.date_offset = volum
     sql: ${TABLE}.high_offset ;;
   }
   dimension: low {
+    group_label: "Historic Data"
     value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.low ;;
@@ -171,6 +183,7 @@ ON date_and_id_cte.id = volume_unnested.id AND date_unnested.date_offset = volum
     sql:  ${TABLE}.low_offset ;;
   }
   dimension: volume {
+    group_label: "Historic Data"
     value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.volume ;;
