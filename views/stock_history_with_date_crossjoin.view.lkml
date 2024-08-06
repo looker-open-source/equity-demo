@@ -114,6 +114,11 @@ ON date_and_id_cte.id = volume_unnested.id AND date_unnested.date_offset = volum
     type: string
     sql: ${TABLE}.id ;;
   }
+  dimension: day {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.day ;;
+  }
   dimension_group: history_date {
     type: time
     timeframes: [date, week, month, year]
