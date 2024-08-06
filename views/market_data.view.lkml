@@ -165,7 +165,7 @@ view: market_data {
     }
     link: {
       label: "View on Coinbase"
-      url: "https://www.coinbase.com/price/{{ value }}"
+      url: "https://www.coinbase.com/price/{{ market_data.id._value }}"
     }
   }
 
