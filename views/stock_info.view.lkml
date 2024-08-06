@@ -69,7 +69,8 @@ view: stock_info {
     sql: ${TABLE}.boardRisk ;;
   }
   dimension: book_value {
-    type: string
+    value_format: "0.00"
+    type: number
     sql: ${TABLE}.bookValue ;;
   }
   dimension: city {
@@ -107,6 +108,7 @@ view: stock_info {
     group_label: "Current Data"
     description: "Current assests over current liabilities"
     type: number
+    value_format: "0.00"
     sql: ${TABLE}.currentRatio ;;
   }
   dimension: date_short_interest {
@@ -288,9 +290,14 @@ view: stock_info {
     type: string
     sql: ${TABLE}.lastDividendValue ;;
   }
+  dimension: lastfye {
+    type: number
+    hidden: yes
+    sql: CAST(${TABLE}.lastFiscalYearEnd AS INT) ;;
+  }
   dimension: last_fiscal_year_end {
-    type: string
-    sql: ${TABLE}.lastFiscalYearEnd ;;
+    type: date
+    sql: TIMESTAMP_SECONDS(${lastfye} );;
   }
   dimension: last_split_date {
     type: string
@@ -325,16 +332,28 @@ view: stock_info {
     sql: ${TABLE}.messageBoardId ;;
   }
   dimension: most_recent_quarter {
-    type: string
-    sql: ${TABLE}.mostRecentQuarter ;;
+    type: number
+    hidden: yes
+    sql: CAST(${TABLE}.mostRecentQuarter AS INT) ;;
   }
+  dimension: most_recent_q {
+    label: "Most Recent Quarter"
+    type: date
+    sql: TIMESTAMP_SECONDS(${most_recent_quarter}) ;;
+    }
   dimension: net_income_to_common {
     type: string
     sql: ${TABLE}.netIncomeToCommon ;;
   }
   dimension: next_fiscal_year_end {
-    type: string
-    sql: ${TABLE}.nextFiscalYearEnd ;;
+    type: number
+    hidden: yes
+    sql: CAST(${TABLE}.nextFiscalYearEnd AS INT) ;;
+  }
+  dimension: upcoming_fye {
+    label: "Next Fiscal Year End"
+    type: date
+    sql: TIMESTAMP_SECONDS(${next_fiscal_year_end}) ;;
   }
   dimension: number_of_analyst_opinions {
     type: number
@@ -572,17 +591,21 @@ view: stock_info {
   }
   dimension: total_cash {
     group_label: "Totals"
-    type: string
+    description: "Total cash (MRQ) is a financial ratio that is calculated by adding a company's total cash and short-term investments together, then dividing that number by the number of shares outstanding at the end of the most recent interim period.  MRQ stands for 'most recent quarter' and refers to the most recent fiscal quarter that has ended"
+    type: number
+    value_format: "0.000,,,\" B\""
     sql: ${TABLE}.totalCash ;;
   }
   dimension: total_cash_per_share {
     group_label: "Totals"
-    type: string
+    value_format: "0.00"
+    type: number
     sql: ${TABLE}.totalCashPerShare ;;
   }
   dimension: total_debt {
     group_label: "Totals"
-    type: string
+    type: number
+    value_format: "0.000,,,\" B\""
     sql: ${TABLE}.totalDebt ;;
   }
   dimension: total_revenue {
