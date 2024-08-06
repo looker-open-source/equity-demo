@@ -519,6 +519,10 @@ view: stock_info {
     group_label: "Company Details"
     type: string
     sql: ${TABLE}.symbol ;;
+    link: {
+      label: "View on Yahoo Finance"
+      url: "https://finance.yahoo.com/quote/{{value}}/"
+    }
   }
   dimension: target_high_price {
     group_label: "Targets"
