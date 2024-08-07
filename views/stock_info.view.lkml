@@ -168,15 +168,22 @@ view: stock_info {
   }
   dimension: enterprise_to_ebitda {
     group_label: "EBITDA Data"
-    type: string
+    description: "Enterprise value to earnings before interest, taxes, depreciation, and amortization (EV/EBITDA) is a financial ratio that compares a company's value to its earnings before non-cash expenses. It's calculated by dividing a company's enterprise value (EV) by its EBITDA"
+    label: "Enterprise Value/EBITDA"
+    type: number
+    value_format: "0.00"
     sql: ${TABLE}.enterpriseToEbitda ;;
   }
   dimension: enterprise_to_revenue {
-    type: string
+    label: "Enterprise Value/Revenue"
+    description: "Enterprise value-to-revenue (EV/R) is a metric that compares a company's enterprise value (EV) to its revenue. It's also called the enterprise value-to-sales multiple. EV/R is calculated by dividing a company's EV by its annual revenue. EV is the total value of a firm, which is equity plus debt minus cash."
+    type: number
+    value_format: "0.00"
     sql: ${TABLE}.enterpriseToRevenue ;;
   }
   dimension: enterprise_value {
-    type: string
+    type: number
+    value_format: "0.000,,,,\" T\""
     sql: ${TABLE}.enterpriseValue ;;
   }
   dimension: ex_dividend_date {
@@ -229,7 +236,9 @@ view: stock_info {
     sql: ${TABLE}.forwardEps ;;
   }
   dimension: forward_pe {
-    type: string
+    label: "Forward P/E"
+    type: number
+    value_format: "0.00"
     sql: ${TABLE}.forwardPE ;;
   }
   dimension: free_cashflow {
@@ -321,8 +330,8 @@ view: stock_info {
     sql: ${TABLE}.longName ;;
   }
   dimension: market_cap {
-    value_format: "$#,##0.00;($#,##0.00)"
     type: number
+    value_format: "0.000,,,,\" T\""
     sql: ${TABLE}.marketCap ;;
   }
   dimension: max_age {
@@ -388,7 +397,9 @@ view: stock_info {
     sql: ${TABLE}.payoutRatio ;;
   }
   dimension: peg_ratio {
-    type: string
+    label: "PEG Ratio"
+    type: number
+    value_format: "0.00"
     sql: ${TABLE}.pegRatio ;;
   }
   dimension: phone {
@@ -408,11 +419,17 @@ view: stock_info {
     sql: ${TABLE}.priceHint ;;
   }
   dimension: price_to_book {
-    type: string
+    label: "Price/Book (mrq)"
+    description: "Price to Tangible Book (MRQ) is a ratio that's calculated by dividing the current price by the most recent annual Tangible Book Value Per Share. Tangible Book Value Per Share is calculated by subtracting Goodwill and Intangible Assets from Book Value, and then dividing that number by the Shares Outstanding at the end of the fiscal period"
+    type: number
+    value_format: "0.00"
     sql: ${TABLE}.priceToBook ;;
   }
   dimension: price_to_sales_trailing12_months {
-    type: string
+    label: "Price/Sales (ttm)"
+    description: "The Price to Sales Ratio, or PS Ratio, is a popular valuation ratio. It is the share price of a company divided by its sales per share. This is measured on a TTM basis and earnings are diluted and normalised."
+    value_format: "0.00"
+    type: number
     sql: ${TABLE}.priceToSalesTrailing12Months ;;
   }
   dimension: profit_margins {
@@ -640,7 +657,9 @@ view: stock_info {
     sql: ${TABLE}.trailingEps ;;
   }
   dimension: trailing_pe {
-    type: string
+    label: "Trailing P/E"
+    type: number
+    value_format: "0.00"
     sql: ${TABLE}.trailingPE ;;
   }
   dimension: trailing_peg_ratio {
