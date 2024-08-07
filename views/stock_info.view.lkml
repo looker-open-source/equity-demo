@@ -508,6 +508,7 @@ view: stock_info {
     sql: ${TABLE}.revenuePerShare ;;
   }
   dimension: sandp_52_week_change {
+    label: "S&P 52 Week Change"
     type: string
     sql: ${TABLE}.SandP52WeekChange ;;
   }
