@@ -10,9 +10,10 @@ view: stock_info {
     sql: ${TABLE}.id ;;
   }
   dimension: 52_week_change {
-    label: "Fifty-two Week Change"
+    label: "52 Week Change"
     description: "Percentage change in the company's stock price over the last fifty-two weeks"
-    type: string
+    type: number
+    value_format: "0.00%"
     sql: ${TABLE}.`52WeekChange` ;;
   }
   dimension: address {
@@ -196,12 +197,14 @@ view: stock_info {
   }
   dimension: fifty_two_week_high {
     group_label: "Highs"
+    label: "52 Week High"
     value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.fiftyTwoWeekHigh ;;
   }
   dimension: fifty_two_week_low {
     group_label: "Lows"
+    label: "52 Week Low"
     value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.fiftyTwoWeekLow ;;
@@ -665,7 +668,7 @@ view: stock_info {
   }
   dimension: website {
     group_label: "Company Details"
-    description: "Website for the company"
+    description: "Website for the investor relations"
     type: string
     sql: ${TABLE}.website ;;
   }
