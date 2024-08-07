@@ -568,22 +568,26 @@ view: stock_info {
   }
   dimension: target_high_price {
     group_label: "Targets"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.targetHighPrice ;;
   }
   dimension: target_low_price {
     group_label: "Targets"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.targetLowPrice ;;
   }
-  dimension: target_mean_price {
+  dimension: target_average_price {
     group_label: "Targets"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.targetMeanPrice ;;
   }
   dimension: target_median_price {
     group_label: "Targets"
-    type: string
+    value_format: "$#,##0.00;($#,##0.00)"
+    type: number
     sql: ${TABLE}.targetMedianPrice ;;
   }
   dimension: time_zone_full_name {
