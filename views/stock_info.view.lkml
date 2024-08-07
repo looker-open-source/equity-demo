@@ -231,6 +231,7 @@ view: stock_info {
     sql: ${TABLE}.floatShares ;;
   }
   dimension: forward_eps {
+    label: "Forward EPS"
     group_label: "EPS Data"
     type: string
     sql: ${TABLE}.forwardEps ;;
@@ -653,6 +654,7 @@ view: stock_info {
   }
   dimension: trailing_eps {
     group_label: "EPS Data"
+    label: "Trailing EPS"
     type: string
     sql: ${TABLE}.trailingEps ;;
   }
