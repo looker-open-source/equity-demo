@@ -9,6 +9,11 @@ view: stock_info {
     type: string
     sql: ${TABLE}.id ;;
   }
+  dimension: image {
+    type: string
+    sql: ${id} ;;
+    html: <img src="https://assets.parqet.com/logos/symbol/{{value}}?format=png" /> ;;
+  }
   dimension: 52_week_change {
     label: "52 Week Change"
     description: "Percentage change in the company's stock price over the last fifty-two weeks"
