@@ -32,7 +32,8 @@ view: stock_info {
   }
   dimension: audit_risk {
     group_label: "Risk data"
-    type: string
+    type: number
+    description: "Corporate governance scores courtesy of Institutional Shareholder Services (ISS) Scores indicate decile rank relative to index or region. A decile score of 1 indicates lower governance risk, while a 10 indicates higher governance risk."
     sql: ${TABLE}.auditRisk ;;
   }
   dimension: average_daily_volume10_day {
@@ -66,7 +67,8 @@ view: stock_info {
   }
   dimension: board_risk {
     group_label: "Risk data"
-    type: string
+    type: number
+    description: "Corporate governance scores courtesy of Institutional Shareholder Services (ISS) Scores indicate decile rank relative to index or region. A decile score of 1 indicates lower governance risk, while a 10 indicates higher governance risk."
     sql: ${TABLE}.boardRisk ;;
   }
   dimension: book_value {
@@ -85,7 +87,8 @@ view: stock_info {
   }
   dimension: compensation_risk {
     group_label: "Risk data"
-    type: string
+    type: number
+    description: "Corporate governance scores courtesy of Institutional Shareholder Services (ISS) Scores indicate decile rank relative to index or region. A decile score of 1 indicates lower governance risk, while a 10 indicates higher governance risk."
     sql: ${TABLE}.compensationRisk ;;
   }
   dimension: country {
@@ -390,7 +393,8 @@ view: stock_info {
   }
   dimension: overall_risk {
     group_label: "Risk data"
-    type: string
+    type: number
+    description: "Corporate governance scores courtesy of Institutional Shareholder Services (ISS) Scores indicate decile rank relative to index or region. A decile score of 1 indicates lower governance risk, while a 10 indicates higher governance risk."
     sql: ${TABLE}.overallRisk ;;
   }
   dimension: payout_ratio {
@@ -529,7 +533,8 @@ view: stock_info {
   }
   dimension: share_holder_rights_risk {
     group_label: "Risk data"
-    type: string
+    type: number
+    description: "Corporate governance scores courtesy of Institutional Shareholder Services (ISS) Scores indicate decile rank relative to index or region. A decile score of 1 indicates lower governance risk, while a 10 indicates higher governance risk."
     sql: ${TABLE}.shareHolderRightsRisk ;;
   }
   dimension: shares_outstanding {
