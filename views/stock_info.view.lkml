@@ -452,11 +452,12 @@ view: stock_info {
     sql: ${TABLE}.quoteType ;;
   }
   dimension: recommendation_key {
+    description: "Recommendation information from Yahoo Finance"
     type: string
     sql: ${TABLE}.recommendationKey ;;
   }
   dimension: recommendation_mean {
-    type: string
+    type: number
     sql: ${TABLE}.recommendationMean ;;
   }
   dimension: regular_market_day_high {
