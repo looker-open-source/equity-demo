@@ -660,23 +660,25 @@ view: stock_info {
   }
   dimension: trailing_eps {
     group_label: "EPS Data"
-    label: "Trailing EPS"
+    label: "EPS (TTM)"
     type: string
     sql: ${TABLE}.trailingEps ;;
   }
   dimension: trailing_pe {
-    label: "Trailing P/E"
+    label: "P/E Ratio (TTM)"
     type: number
     value_format: "0.00"
     sql: ${TABLE}.trailingPE ;;
   }
   dimension: trailing_peg_ratio {
-    type: string
+    type: number
+    label: "PEG Ratio (TTM)"
+    value_format: "0.00"
     sql: ${TABLE}.trailingPegRatio ;;
   }
   dimension: two_hundred_day_average {
     group_label: "Averages"
-    type: string
+    type: number
     sql: ${TABLE}.twoHundredDayAverage ;;
   }
   dimension: underlying_symbol {
