@@ -645,7 +645,8 @@ view: stock_info {
   }
   dimension: total_revenue {
     group_label: "Totals"
-    type: string
+    type: number
+    value_format: "0.000,,,\" B\""
     sql: ${TABLE}.totalRevenue ;;
   }
   dimension: trailing_annual_dividend_rate {
