@@ -28,6 +28,9 @@ explore: stock_info {
     sql_on: ${stock_info.id} = ${stock_history_with_date_crossjoin.id} ;;
   }
 }
+explore:  portfolio {
+  label: "Current Holdings"
+}
 
 
 
