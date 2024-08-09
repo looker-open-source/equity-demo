@@ -519,7 +519,8 @@ view: stock_info {
   }
   dimension: sandp_52_week_change {
     label: "S&P 52 Week Change"
-    type: string
+    type: number
+    value_format: "0.00%"
     sql: ${TABLE}.SandP52WeekChange ;;
   }
   dimension: sector {
