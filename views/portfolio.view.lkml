@@ -3,6 +3,8 @@ view: portfolio {
      sql: with coins as(
     SELECT
     id
+    ,"Crypto Currency" as investment_type
+    ,"Alternative Currencies" as sector
     ,current_price
     ,(FLOOR(RAND()*(10-5+1)+5)) as amount
     FROM `kirby-looker-core-argolis.crypto_mvp.market_data`
@@ -11,6 +13,8 @@ view: portfolio {
     stock as (
     SELECT
     id
+    ,"Equity" as investment_type
+    ,sector
     ,currentPrice as current_price
     ,(FLOOR(RAND()*(10-5+1)+5)) as amount
     FROM `kirby-looker-core-argolis.crypto_mvp.stock_info`
@@ -29,6 +33,16 @@ view: portfolio {
     primary_key: yes
     sql: ${TABLE}.id ;;
   }
+  dimension: investment_type {
+    description: "Type of Investment"
+    type: string
+    sql: ${TABLE}.investment_type ;;
+  }
+  dimension: sector {
+    description: "Industry Sector"
+    type: string
+    sql: ${TABLE}.sector ;;
+  }
   dimension: current_price {
     label: "price"
     type: number
@@ -42,6 +56,26 @@ view: portfolio {
     value_format: "0.00"
     sql: ${TABLE}.amount ;;
   }
+  dimension: value {
+    label: "Available Value"
+    type: number
+    value_format: "$#,##0.00;($#,##0.00)"
+    sql: (${current_price}*${amount}) ;;
+  }
+  measure:  total{
+    label: "Total Investment Value"
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
+    sql: ${value} ;;
+  }
+  measure: share_of_value {
+    label: "Share of Portfolio Value"
+    description: "Value of investment as a percentage of the Total Investment Value"
+    type: number
+    value_format: "0.00%"
+    sql: (${value}/${total}) ;;
+  }
+  drill_fields: [id,sector,investment_type]
 }
 #
 #   # Define your dimensions and measures here, like this:
