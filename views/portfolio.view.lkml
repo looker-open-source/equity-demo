@@ -47,14 +47,14 @@ view: portfolio {
     label: "Current Price"
     type: number
     value_format: "$#,##0.00;($#,##0.00)"
-    sql: ${TABLE}.current_price ;;
+    sql: CAST(${TABLE}.current_price as FLOAT64) ;;
   }
   dimension: amount {
     label: "Quantity"
     description: "Amount currently within the portfolio"
     type: number
     value_format: "0.00"
-    sql: ${TABLE}.amount ;;
+    sql: CAST(${TABLE}.amount as FLOAT64) ;;
   }
   dimension: value {
     label: "Available Value"
