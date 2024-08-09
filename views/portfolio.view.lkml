@@ -71,12 +71,13 @@ view: portfolio {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${value} ;;
+    drill_fields: [id,sector,investment_type,amount,value]
   }
   measure: total_quantity {
     type: sum
     value_format: "0.00"
     sql: ${amount} ;;
-    drill_fields: [id,sector,investment_type,amount]
+    drill_fields: [id,sector,investment_type,amount,value]
   }
   measure: share_of_value {
     label: "Share of Portfolio Value"
