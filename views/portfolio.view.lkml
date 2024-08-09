@@ -56,6 +56,10 @@ view: portfolio {
     value_format: "0.00"
     sql: CAST(${TABLE}.amount as FLOAT64) ;;
   }
+  measure: count {
+    type: count
+    drill_fields: [investment_details*]
+  }
   dimension: value {
     label: "Available Value"
     type: number
@@ -76,7 +80,15 @@ view: portfolio {
     sql: (${value}/${total}) ;;
   }
   drill_fields: [id,sector,investment_type,current_price,amount,value]
+
+  set: investment_details {
+    fields: [id, sector, current_price, investment_type]
+  }
 }
+
+
+
+
 #
 #   # Define your dimensions and measures here, like this:
 #   dimension: user_id {
