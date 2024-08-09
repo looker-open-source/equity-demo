@@ -37,11 +37,13 @@ view: portfolio {
     description: "Type of Investment"
     type: string
     sql: ${TABLE}.investment_type ;;
+    drill_fields: [sector,id]
   }
   dimension: sector {
     description: "Industry Sector"
     type: string
     sql: ${TABLE}.sector ;;
+    drill_fields: [id]
   }
   dimension: current_price {
     label: "Current Price"
