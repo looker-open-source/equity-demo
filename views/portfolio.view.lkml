@@ -75,7 +75,7 @@ view: portfolio {
     value_format: "0.00%"
     sql: (${value}/${total}) ;;
   }
-  drill_fields: [id,sector,investment_type]
+  drill_fields: [id,sector,investment_type,current_price,amount,value]
 }
 #
 #   # Define your dimensions and measures here, like this:
