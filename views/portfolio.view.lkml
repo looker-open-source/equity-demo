@@ -51,7 +51,7 @@ view: portfolio {
   }
   dimension: amount {
     label: "Quantity"
-    description: "Amount currently within the portfolio"
+    description: "Amount of shares/coins currently within the portfolio"
     type: number
     value_format: "0.00"
     sql: CAST(${TABLE}.amount as FLOAT64) ;;
@@ -66,18 +66,24 @@ view: portfolio {
     value_format: "$#,##0.00;($#,##0.00)"
     sql: (${current_price}*${amount}) ;;
   }
-  measure:  total{
+  measure:  total_value{
     label: "Total Investment Value"
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${value} ;;
+  }
+  measure: total_quantity {
+    type: sum
+    value_format: "0.00"
+    sql: ${amount} ;;
+    drill_fields: [id,sector,investment_type,amount]
   }
   measure: share_of_value {
     label: "Share of Portfolio Value"
     description: "Value of investment as a percentage of the Total Investment Value"
     type: number
     value_format: "0.00%"
-    sql: (${value}/${total}) ;;
+    sql: (${value}/${total_value}) ;;
   }
   drill_fields: [id,sector,investment_type,current_price,amount,value]
 
