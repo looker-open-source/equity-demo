@@ -127,6 +127,7 @@ view: market_data {
     label: "Market Cap Change - 24hrs"
     description: "Change in the market cap in the last 24hrs"
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.market_cap_change_24h ;;
   }
   dimension: market_cap_change_percentage_24h {
