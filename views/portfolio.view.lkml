@@ -3,6 +3,7 @@ view: portfolio {
      sql: with coins as(
     SELECT
     id
+    ,name as name
     ,"Crypto Currency" as investment_type
     ,"Alternative Currencies" as sector
     ,current_price
@@ -13,6 +14,7 @@ view: portfolio {
     stock as (
     SELECT
     id
+    ,shortName as short_name
     ,"Equity" as investment_type
     ,sector
     ,currentPrice as current_price
@@ -33,17 +35,21 @@ view: portfolio {
     primary_key: yes
     sql: ${TABLE}.id ;;
   }
+  dimension: name {
+    type: string
+    sql: ${TABLE}.name ;;
+  }
   dimension: investment_type {
     description: "Type of Investment"
     type: string
     sql: ${TABLE}.investment_type ;;
-    drill_fields: [sector,id]
+    drill_fields: [sector,id,name]
   }
   dimension: sector {
     description: "Industry Sector"
     type: string
     sql: ${TABLE}.sector ;;
-    drill_fields: [id]
+    drill_fields: [id,name]
   }
   dimension: current_price {
     label: "Current Price"
@@ -73,13 +79,13 @@ view: portfolio {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${value} ;;
-    drill_fields: [id,sector,investment_type,amount,value]
+    drill_fields: [id,sector,investment_type,amount,value, name]
   }
   measure: total_quantity {
     type: sum
     value_format: "0.00"
     sql: ${amount} ;;
-    drill_fields: [id,sector,investment_type,amount,value]
+    drill_fields: [id,sector,investment_type,amount,value, name]
   }
   measure: share_of_value {
     label: "Share of Portfolio Value"
@@ -88,10 +94,10 @@ view: portfolio {
     value_format: "0.00%"
     sql: (${value}/${total_value}) ;;
   }
-  drill_fields: [id,sector,investment_type,current_price,amount,value]
+  drill_fields: [id,sector,investment_type,current_price,amount,value, name]
 
   set: investment_details {
-    fields: [id, sector, current_price, investment_type]
+    fields: [id, sector, current_price, investment_type, name]
   }
 }
 

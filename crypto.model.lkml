@@ -30,7 +30,12 @@ explore: stock_info {
 }
 explore:  portfolio {
   label: "Current Holdings"
+  join: portfolio_history {
+    relationship: one_to_many
+    sql_on: ${portfolio.id} = ${portfolio_history.id} ;;
+  }
 }
+
 
 
 

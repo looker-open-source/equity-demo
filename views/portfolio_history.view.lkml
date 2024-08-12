@@ -127,7 +127,57 @@ FROM stock_history_set
 
   dimension: id {
     type: string
-    sql: ${TABLE}id ;;
+    sql: ${TABLE}.id ;;
+  }
+  dimension_group: history_date {
+    type: time
+    timeframes: [date, week, month, year]
+    datatype: date
+    sql: ${TABLE}.day;;
+  }
+  dimension: date_offset {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.date_offset ;;
+  }
+  dimension: price {
+    type: number
+    sql: ${TABLE}.price ;;
+  }
+  dimension: price_offset {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.price_offset ;;
+  }
+  dimension: investment_type {
+    type: string
+    sql: ${TABLE}.investment_type ;;
+  }
+  dimension: amount {
+    label: "Quantity"
+    description: "Amount of shares/coins currently within the portfolio"
+    type: number
+    value_format: "0.00"
+    sql: CAST(${TABLE}.amount as FLOAT64) ;;
+  }
+  dimension: value {
+    label: "Available Value"
+    type: number
+    value_format: "$#,##0.00;($#,##0.00)"
+    sql: (${price}*${amount}) ;;
+  }
+  measure:  total_value{
+    label: "Total Investment Value"
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
+    sql: ${value} ;;
+    drill_fields: [id,investment_type,amount,value]
+  }
+  measure: total_quantity {
+    type: sum
+    value_format: "0.00"
+    sql: ${amount} ;;
+    drill_fields: [id,investment_type,amount,value]
   }
 }
 #
