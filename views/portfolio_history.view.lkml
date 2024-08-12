@@ -142,7 +142,8 @@ FROM stock_history_set
   }
   dimension: price {
     type: number
-    sql: ${TABLE}.price ;;
+    value_format: "$#,##0.00;($#,##0.00)"
+    sql: CAST(${TABLE}.price as FLOAT64) ;;
   }
   dimension: price_offset {
     type: number
