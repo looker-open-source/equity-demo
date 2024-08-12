@@ -16,7 +16,7 @@ view: portfolio {
     ,"Equity" as investment_type
     ,sector
     ,currentPrice as current_price
-    ,(FLOOR(RAND()*(10-5+1)+5)) as amount
+    ,(FLOOR(RAND()*(100-5+1)+5)) as amount
     FROM `kirby-looker-core-argolis.crypto_mvp.stock_info`
     )
 
