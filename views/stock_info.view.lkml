@@ -1,6 +1,6 @@
 view: stock_info {
   label: "Current Stock Info"
-  sql_table_name: `kirby-looker-core-argolis.crypto_mvp.stock_info`  ;;
+  sql_table_name: `@{database}.crypto_mvp.stock_info`  ;;
   drill_fields: [id]
 
   dimension: id {

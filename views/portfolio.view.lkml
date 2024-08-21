@@ -8,7 +8,7 @@ view: portfolio {
     ,"Alternative Currencies" as sector
     ,current_price
     ,(FLOOR(RAND()*(10-5+1)+5)) as amount
-    FROM `kirby-looker-core-argolis.crypto_mvp.market_data`
+    FROM `@{database}.crypto_mvp.market_data`
     )
     ,
     stock as (
@@ -19,7 +19,7 @@ view: portfolio {
     ,sector
     ,currentPrice as current_price
     ,(FLOOR(RAND()*(100-5+1)+5)) as amount
-    FROM `kirby-looker-core-argolis.crypto_mvp.stock_info`
+    FROM `@{database}.crypto_mvp.stock_info`
     )
 
     SELECT *

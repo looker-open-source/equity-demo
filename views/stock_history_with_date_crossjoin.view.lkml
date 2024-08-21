@@ -13,7 +13,7 @@ view: stock_history_with_date_crossjoin {
     SELECT
     distinct day
     ,id
-    FROM `kirby-looker-core-argolis.crypto_mvp.stock_history`
+    FROM `@{database}.crypto_mvp.stock_history`
     CROSS JOIN date_cte
     )
     ,
@@ -23,8 +23,8 @@ view: stock_history_with_date_crossjoin {
   ,DATE(TIMESTAMP(history_date)) AS history_date
   ,date_offset
   FROM
-  `kirby-looker-core-argolis.crypto_mvp.stock_history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.stock_history`.`Date`) as history_date WITH OFFSET as date_offset
+  `@{database}.crypto_mvp.stock_history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.stock_history`.`Date`) as history_date WITH OFFSET as date_offset
 )
 ,
 open_unnested as (
@@ -33,8 +33,8 @@ open_unnested as (
   , CAST(open AS NUMERIC) AS open
   ,open_offset
   FROM
-  `kirby-looker-core-argolis.crypto_mvp.stock_history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.stock_history`.`Open`) as open WITH OFFSET as open_offset
+  `@{database}.crypto_mvp.stock_history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.stock_history`.`Open`) as open WITH OFFSET as open_offset
 )
 ,
 high_unnested as(
@@ -43,8 +43,8 @@ SELECT
   ,CAST(high AS NUMERIC) AS high
   ,high_offset
   FROM
-  `kirby-looker-core-argolis.crypto_mvp.stock_history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.stock_history`.`High`) as high WITH OFFSET as high_offset
+  `@{database}.crypto_mvp.stock_history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.stock_history`.`High`) as high WITH OFFSET as high_offset
 )
 ,
 low_unnested as (
@@ -53,8 +53,8 @@ SELECT
   ,CAST(low as NUMERIC) AS low
   ,low_offset
   FROM
-  `kirby-looker-core-argolis.crypto_mvp.stock_history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.stock_history`.`Low`) as low WITH OFFSET as low_offset
+  `@{database}.crypto_mvp.stock_history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.stock_history`.`Low`) as low WITH OFFSET as low_offset
 )
 ,
 close_unnested as (
@@ -63,8 +63,8 @@ close_unnested as (
   ,CAST(close AS NUMERIC) AS close
   ,close_offset
   FROM
-  `kirby-looker-core-argolis.crypto_mvp.stock_history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.stock_history`.`Close`) as close WITH OFFSET as close_offset
+  `@{database}.crypto_mvp.stock_history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.stock_history`.`Close`) as close WITH OFFSET as close_offset
 )
 ,
 volume_unnested as (
@@ -73,8 +73,8 @@ volume_unnested as (
   ,CAST(volume AS INTEGER) AS volume
   ,volume_offset
   FROM
-  `kirby-looker-core-argolis.crypto_mvp.stock_history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.stock_history`.`Volume`) as volume WITH OFFSET as volume_offset
+  `@{database}.crypto_mvp.stock_history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.stock_history`.`Volume`) as volume WITH OFFSET as volume_offset
 )
 
 SELECT

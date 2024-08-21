@@ -1,5 +1,8 @@
 project_name: "crypto-mvp-kirby"
 
+constant: database {
+  value: "kirby-looker-core-argolis"
+}
 
 visualization: {
   id: "crytp_heatmap"

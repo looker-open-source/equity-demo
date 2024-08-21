@@ -11,7 +11,7 @@ date_and_id_cte as (
 SELECT
 id
 ,day
-FROM `kirby-looker-core-argolis.crypto_mvp.history`
+FROM `@{database}.crypto_mvp.history`
 CROSS JOIN date_cte
 )
 ,
@@ -21,8 +21,8 @@ price_date_unnested as (
   ,DATE(TIMESTAMP_MILLIS(prices_epoch_time)) AS price_date
   ,prices_epoch_offset
   FROM
-  `kirby-looker-core-argolis.crypto_mvp.history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.prices.epoch_time) as prices_epoch_time WITH OFFSET as prices_epoch_offset
+  `@{database}.crypto_mvp.history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.history`.prices.epoch_time) as prices_epoch_time WITH OFFSET as prices_epoch_offset
 )
 ,
 price_amount_unnested as (
@@ -31,8 +31,8 @@ price_amount_unnested as (
   ,prices_amount
   ,prices_amount_offset
    FROM
-  `kirby-looker-core-argolis.crypto_mvp.history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.prices.amount) as prices_amount WITH OFFSET as prices_amount_offset
+  `@{database}.crypto_mvp.history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.history`.prices.amount) as prices_amount WITH OFFSET as prices_amount_offset
 
 )
 ,
@@ -68,7 +68,7 @@ stock_date_and_id_cte as (
 SELECT
 distinct day
 ,id
-FROM `kirby-looker-core-argolis.crypto_mvp.stock_history`
+FROM `@{database}.crypto_mvp.stock_history`
 CROSS JOIN stock_date_cte
 )
 ,
@@ -78,8 +78,8 @@ id
 ,DATE(TIMESTAMP(history_date)) AS history_date
 ,date_offset
 FROM
-`kirby-looker-core-argolis.crypto_mvp.stock_history`
-LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.stock_history`.`Date`) as history_date WITH OFFSET as date_offset
+`@{database}.crypto_mvp.stock_history`
+LEFT JOIN UNNEST(`@{database}.crypto_mvp.stock_history`.`Date`) as history_date WITH OFFSET as date_offset
 )
 ,
 close_unnested as (
@@ -88,8 +88,8 @@ close_unnested as (
   ,CAST(close AS NUMERIC) AS close
   ,close_offset
   FROM
-  `kirby-looker-core-argolis.crypto_mvp.stock_history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.stock_history`.`Close`) as close WITH OFFSET as close_offset
+  `@{database}.crypto_mvp.stock_history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.stock_history`.`Close`) as close WITH OFFSET as close_offset
 )
 ,
 stock_history_set as (

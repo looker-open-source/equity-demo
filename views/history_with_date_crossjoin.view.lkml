@@ -12,7 +12,7 @@ date_and_id_cte as (
 SELECT
 id
 ,day
-FROM `kirby-looker-core-argolis.crypto_mvp.history`
+FROM `@{database}.crypto_mvp.history`
 CROSS JOIN date_cte
 )
 ,
@@ -22,8 +22,8 @@ price_date_unnested as (
   ,DATE(TIMESTAMP_MILLIS(prices_epoch_time)) AS price_date
   ,prices_epoch_offset
   FROM
-  `kirby-looker-core-argolis.crypto_mvp.history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.prices.epoch_time) as prices_epoch_time WITH OFFSET as prices_epoch_offset
+  `@{database}.crypto_mvp.history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.history`.prices.epoch_time) as prices_epoch_time WITH OFFSET as prices_epoch_offset
 )
 ,
 price_amount_unnested as (
@@ -32,8 +32,8 @@ price_amount_unnested as (
   ,prices_amount
   ,prices_amount_offset
    FROM
-  `kirby-looker-core-argolis.crypto_mvp.history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.prices.amount) as prices_amount WITH OFFSET as prices_amount_offset
+  `@{database}.crypto_mvp.history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.history`.prices.amount) as prices_amount WITH OFFSET as prices_amount_offset
 
 )
 ,
@@ -43,8 +43,8 @@ market_cap_amount_unnested as (
   ,market_caps_amount
   ,market_caps_amount_offset
   FROM
-  `kirby-looker-core-argolis.crypto_mvp.history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.market_caps.amount) as market_caps_amount WITH OFFSET as market_caps_amount_offset
+  `@{database}.crypto_mvp.history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.history`.market_caps.amount) as market_caps_amount WITH OFFSET as market_caps_amount_offset
 )
 ,
 total_volumes_amount_unnested as (
@@ -53,8 +53,8 @@ total_volumes_amount_unnested as (
   ,total_volumes_amount
   ,total_volumes_amount_offset
   FROM
-  `kirby-looker-core-argolis.crypto_mvp.history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.total_volumes.amount) as total_volumes_amount WITH OFFSET as total_volumes_amount_offset
+  `@{database}.crypto_mvp.history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.history`.total_volumes.amount) as total_volumes_amount WITH OFFSET as total_volumes_amount_offset
 )
 
 SELECT

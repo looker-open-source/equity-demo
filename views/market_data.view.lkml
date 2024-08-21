@@ -1,5 +1,5 @@
 view: market_data {
-  sql_table_name: `kirby-looker-core-argolis.crypto_mvp.market_data` ;;
+  sql_table_name: `@{database}.crypto_mvp.market_data` ;;
   drill_fields: [id]
 
   dimension: id {
