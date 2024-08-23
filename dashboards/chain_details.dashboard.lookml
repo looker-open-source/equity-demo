@@ -1,14 +1,3 @@
-# - dashboard: chain_details
-#   title: Chain Details
-#   layout: newspaper
-#   preferred_viewer: dashboards-next
-#   tile_size: 100
-
-#   filters:
-
-#   elements:
-#     - name: hello_world
-#       type: looker_column
 ---
 - dashboard: chain_details
   title: Chain Details
@@ -288,7 +277,7 @@
     row: 10
     col: 14
     width: 8
-    height: 2
+    height: 3
   - name: ''
     type: text
     title_text: ''
@@ -303,7 +292,7 @@
     title_text: ''
     subtitle_text: ''
     body_text: "---"
-    row: 21
+    row: 22
     col: 2
     width: 20
     height: 1
@@ -331,7 +320,7 @@
     subtitle_text: ''
     body_text: '[{"type":"h3","children":[{"text":"Documentation Resources:"}],"align":"center"}]'
     rich_content_json: '{"format":"slate"}'
-    row: 22
+    row: 23
     col: 2
     width: 20
     height: 2
@@ -381,7 +370,7 @@
     row: 7
     col: 2
     width: 4
-    height: 5
+    height: 6
   - title: 24hrs
     name: 24hrs
     model: crypto
@@ -429,7 +418,7 @@
     row: 7
     col: 6
     width: 4
-    height: 5
+    height: 6
   - title: 7 Days
     name: 7 Days
     model: crypto
@@ -476,7 +465,7 @@
     row: 7
     col: 10
     width: 4
-    height: 5
+    height: 6
   - title: Average Price
     name: Average Price
     model: crypto
@@ -529,7 +518,7 @@
     title_hidden: true
     listen:
       ID: market_data.id
-    row: 13
+    row: 14
     col: 2
     width: 11
     height: 8
@@ -600,7 +589,7 @@
     title_hidden: true
     listen:
       ID: market_data.id
-    row: 13
+    row: 14
     col: 13
     width: 9
     height: 8
@@ -608,7 +597,7 @@
     name: button_134
     rich_content_json: '{"text":"go/crypto-docs","description":"Go link for project
       documentation","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8","href":"go/crypto-docs"}'
-    row: 24
+    row: 25
     col: 2
     width: 20
     height: 1
@@ -635,7 +624,7 @@
     title_text: Price Trends
     subtitle_text: ''
     body_text: ''
-    row: 12
+    row: 13
     col: 2
     width: 20
     height: 1
