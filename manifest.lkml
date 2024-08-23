@@ -14,3 +14,8 @@ visualization: {
   label: "Company Info"
   file: "visualizations/company_info.js"
 }
+visualization: {
+  id: "target_prices"
+  label: "Target Prices"
+  file: "visualizations/target_prices.js"
+}
