@@ -19,3 +19,18 @@ visualization: {
   label: "Target Prices"
   file: "visualizations/target_prices.js"
 }
+visualization: {
+  id: "two_number_comparison"
+  label: "Two Number Comparison"
+  file: "visualizations/two_number_comparison.js"
+}
+visualization: {
+  id: "analyst_recommendation"
+  label: "Analyst Recommendation"
+  file: "visualizations/analyst_recommendation.js"
+}
+visualization: {
+  id: "stock_visualization_card"
+  label: "Stock Visualization Card"
+  file: "visualizations/stock_visualization_card.js"
+}
