@@ -9,3 +9,8 @@ visualization: {
   label: "Candlestick Chart"
   file: "visualizations/candlestick.js"
 }
+visualization: {
+  id: "company_info"
+  label: "Company Info"
+  file: "visualizations/company_info.js"
+}
