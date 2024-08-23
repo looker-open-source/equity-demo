@@ -2,7 +2,7 @@ connection: "@{database}"
 
 # include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
 include: "/**/*.view.lkml"                 # include all views in this project
-include: "/dashboards/*.dashboard.lookml"   # include a LookML dashboard called my_dashboard
+include: "UDD/dashboards/*.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 explore: full_public_dataset {
   label: "Wallet Data"
