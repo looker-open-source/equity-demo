@@ -19,7 +19,7 @@
   elements:
   - title: Income Statement
     name: Income Statement
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: looker_grid
     fields: [stock_info.revenue_per_share, stock_info.revenue_growth, stock_info.ebitda,
@@ -85,7 +85,7 @@
     height: 3
   - title: Management Effectiveness
     name: Management Effectiveness
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: looker_grid
     fields: [stock_info.return_on_assets, stock_info.return_on_equity]
@@ -150,7 +150,7 @@
     height: 2
   - title: Profitability
     name: Profitability
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: looker_grid
     fields: [stock_info.profit_margins, stock_info.operating_margins]
@@ -224,7 +224,7 @@
     height: 1
   - title: Fiscal Year
     name: Fiscal Year
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: looker_grid
     fields: [stock_info.last_fiscal_year_end, stock_info.most_recent_q, stock_info.upcoming_fye]
@@ -289,7 +289,7 @@
     height: 2
   - title: Balance Sheet
     name: Balance Sheet
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: looker_grid
     fields: [stock_info.total_cash, stock_info.total_cash_per_share, stock_info.total_debt,
@@ -373,7 +373,7 @@
     height: 117
   - title: Analyst Targets
     name: Analyst Targets
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: target_prices
     fields: [stock_info.target_low_price, stock_info.current_price, stock_info.target_average_price,
@@ -435,7 +435,7 @@
     height: 6
   - title: Average Trends
     name: Average Trends
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: looker_column
     fields: [stock_history_with_date_crossjoin.date_selection_month, average_of_open,
@@ -566,7 +566,7 @@
     height: 1
   - title: Valuation Measures
     name: Valuation Measures
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: looker_grid
     fields: [stock_info.market_cap, stock_info.enterprise_value, stock_info.trailing_pe,
@@ -636,7 +636,7 @@
     height: 3
   - title: companyinfo
     name: companyinfo
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: company_info
     fields: [stock_info.short_name, stock_info.long_business_summary, stock_info.website,
@@ -704,7 +704,7 @@
     height: 8
   - title: candlesticktest
     name: candlesticktest
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: candlestick
     fields: [stock_history_with_date_crossjoin.date_selection_date, stock_history_with_date_crossjoin.high,
@@ -771,7 +771,7 @@
     height: 7
   - title: comparison
     name: comparison
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: equity-metric-comparison
     fields: [stock_info.trailing_eps, stock_info.forward_eps]
@@ -839,7 +839,7 @@
     height: 5
   - title: comparison
     name: comparison (2)
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: equity-metric-comparison
     fields: [stock_info.trailing_pe, stock_info.forward_pe]
@@ -889,7 +889,7 @@
     height: 5
   - title: recommendation
     name: recommendation
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: buy_sell_hold
     fields: [stock_info.recommendation_key, stock_info.recommendation_mean, stock_info.number_of_analyst_opinions]
@@ -950,7 +950,7 @@
     height: 5
   - title: 52weekchange
     name: 52weekchange
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: twonumflex
     fields: [stock_info.52_week_change, stock_info.sandp_52_week_change]
@@ -1002,7 +1002,7 @@
     height: 5
   - title: stocktile
     name: stocktile
-    model: crypto
+    model: portfolio
     explore: stock_info
     type: stockvisualizationcard
     fields: [stock_info.short_name, stock_info.symbol, stock_info.current_price, stock_info.previous_close]
@@ -1078,7 +1078,7 @@
     ui_config:
       type: advanced
       display: popover
-    model: crypto
+    model: portfolio
     explore: stock_info
     listens_to_filters: []
     field: stock_info.id
@@ -1092,7 +1092,7 @@
       type: advanced
       display: popover
       options: []
-    model: crypto
+    model: portfolio
     explore: stock_info
     listens_to_filters: []
     field: stock_history_with_date_crossjoin.date_selection_month
