@@ -1,6 +1,7 @@
 looker.plugins.visualizations.add({
   id: "candlestick",
   label: "Candlestick Chart",
+  type: "candlestick"
   options: {
     color_up: {
       type: "string",
@@ -13,7 +14,7 @@ looker.plugins.visualizations.add({
       default: "#F44336"
     }
   },
-  
+
   create: function(element, config) {
     element.innerHTML = '<div id="candlestick-chart"></div>';
     this.chartElement = element.appendChild(document.createElement("div"));

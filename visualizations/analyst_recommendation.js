@@ -1,4 +1,6 @@
 looker.plugins.visualizations.add({
+  id: "analyst_recommendation"
+  label: "Analyst Recommendation"
   options: {
     font_size: {
       type: "string",
@@ -18,7 +20,7 @@ looker.plugins.visualizations.add({
       section: "Style"
     }
   },
-  
+
   create: function(element, config) {
     element.innerHTML = `
       <style>

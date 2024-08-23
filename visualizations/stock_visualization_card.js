@@ -1,4 +1,6 @@
 looker.plugins.visualizations.add({
+  id: "stockvisualizationcard"
+  label: "Stock Visualization Card"
   options: {
     style: {
       type: "string",
