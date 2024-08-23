@@ -1,4 +1,5 @@
 looker.plugins.visualizations.add({
+  id: "equity-metric-comparison"
   options: {
     chart_title: {
       type: "string",

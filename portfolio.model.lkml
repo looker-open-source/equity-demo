@@ -8,6 +8,14 @@ explore: full_public_dataset {
   label: "Wallet Data"
 }
 
+explore: market_data {
+  label: "Coin Data"
+  join: history_with_date_crossjoin {
+    relationship: one_to_many
+    sql_on: ${market_data.id} = ${history_with_date_crossjoin.coin_id} ;;
+  }
+}
+
 explore: stock_info {
   label: "Equity Information"
   join: stock_history_with_date_crossjoin {
@@ -16,6 +24,13 @@ explore: stock_info {
   }
 }
 
+explore:  portfolio {
+  label: "Current Holdings"
+  join: portfolio_history {
+    relationship: one_to_many
+    sql_on: ${portfolio.id} = ${portfolio_history.id} ;;
+  }
+}
 
 
 

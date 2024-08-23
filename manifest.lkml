@@ -23,6 +23,7 @@ visualization: {
   id: "equity-metric-comparison"
   label: "Equity Metric Comparison"
   file: "visualizations/two_number_comparison.js"
+  # url: "https://gistcdn.githack.com/kirbsrh/b260c387d2e02503dd2d52691d890278/raw/d24366e54992bdafea24aef926d2b483a3471dfb/bundle.js"
 }
 visualization: {
   id: "buy_sell_hold"
