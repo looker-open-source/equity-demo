@@ -1,5 +1,5 @@
 looker.plugins.visualizations.add({
-  id: "buy_sell_hold"
+  id: "target_prices"
   options: {
     font_family: {
       type: "string",
