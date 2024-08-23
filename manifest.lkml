@@ -6,31 +6,36 @@ constant: database {
 
 visualization: {
   id: "candlestick"
-  label: "Candlestick Chart"
+  label: "candlestick"
   file: "visualizations/candlestick.js"
 }
 visualization: {
   id: "company_info"
-  label: "Company Info"
+  label: "Display Company Information"
   file: "visualizations/company_info.js"
 }
 visualization: {
   id: "target_prices"
-  label: "Target Prices"
+  label: "Plot target prices"
   file: "visualizations/target_prices.js"
 }
 visualization: {
-  id: "two_number_comparison"
-  label: "Two Number Comparison"
+  id: "equity-metric-comparison"
+  label: "Equity Metric Comparison"
   file: "visualizations/two_number_comparison.js"
 }
 visualization: {
-  id: "analyst_recommendation"
-  label: "Analyst Recommendation"
+  id: "buy_sell_hold"
+  label: "Buy/Sell/Hold Recommendation"
   file: "visualizations/analyst_recommendation.js"
 }
 visualization: {
   id: "stockvisualizationcard"
-  label: "Stock Visualization Card"
+  label: "Stock visualization card with format selection"
   file: "visualizations/stock_visualization_card.js"
+}
+visualization: {
+  id: "twonumflex"
+  label: "Two number comparison with flexible subtitles"
+  file: "visualizations/two_number_comparison_flex.js"
 }
