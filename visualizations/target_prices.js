@@ -1,4 +1,6 @@
 looker.plugins.visualizations.add({
+  id: "target_prices"
+  label: "Target Prices"
   options: {
     font_family: {
       type: "string",
@@ -36,7 +38,7 @@ looker.plugins.visualizations.add({
       default: "#27ae60"  // Changed to green
     }
   },
-  
+
   create: function(element, config) {
     element.innerHTML = '<div id="price-target-viz"><div style="padding: 20px;">Loading visualization...</div></div>';
   },

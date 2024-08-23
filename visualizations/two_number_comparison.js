@@ -1,4 +1,6 @@
 looker.plugins.visualizations.add({
+  id: "two_number_comparison"
+  label: "Two Number Comparison"
   options: {
     chart_title: {
       type: "string",
@@ -59,7 +61,7 @@ looker.plugins.visualizations.add({
 
   updateAsync: function(data, element, config, queryResponse, details, done) {
     this.clearErrors();
-    
+
     if (typeof d3 === "undefined") {
       var script = document.createElement('script');
       script.src = 'https://d3js.org/d3.v5.min.js';
@@ -94,7 +96,7 @@ looker.plugins.visualizations.add({
 
     // Detect if the data is already in percentage form
     const autoDetectedPercentage = Math.max(Math.abs(leftValue), Math.abs(rightValue)) > 1;
-    
+
     // Use the user's setting if provided, otherwise use the auto-detected value
     const isPercentage = config.use_percentage !== null ? config.use_percentage : autoDetectedPercentage;
 

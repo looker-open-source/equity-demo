@@ -30,7 +30,7 @@ visualization: {
   file: "visualizations/analyst_recommendation.js"
 }
 visualization: {
-  id: "stock_visualization_card"
+  id: "stockvisualizationcard"
   label: "Stock Visualization Card"
   file: "visualizations/stock_visualization_card.js"
 }
