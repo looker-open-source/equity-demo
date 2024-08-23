@@ -1,7 +1,4 @@
 looker.plugins.visualizations.add({
-  id: "candlestick",
-  label: "Candlestick Chart",
-  type: "candlestick"
   options: {
     color_up: {
       type: "string",

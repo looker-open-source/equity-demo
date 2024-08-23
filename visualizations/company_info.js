@@ -1,6 +1,4 @@
 looker.plugins.visualizations.add({
-  id: "company_info"
-  label: "Company Info"
   options: {
     font_size: {
       type: "string",
