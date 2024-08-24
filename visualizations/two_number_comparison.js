@@ -1,5 +1,4 @@
 looker.plugins.visualizations.add({
-  id: "equity-metric-comparison"
   options: {
     chart_title: {
       type: "string",
@@ -10,7 +9,7 @@ looker.plugins.visualizations.add({
       type: "string",
       label: "Background Color",
       display: "color",
-      default: "#4285F4"
+      default: "#4285F4"  // Default to blue as seen in the image
     },
     text_color: {
       type: "string",
@@ -29,28 +28,6 @@ looker.plugins.visualizations.add({
         {"Very Rounded": "16px"}
       ],
       default: "8px"
-    },
-    left_subtitle: {
-      type: "string",
-      label: "Left Subtitle",
-      default: "TTM"
-    },
-    right_subtitle: {
-      type: "string",
-      label: "Right Subtitle",
-      default: "Forward"
-    },
-    use_percentage: {
-      type: "boolean",
-      label: "Format as Percentage",
-      default: null
-    },
-    decimal_places: {
-      type: "number",
-      label: "Decimal Places",
-      default: 2,
-      min: 0,
-      max: 5
     }
   },
 
@@ -60,7 +37,7 @@ looker.plugins.visualizations.add({
 
   updateAsync: function(data, element, config, queryResponse, details, done) {
     this.clearErrors();
-
+    
     if (typeof d3 === "undefined") {
       var script = document.createElement('script');
       script.src = 'https://d3js.org/d3.v5.min.js';
@@ -85,19 +62,13 @@ looker.plugins.visualizations.add({
       return;
     }
 
-    const leftValue = parseFloat(data[0][dimensions[0].name].value);
-    const rightValue = parseFloat(data[0][dimensions[1].name].value);
+    const ttmValue = parseFloat(data[0][dimensions[0].name].value);
+    const forwardValue = parseFloat(data[0][dimensions[1].name].value);
 
-    if (isNaN(leftValue) || isNaN(rightValue)) {
+    if (isNaN(ttmValue) || isNaN(forwardValue)) {
       this.addError({title: "Invalid Data", message: "One or both of the required values are not valid numbers."});
       return;
     }
-
-    // Detect if the data is already in percentage form
-    const autoDetectedPercentage = Math.max(Math.abs(leftValue), Math.abs(rightValue)) > 1;
-
-    // Use the user's setting if provided, otherwise use the auto-detected value
-    const isPercentage = config.use_percentage !== null ? config.use_percentage : autoDetectedPercentage;
 
     const viz = d3.select(element).select("#modern-equity-viz")
       .html("")
@@ -127,14 +98,6 @@ looker.plugins.visualizations.add({
       .style("align-items", "center")
       .style("flex-grow", "1");
 
-    function formatValue(value) {
-      if (isPercentage) {
-        return (autoDetectedPercentage ? value : value * 100).toFixed(config.decimal_places) + "%";
-      } else {
-        return value.toFixed(config.decimal_places);
-      }
-    }
-
     function createValueDisplay(value, label) {
       const display = valuesContainer.append("div")
         .style("text-align", "center")
@@ -143,15 +106,15 @@ looker.plugins.visualizations.add({
       display.append("div")
         .style("font-size", "24px")
         .style("font-weight", "bold")
-        .text(formatValue(value));
+        .text(value.toFixed(2));
 
       display.append("div")
         .style("font-size", "12px")
         .text(label);
     }
 
-    createValueDisplay(leftValue, config.left_subtitle);
-    createValueDisplay(rightValue, config.right_subtitle);
+    createValueDisplay(ttmValue, "TTM");
+    createValueDisplay(forwardValue, "Forward");
 
     // Make the visualization responsive
     function resize() {
