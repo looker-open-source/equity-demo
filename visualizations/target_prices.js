@@ -36,7 +36,7 @@ looker.plugins.visualizations.add({
       default: "#27ae60"  // Changed to green
     }
   },
-
+  
   create: function(element, config) {
     element.innerHTML = '<div id="price-target-viz"><div style="padding: 20px;">Loading visualization...</div></div>';
   },
