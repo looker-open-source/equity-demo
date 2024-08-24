@@ -1,3 +1,4 @@
+---
 - dashboard: equity_insights
   title: Equity Insights
   layout: newspaper
@@ -12,7 +13,6 @@
     type: looker_grid
     fields: [stock_info.revenue_per_share, stock_info.revenue_growth, stock_info.ebitda,
       stock_info.earnings_quarterly_growth]
-    filters: {}
     sorts: [stock_info.earnings_quarterly_growth desc]
     limit: 500
     column_limit: 50
@@ -77,7 +77,6 @@
     explore: stock_info
     type: looker_grid
     fields: [stock_info.return_on_assets, stock_info.return_on_equity]
-    filters: {}
     sorts: [stock_info.return_on_assets]
     limit: 500
     column_limit: 50
@@ -142,7 +141,6 @@
     explore: stock_info
     type: looker_grid
     fields: [stock_info.profit_margins, stock_info.operating_margins]
-    filters: {}
     sorts: [stock_info.operating_margins desc]
     limit: 500
     column_limit: 50
@@ -204,7 +202,6 @@
   - name: Financial Highlights
     type: text
     title_text: Financial Highlights
-    subtitle_text: ''
     body_text: ''
     row: 30
     col: 2
@@ -216,7 +213,6 @@
     explore: stock_info
     type: looker_grid
     fields: [stock_info.last_fiscal_year_end, stock_info.most_recent_q, stock_info.upcoming_fye]
-    filters: {}
     sorts: [stock_info.last_fiscal_year_end desc]
     limit: 500
     column_limit: 50
@@ -282,7 +278,6 @@
     type: looker_grid
     fields: [stock_info.total_cash, stock_info.total_cash_per_share, stock_info.total_debt,
       stock_info.current_ratio, stock_info.book_value]
-    filters: {}
     sorts: [stock_info.total_cash]
     limit: 500
     column_limit: 50
@@ -344,7 +339,6 @@
   - name: ''
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: " "
     row: 0
     col: 0
@@ -353,7 +347,6 @@
   - name: " (2)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: "   "
     row: 0
     col: 22
@@ -363,7 +356,7 @@
     name: Analyst Targets
     model: portfolio
     explore: stock_info
-    type: target_prices
+    type: finance_portfolio_demo::target_prices
     fields: [stock_info.target_low_price, stock_info.current_price, stock_info.target_average_price,
       stock_info.target_median_price, stock_info.target_high_price]
     filters: {}
@@ -429,7 +422,6 @@
     fields: [stock_history_with_date_crossjoin.date_selection_month, average_of_open,
       average_of_low, average_of_high, average_of_close]
     fill_fields: [stock_history_with_date_crossjoin.date_selection_month]
-    filters: {}
     sorts: [stock_history_with_date_crossjoin.date_selection_month desc]
     limit: 500
     column_limit: 50
@@ -546,7 +538,6 @@
   - name: Price Information
     type: text
     title_text: Price Information
-    subtitle_text: ''
     body_text: ''
     row: 5
     col: 2
@@ -560,7 +551,6 @@
     fields: [stock_info.market_cap, stock_info.enterprise_value, stock_info.trailing_pe,
       stock_info.forward_pe, stock_info.peg_ratio, stock_info.price_to_sales_trailing12_months,
       stock_info.price_to_book, stock_info.enterprise_to_revenue, stock_info.enterprise_to_ebitda]
-    filters: {}
     sorts: [stock_info.market_cap]
     limit: 500
     column_limit: 50
@@ -626,11 +616,10 @@
     name: companyinfo
     model: portfolio
     explore: stock_info
-    type: company_info
+    type: finance_portfolio_demo::company_info
     fields: [stock_info.short_name, stock_info.long_business_summary, stock_info.website,
       stock_info.full_time_employees, stock_info.sector, stock_info.upcoming_fye,
       stock_info.industry]
-    filters: {}
     sorts: [stock_info.upcoming_fye desc]
     limit: 500
     column_limit: 50
@@ -694,7 +683,7 @@
     name: candlesticktest
     model: portfolio
     explore: stock_info
-    type: candlestick
+    type: finance_portfolio_demo::candlestick
     fields: [stock_history_with_date_crossjoin.date_selection_date, stock_history_with_date_crossjoin.high,
       stock_history_with_date_crossjoin.low, stock_history_with_date_crossjoin.open,
       stock_history_with_date_crossjoin.close]
@@ -761,7 +750,7 @@
     name: comparison
     model: portfolio
     explore: stock_info
-    type: equity-metric-comparison
+    type: finance_portfolio_demo::equity-metric-comparison
     fields: [stock_info.trailing_eps, stock_info.forward_eps]
     filters: {}
     sorts: [stock_info.trailing_eps]
@@ -829,7 +818,7 @@
     name: comparison (2)
     model: portfolio
     explore: stock_info
-    type: equity-metric-comparison
+    type: finance_portfolio_demo::equity-metric-comparison
     fields: [stock_info.trailing_pe, stock_info.forward_pe]
     filters: {}
     sorts: [stock_info.trailing_pe]
@@ -879,9 +868,8 @@
     name: recommendation
     model: portfolio
     explore: stock_info
-    type: buy_sell_hold
+    type: finance_portfolio_demo::buy_sell_hold
     fields: [stock_info.recommendation_key, stock_info.recommendation_mean, stock_info.number_of_analyst_opinions]
-    filters: {}
     sorts: [stock_info.recommendation_key]
     limit: 500
     column_limit: 50
@@ -940,9 +928,8 @@
     name: 52weekchange
     model: portfolio
     explore: stock_info
-    type: twonumflex
+    type: finance_portfolio_demo::twonumflex
     fields: [stock_info.52_week_change, stock_info.sandp_52_week_change]
-    filters: {}
     sorts: [stock_info.52_week_change]
     limit: 500
     column_limit: 50
@@ -992,9 +979,8 @@
     name: stocktile
     model: portfolio
     explore: stock_info
-    type: stockvisualizationcard
+    type: finance_portfolio_demo::stockvisualizationcard
     fields: [stock_info.short_name, stock_info.symbol, stock_info.current_price, stock_info.previous_close]
-    filters: {}
     sorts: [stock_info.short_name]
     limit: 500
     column_limit: 50
