@@ -1,5 +1,4 @@
 looker.plugins.visualizations.add({
-  id: "target_prices"
   options: {
     font_family: {
       type: "string",
