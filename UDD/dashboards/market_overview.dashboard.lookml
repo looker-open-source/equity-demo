@@ -1,3 +1,4 @@
+---
 - dashboard: market_overview
   title: Market Overview
   layout: newspaper
@@ -10,7 +11,7 @@
     title_text: 24 Hour Price Change Comparison
     subtitle_text: Crypto Movers and Shakers
     body_text: " "
-    row: 26
+    row: 46
     col: 12
     width: 10
     height: 2
@@ -97,7 +98,7 @@
     hidden_fields: []
     listen:
       Coin Highlight: market_data.coin_highlight
-    row: 36
+    row: 40
     col: 12
     width: 5
     height: 6
@@ -159,7 +160,7 @@
     hidden_fields: [market_data.id]
     listen:
       Coin Highlight: market_data.coin_highlight
-    row: 2
+    row: 14
     col: 12
     width: 10
     height: 12
@@ -245,7 +246,7 @@
     hidden_pivots: {}
     listen:
       Coin Highlight: market_data.coin_highlight
-    row: 16
+    row: 28
     col: 12
     width: 10
     height: 10
@@ -311,7 +312,7 @@
     totals_color: "#808080"
     defaults_version: 1
     listen: {}
-    row: 2
+    row: 14
     col: 2
     width: 10
     height: 12
@@ -377,7 +378,7 @@
     conditional_formatting_include_nulls: false
     defaults_version: 1
     listen: {}
-    row: 16
+    row: 28
     col: 2
     width: 10
     height: 10
@@ -385,7 +386,7 @@
     name: button_193
     rich_content_json: '{"text":"View My Portfolio","description":"Navigate to your
       personal portfolio to view your holdings.","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8","href":"https://b772aff5-4b93-454c-9b34-147289eb2172.looker.app/dashboards/jqkqrA1RP7nEsgj4XFneiu"}'
-    row: 42
+    row: 54
     col: 9
     width: 4
     height: 1
@@ -455,7 +456,7 @@
     hidden_fields: []
     listen:
       Coin Highlight: market_data.coin_highlight
-    row: 28
+    row: 48
     col: 12
     width: 5
     height: 6
@@ -526,7 +527,7 @@
     hidden_fields: []
     listen:
       Coin Highlight: market_data.coin_highlight
-    row: 28
+    row: 48
     col: 17
     width: 5
     height: 6
@@ -553,7 +554,7 @@
     title_text: 7 Day  Price Change Comparison
     subtitle_text: Crypto Movers and Shakers
     body_text: " "
-    row: 34
+    row: 38
     col: 12
     width: 10
     height: 2
@@ -562,7 +563,7 @@
     title_text: Price Information
     subtitle_text: ''
     body_text: ''
-    row: 14
+    row: 26
     col: 2
     width: 20
     height: 2
@@ -571,7 +572,7 @@
     title_text: Key Numbers
     subtitle_text: ''
     body_text: ''
-    row: 0
+    row: 12
     col: 2
     width: 20
     height: 2
@@ -658,7 +659,7 @@
     hidden_fields: []
     listen:
       Coin Highlight: market_data.coin_highlight
-    row: 36
+    row: 40
     col: 17
     width: 5
     height: 6
@@ -729,7 +730,7 @@
     totals_color: "#808080"
     defaults_version: 1
     listen: {}
-    row: 28
+    row: 40
     col: 2
     width: 10
     height: 6
@@ -738,7 +739,7 @@
     title_text: '52 Week Change Comparisons '
     subtitle_text: Losers
     body_text: " "
-    row: 34
+    row: 46
     col: 2
     width: 10
     height: 2
@@ -747,7 +748,7 @@
     title_text: 52 Week Change Comparisons
     subtitle_text: Winners
     body_text: " "
-    row: 26
+    row: 38
     col: 2
     width: 10
     height: 2
@@ -818,10 +819,256 @@
     totals_color: "#808080"
     defaults_version: 1
     listen: {}
-    row: 36
+    row: 48
     col: 2
     width: 10
     height: 6
+  - title: scroll
+    name: scroll
+    model: portfolio
+    explore: stock_info
+    type: ticker-scroll
+    fields: [stock_info.symbol, stock_info.current_price]
+    sorts: [stock_info.symbol]
+    limit: 500
+    column_limit: 50
+    hidden_fields: []
+    hidden_points_if_no: []
+    series_labels: {}
+    show_view_names: false
+    scroll_speed: 100
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    defaults_version: 0
+    title_hidden: true
+    listen: {}
+    row: 1
+    col: 2
+    width: 10
+    height: 1
+  - title: crypto-scroll
+    name: crypto-scroll
+    model: portfolio
+    explore: market_data
+    type: ticker-scroll
+    fields: [market_data.symbol, market_data.current_price]
+    sorts: [market_data.symbol]
+    limit: 500
+    column_limit: 50
+    hidden_fields: []
+    hidden_points_if_no: []
+    series_labels: {}
+    show_view_names: false
+    font_size: 16
+    scroll_speed: 100
+    background_color: "#000000"
+    text_color: "#ffb51d"
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    defaults_version: 0
+    title_hidden: true
+    listen:
+      Coin Highlight: market_data.coin_highlight
+    row: 1
+    col: 12
+    width: 10
+    height: 1
+  - title: heat
+    name: heat
+    model: portfolio
+    explore: market_data
+    type: crypto_heatmap
+    fields: [market_data.symbol, market_data.market_cap, market_data.market_cap_change_percentage_24h,
+      market_data.current_price]
+    filters:
+      history_with_date_crossjoin.history_granularity: month
+    sorts: [market_data.market_cap desc]
+    limit: 500
+    column_limit: 50
+    hidden_fields: []
+    hidden_points_if_no: []
+    series_labels:
+      market_data.market_cap_change_percentage_24h: Market Cap % Change (24hrs)
+      market_data.id: Currency
+    show_view_names: false
+    show_row_numbers: false
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: editable
+    limit_displayed_rows: false
+    enable_conditional_formatting: true
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    column_order: [market_data.name, market_data.symbol, market_data.current_price,
+      market_data.high_24h, market_data.low_24h]
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    minimum_column_width: 75
+    series_cell_visualizations:
+      market_data.market_cap_change_percentage_24h:
+        is_active: true
+        palette:
+          palette_id: b8e44ce6-d0e6-4bd4-b72c-ab0f595726a6
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+    header_font_color: "#fff"
+    header_background_color: "#7CB342"
+    conditional_formatting: [{type: along a scale..., value: !!null '', background_color: "#1A73E8",
+        font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+          palette_id: 4a00499b-c0fe-4b15-a304-4083c07ff4c4, options: {constraints: {
+              min: {type: minimum}, mid: {type: number, value: 0}, max: {type: maximum}},
+            mirror: true, reverse: false, stepped: false}}, bold: false, italic: false,
+        strikethrough: false, fields: !!null ''}]
+    defaults_version: 0
+    title_hidden: true
+    listen:
+      Coin Highlight: market_data.coin_highlight
+    row: 2
+    col: 12
+    width: 10
+    height: 10
+  - title: stock sector
+    name: stock sector
+    model: portfolio
+    explore: stock_info
+    type: stock_sector_heatmap
+    fields: [stock_info.symbol, stock_info.current_price, stock_info.market_cap, stock_info.sector,
+      stock_info.52_week_change]
+    sorts: [stock_info.market_cap desc]
+    limit: 500
+    column_limit: 50
+    hidden_fields: []
+    hidden_points_if_no: []
+    series_labels: {}
+    show_view_names: false
+    show_row_numbers: false
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    minimum_column_width: 75
+    series_column_widths:
+      stock_info.symbol: 94
+    header_font_color: "#FFF"
+    header_background_color: "#1A73E8"
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    defaults_version: 0
+    title_hidden: true
+    listen: {}
+    row: 2
+    col: 2
+    width: 10
+    height: 10
+  - name: Crypto Currencies
+    type: text
+    title_text: Crypto Currencies
+    subtitle_text: ''
+    body_text: ''
+    row: 0
+    col: 12
+    width: 10
+    height: 1
+  - name: Equity
+    type: text
+    title_text: Equity
+    subtitle_text: ''
+    body_text: ''
+    row: 0
+    col: 2
+    width: 10
+    height: 1
   filters:
   - name: Coin Highlight
     title: Coin Highlight
