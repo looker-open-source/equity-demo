@@ -1,4 +1,5 @@
 looker.plugins.visualizations.add({
+  id: "portfolio-overview"
   options: {
     font_size: {
       type: "string",
