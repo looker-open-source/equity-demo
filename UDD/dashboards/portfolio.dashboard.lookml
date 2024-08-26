@@ -6,8 +6,8 @@
   description: ''
   preferred_slug: jqkqrA1RP7nEsgj4XFneiu
   elements:
-  - title: Total Value of Current Holdings
-    name: Total Value of Current Holdings
+  - title: Portfolio Value
+    name: Portfolio Value
     model: portfolio
     explore: portfolio
     type: single_value
@@ -20,9 +20,13 @@
     comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
-    enable_conditional_formatting: false
+    enable_conditional_formatting: true
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    conditional_formatting: [{type: greater than, value: 0, background_color: "#1A73E8",
+        font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+        strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     listen: {}
     row: 0
@@ -63,12 +67,12 @@
     hidden_pivots: {}
     defaults_version: 1
     listen: {}
-    row: 25
+    row: 26
     col: 2
-    width: 20
+    width: 8
     height: 6
-  - title: Investment Breakdown by Quantity
-    name: Investment Breakdown by Quantity
+  - title: Investment Type
+    name: Investment Type
     model: portfolio
     explore: portfolio
     type: looker_bar
@@ -148,7 +152,7 @@
     conditional_formatting_include_nulls: false
     defaults_version: 1
     listen: {}
-    row: 12
+    row: 10
     col: 2
     width: 20
     height: 4
@@ -198,9 +202,9 @@
     conditional_formatting_include_nulls: false
     defaults_version: 1
     listen: {}
-    row: 16
-    col: 10
-    width: 12
+    row: 14
+    col: 13
+    width: 9
     height: 7
   - title: Investment Value by Sector
     name: Investment Value by Sector
@@ -244,12 +248,12 @@
     totals_color: "#808080"
     defaults_version: 1
     listen: {}
-    row: 34
+    row: 26
     col: 10
     width: 12
-    height: 7
-  - title: Value by Investment Type
-    name: Value by Investment Type
+    height: 6
+  - title: Investment Type
+    name: Investment Type (2)
     model: portfolio
     explore: portfolio
     type: looker_bar
@@ -299,7 +303,7 @@
     hidden_pivots: {}
     defaults_version: 1
     listen: {}
-    row: 31
+    row: 23
     col: 2
     width: 20
     height: 3
@@ -326,7 +330,7 @@
     title_text: Portfolio Distribution by Value
     subtitle_text: ''
     body_text: ''
-    row: 23
+    row: 21
     col: 2
     width: 20
     height: 2
@@ -335,7 +339,7 @@
     title_text: Portfolio Distribution by Quantity
     subtitle_text: ''
     body_text: ''
-    row: 10
+    row: 8
     col: 2
     width: 20
     height: 2
@@ -343,7 +347,7 @@
     name: button_192
     rich_content_json: '{"text":"Market Overview","description":"Take a peek at how
       the market is performing as a whole.","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8","href":"https://b772aff5-4b93-454c-9b34-147289eb2172.looker.app/dashboards/LBbTIdJk3stYt85L3CDo1p?Coin%20Highlight=Bitcoin&History%20Granularity=month"}'
-    row: 62
+    row: 53
     col: 2
     width: 20
     height: 1
@@ -351,7 +355,7 @@
     name: Investment Performance
     model: portfolio
     explore: portfolio
-    type: looker_line
+    type: looker_column
     fields: [portfolio_history.total_value, portfolio_history.id, portfolio_history.history_date_week]
     pivots: [portfolio_history.id]
     fill_fields: [portfolio_history.history_date_week]
@@ -375,7 +379,7 @@
     y_axis_reversed: false
     plot_size_by_field: false
     trellis: ''
-    stacking: ''
+    stacking: normal
     limit_displayed_rows: false
     legend_position: center
     point_style: none
@@ -383,12 +387,17 @@
     label_density: 25
     x_axis_scale: auto
     y_axis_combined: true
-    show_null_points: true
-    interpolation: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
     x_axis_label: Date
     x_axis_zoom: true
     y_axis_zoom: true
     hidden_series: [bitcoin - portfolio_history.total_value]
+    show_null_points: true
+    interpolation: linear
     hidden_pivots: {}
     show_row_numbers: true
     transpose: false
@@ -408,16 +417,16 @@
     row: 0
     col: 8
     width: 14
-    height: 10
-  - title: My Investments
-    name: My Investments
+    height: 8
+  - title: Top 10 Investments by Quantity
+    name: Top 10 Investments by Quantity
     model: portfolio
     explore: portfolio
     type: looker_grid
     fields: [portfolio.id, portfolio.name, portfolio.current_price, portfolio.amount,
       portfolio.investment_type, portfolio.sector]
     sorts: [portfolio.amount desc]
-    limit: 1000
+    limit: 10
     column_limit: 50
     show_view_names: false
     show_row_numbers: true
@@ -425,7 +434,7 @@
     truncate_text: true
     hide_totals: false
     hide_row_totals: false
-    size_to_fit: true
+    size_to_fit: false
     table_theme: white
     limit_displayed_rows: false
     enable_conditional_formatting: false
@@ -444,10 +453,10 @@
     hidden_pivots: {}
     defaults_version: 1
     listen: {}
-    row: 34
+    row: 14
     col: 2
-    width: 8
-    height: 6
+    width: 11
+    height: 7
   - title: Change to Date
     name: Change to Date
     model: portfolio
@@ -458,7 +467,7 @@
       portfolio.amount]
     filters:
       portfolio_history.id: "-NULL"
-      portfolio_history.history_date_date: before 365 days ago
+      portfolio_history.history_date_date: before 367 days ago
     sorts: [portfolio_history.id, portfolio_history.price, portfolio_history.amount,
       portfolio_history.history_date_date]
     limit: 500
@@ -581,68 +590,16 @@
     show_silhouette: false
     totals_color: "#808080"
     listen: {}
-    row: 43
+    row: 34
     col: 2
     width: 20
     height: 13
-  - title: Original Investment Date
-    name: Original Investment Date
-    model: portfolio
-    explore: portfolio
-    type: single_value
-    fields: [portfolio_history.history_date_date]
-    fill_fields: [portfolio_history.history_date_date]
-    filters:
-      portfolio_history.history_date_date: before 365 days ago
-    sorts: [portfolio_history.history_date_date desc]
-    limit: 500
-    column_limit: 50
-    custom_color_enabled: true
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    hidden_pivots: {}
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    show_null_points: true
-    interpolation: linear
-    defaults_version: 1
-    listen: {}
-    row: 4
-    col: 2
-    width: 6
-    height: 4
   - name: Investment History
     type: text
     title_text: Investment History
     subtitle_text: ''
     body_text: ''
-    row: 41
+    row: 32
     col: 2
     width: 20
     height: 2
@@ -765,7 +722,7 @@
     totals_color: "#808080"
     hidden_fields: []
     listen: {}
-    row: 56
+    row: 47
     col: 2
     width: 8
     height: 6
@@ -893,7 +850,135 @@
     totals_color: "#808080"
     hidden_fields: []
     listen: {}
-    row: 56
+    row: 47
     col: 10
     width: 12
     height: 6
+  - title: Initial Investment
+    name: Initial Investment
+    model: portfolio
+    explore: portfolio
+    type: single_value
+    fields: [portfolio_history.history_date_date, portfolio_history.total_value]
+    fill_fields: [portfolio_history.history_date_date]
+    filters:
+      portfolio_history.id: "-NULL"
+      portfolio_history.history_date_date: before 367 days ago
+    sorts: [portfolio_history.history_date_date]
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - _kind_hint: measure
+      _type_hint: list
+      based_on: portfolio_history.id
+      expression: ''
+      label: List of ID
+      measure: list_of_id
+      type: list
+    - _kind_hint: measure
+      _type_hint: number
+      based_on: portfolio_history.value
+      expression: ''
+      label: Sum of Available Value
+      measure: sum_of_available_value
+      type: sum
+    - category: table_calculation
+      description: The change in the number of shares/coins from the initial investment
+        to today's current holdings.
+      expression: "${portfolio.amount}-${portfolio_history.amount}"
+      label: Change in Quantity
+      value_format:
+      value_format_name:
+      _kind_hint: dimension
+      table_calculation: change_in_quantity
+      _type_hint: number
+      is_disabled: true
+    - category: table_calculation
+      description: Change in value from the initial investment to today's current
+        holdings.
+      expression: "${portfolio.total_value}-${sum_of_available_value}"
+      label: Growth
+      value_format:
+      value_format_name:
+      _kind_hint: measure
+      table_calculation: growth
+      _type_hint: number
+      is_disabled: true
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    comparison_label: Initial Investment Date
+    conditional_formatting: [{type: greater than, value: 0, background_color: "#F4B400",
+        font_color: "#FFF", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+          palette_id: 4a00499b-c0fe-4b15-a304-4083c07ff4c4, options: {constraints: {
+              min: {type: minimum}, mid: {type: number, value: 0}, max: {type: maximum}},
+            mirror: true, reverse: false, stepped: false}}, bold: false, italic: false,
+        strikethrough: false, fields: !!null ''}]
+    hidden_fields: []
+    hidden_points_if_no: []
+    series_labels:
+      portfolio_history.history_date_date: Orig. Investment Date
+      sum_of_available_value: Initial Investment
+      portfolio.total_value: Current Investment Value
+    show_view_names: false
+    show_row_numbers: false
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    minimum_column_width: 75
+    series_cell_visualizations:
+      sum_of_available_value:
+        is_active: false
+      growth:
+        is_active: true
+    header_font_color: "#FFF"
+    header_background_color: "#1A73E8"
+    hidden_pivots: {}
+    defaults_version: 1
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    listen: {}
+    row: 4
+    col: 2
+    width: 6
+    height: 4
