@@ -4,7 +4,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: LBbTIdJk3stYt85L3CDo1p
+  preferred_slug: DrvcA0QMh1n95F4cVNngbT
   elements:
   - name: 24 Hour Price Change Comparison
     type: text
@@ -383,7 +383,7 @@
     width: 10
     height: 10
   - type: button
-    name: button_193
+    name: button_1846
     rich_content_json: '{"text":"View My Portfolio","description":"Navigate to your
       personal portfolio to view your holdings.","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8","href":"https://b772aff5-4b93-454c-9b34-147289eb2172.looker.app/dashboards/jqkqrA1RP7nEsgj4XFneiu"}'
     row: 54
@@ -534,7 +534,6 @@
   - name: ''
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: " "
     row: 0
     col: 0
@@ -543,7 +542,6 @@
   - name: " (2)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: " "
     row: 0
     col: 22
@@ -561,7 +559,6 @@
   - name: Price Information
     type: text
     title_text: Price Information
-    subtitle_text: ''
     body_text: ''
     row: 26
     col: 2
@@ -570,7 +567,6 @@
   - name: Key Numbers
     type: text
     title_text: Key Numbers
-    subtitle_text: ''
     body_text: ''
     row: 12
     col: 2
@@ -827,7 +823,7 @@
     name: scroll
     model: portfolio
     explore: stock_info
-    type: ticker-scroll
+    type: finance_portfolio_demo::ticker-scroll
     fields: [stock_info.symbol, stock_info.current_price]
     sorts: [stock_info.symbol]
     limit: 500
@@ -874,7 +870,7 @@
     name: crypto-scroll
     model: portfolio
     explore: market_data
-    type: ticker-scroll
+    type: finance_portfolio_demo::ticker-scroll
     fields: [market_data.symbol, market_data.current_price]
     sorts: [market_data.symbol]
     limit: 500
@@ -925,7 +921,7 @@
     name: heat
     model: portfolio
     explore: market_data
-    type: crypto_heatmap
+    type: finance_portfolio_demo::crypto_heatmap
     fields: [market_data.symbol, market_data.market_cap, market_data.market_cap_change_percentage_24h,
       market_data.current_price]
     filters:
@@ -986,7 +982,7 @@
     name: stock sector
     model: portfolio
     explore: stock_info
-    type: stock_sector_heatmap
+    type: finance_portfolio_demo::stock_sector_heatmap
     fields: [stock_info.symbol, stock_info.current_price, stock_info.market_cap, stock_info.sector,
       stock_info.52_week_change]
     sorts: [stock_info.market_cap desc]
@@ -1054,7 +1050,6 @@
   - name: Crypto Currencies
     type: text
     title_text: Crypto Currencies
-    subtitle_text: ''
     body_text: ''
     row: 0
     col: 12
@@ -1063,7 +1058,6 @@
   - name: Equity
     type: text
     title_text: Equity
-    subtitle_text: ''
     body_text: ''
     row: 0
     col: 2
