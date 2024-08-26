@@ -49,3 +49,8 @@ visualization: {
   label: "Stock Sector Heatmap"
   file: "visualizations/stock_sector_heatmap.js"
 }
+visualization: {
+  id: "crypto_heatmap"
+  label: "Cryptocurrency Heatmap"
+  file: "visualizations/crypto_heatmap.js"
+}
