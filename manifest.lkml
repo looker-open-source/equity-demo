@@ -44,3 +44,8 @@ visualization: {
   label: "Portfolio Overview"
   file: "visualizations/portfolio_viz.js"
 }
+visualization: {
+  id: "stock_sector_heatmap"
+  label: "Stock Sector Heatmap"
+  file: "visualizations/stock_sector_heatmap.js"
+}
