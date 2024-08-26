@@ -1,30 +1,48 @@
-connection: "looker-private-demo"
+connection: "@{database}"
 
 # include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
 include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
-# explore: order_items {
-#   join: orders {
-#     relationship: many_to_one
-#     sql_on: ${orders.id} = ${order_items.order_id} ;;
-#   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
-# }
-#creating a test explore with one view for now
-explore: bitcoin_blocks {
+
+explore: full_public_dataset {
+  label: "Wallet Data"
+}
+
+explore: market_data {
   label: "Coin Data"
-  join: bitcoin_transactions {
+  join: history_with_date_crossjoin {
     relationship: one_to_many
-    sql_on: ${bitcoin_blocks.hash} = ${bitcoin_transactions.block_hash} ;;
+    sql_on: ${market_data.id} = ${history_with_date_crossjoin.coin_id} ;;
   }
 }
 
-#join blocks to transaction on hash, one block to many transactions
+# explore: stock_info {
+
+# }
+
+explore: stock_info {
+  label: "Equity Information"
+  join: stock_history_with_date_crossjoin {
+    relationship: one_to_many
+    sql_on: ${stock_info.id} = ${stock_history_with_date_crossjoin.id} ;;
+  }
+}
+explore:  portfolio {
+  label: "Current Holdings"
+  join: portfolio_history {
+    relationship: one_to_many
+    sql_on: ${portfolio.id} = ${portfolio_history.id} ;;
+  }
+}
+
+
+
+
+
+datagroup: history {
+  max_cache_age: "24 hours"
+  interval_trigger: "24 hours"
+  label: "History PDT datagroup"
+  description: "Datagroup for history with date crossjoin PDT"
+}
