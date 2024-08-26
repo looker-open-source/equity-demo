@@ -54,3 +54,8 @@ visualization: {
   label: "Cryptocurrency Heatmap"
   file: "visualizations/crypto_heatmap.js"
 }
+visualization: {
+  id: "ticker-scroll"
+  label: "Ticker Scroll"
+  file: "visualizations/ticker_scroll.js"
+}
