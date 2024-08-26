@@ -1,7 +1,11 @@
 project_name: "crypto-mvp-kirby"
 
 constant: database {
-  value: "kirby-looker-core-argolis"
+  value: "starry-center-349620"
+}
+
+constant: connection {
+  value: "google_demo_-_backseat"
 }
 
 visualization: {
