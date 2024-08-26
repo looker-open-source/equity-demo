@@ -18,7 +18,7 @@ looker.plugins.visualizations.add({
       section: "Style"
     }
   },
-
+  
   create: function(element, config) {
     element.innerHTML = `
       <style>

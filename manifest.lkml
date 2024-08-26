@@ -39,3 +39,8 @@ visualization: {
   label: "Two number comparison with flexible subtitles"
   file: "visualizations/two_number_comparison_flex.js"
 }
+# visualization: {
+#   id: "portfolio-overview"
+#   label: "Portfolio Overview"
+#   file: "portfolio_overview.js"
+# }
