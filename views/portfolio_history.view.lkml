@@ -11,7 +11,7 @@ date_and_id_cte as (
 SELECT
 id
 ,day
-FROM `@{database}.crypto_mvp.history`
+FROM `kirby-looker-core-argolis.crypto_mvp.history`
 CROSS JOIN date_cte
 )
 ,
@@ -21,8 +21,9 @@ price_date_unnested as (
   ,DATE(TIMESTAMP_MILLIS(prices_epoch_time)) AS price_date
   ,prices_epoch_offset
   FROM
-  `@{database}.crypto_mvp.history`
-  LEFT JOIN UNNEST(`@{database}.crypto_mvp.history`.prices.epoch_time) as prices_epoch_time WITH OFFSET as prices_epoch_offset
+  `kirby-looker-core-argolis.crypto_mvp.history`
+  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.prices.epoch_time) as prices_epoch_time WITH OFFSET as prices_epoch_offset
+  where prices_epoch_offset <=364
 )
 ,
 price_amount_unnested as (
@@ -31,8 +32,8 @@ price_amount_unnested as (
   ,prices_amount
   ,prices_amount_offset
    FROM
-  `@{database}.crypto_mvp.history`
-  LEFT JOIN UNNEST(`@{database}.crypto_mvp.history`.prices.amount) as prices_amount WITH OFFSET as prices_amount_offset
+  `kirby-looker-core-argolis.crypto_mvp.history`
+  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.prices.amount) as prices_amount WITH OFFSET as prices_amount_offset
 
 )
 ,
@@ -50,11 +51,11 @@ date_and_id_cte.id as id
 
 FROM date_and_id_cte
 INNER JOIN price_date_unnested
-ON date_and_id_cte.id = price_date_unnested.id AND date_and_id_cte.day = price_date_unnested.price_date
+ON date_and_id_cte.id = price_date_unnested.id
+AND date_and_id_cte.day = price_date_unnested.price_date
 INNER JOIN price_amount_unnested
 ON date_and_id_cte.id = price_amount_unnested.id AND price_date_unnested.prices_epoch_offset = price_amount_unnested.prices_amount_offset
 )
-
 ,
 
 stock_date_cte as
@@ -130,13 +131,15 @@ stock_join_cte as(
   SELECT * FROM stock_history_set
 )
 
-select
+(select
 *
 FROM crypto_history
+where id in ('bitcoin','solana','ethereum'))
 UNION ALL
-SELECT
+(SELECT
 *
 FROM stock_join_cte
+where id in ('NVDA','GOOG','TSLA', 'meta','NFLX','WMT','UNH','AMT'))
        ;;
   }
 
@@ -187,13 +190,13 @@ FROM stock_join_cte
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${value} ;;
-    drill_fields: [id,investment_type,amount,value]
+    drill_fields: [id,investment_type,amount,value, history_date_date]
   }
   measure: total_quantity {
     type: sum
     value_format: "0.00"
     sql: ${amount} ;;
-    drill_fields: [id,investment_type,amount,value]
+    drill_fields: [id,investment_type,amount,value, history_date_date]
   }
 }
 #

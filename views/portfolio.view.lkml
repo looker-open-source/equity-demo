@@ -7,7 +7,7 @@ view: portfolio {
     ,"Crypto Currency" as investment_type
     ,"Alternative Currencies" as sector
     ,current_price
-    ,(FLOOR(RAND()*(10-5+1)+5)) as amount
+    ,(FLOOR(RAND()*(3-1+1)+5)) as amount
     FROM `@{database}.crypto_mvp.market_data`
     )
     ,
@@ -22,11 +22,14 @@ view: portfolio {
     FROM `@{database}.crypto_mvp.stock_info`
     )
 
-    SELECT *
+    (SELECT *
     FROM coins
+    where id in ('bitcoin','solana','ethereum'))
     UNION ALL
-    SELECT *
+    (SELECT *
     FROM stock
+    where id in ('NVDA','GOOG','TSLA', 'meta','NFLX','WMT','UNH','AMT')
+    )
       ;;
   }
   dimension: id {

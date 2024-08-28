@@ -39,7 +39,6 @@ explore:  portfolio {
 
 
 
-
 datagroup: history {
   max_cache_age: "24 hours"
   interval_trigger: "24 hours"
