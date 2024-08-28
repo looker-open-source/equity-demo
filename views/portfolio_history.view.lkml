@@ -114,6 +114,21 @@ ON stock_date_and_id_cte.day = date_unnested.history_date AND stock_date_and_id_
 INNER JOIN close_unnested
 ON stock_date_and_id_cte.id = close_unnested.id AND date_unnested.date_offset = close_unnested.close_offset
 )
+,
+stock_join_cte as(
+  select
+  id
+  ,CURRENT_DATE() as day
+  ,CURRENT_DATE() as date
+  , 252 as date_offset
+  ,CAST(currentPrice as NUMERIC) as price
+  ,252 as price_offset
+  ,"Equity" as investment_type
+,(FLOOR(RAND()*(100-5+1)+5)) as amount
+  FROM `kirby-looker-core-argolis.crypto_mvp.stock_info`
+  UNION ALL
+  SELECT * FROM stock_history_set
+)
 
 select
 *
@@ -121,7 +136,7 @@ FROM crypto_history
 UNION ALL
 SELECT
 *
-FROM stock_history_set
+FROM stock_join_cte
        ;;
   }
 
