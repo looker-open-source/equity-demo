@@ -1,6 +1,6 @@
 ---
-- dashboard: portfolio_imported_3
-  title: Portfolio (imported 3)
+- dashboard: portfolio
+  title: Portfolio
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
