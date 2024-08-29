@@ -877,6 +877,7 @@
     hidden_points_if_no: []
     series_labels: {}
     show_view_names: false
+    custom_title: 'Analysts 💡:'
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -917,6 +918,16 @@
     show_silhouette: false
     totals_color: "#808080"
     defaults_version: 0
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    header_text_alignment: left
+    header_font_size: 12
+    rows_font_size: 12
     title_hidden: true
     listen:
       ID: stock_info.id
