@@ -1035,8 +1035,8 @@
     defaults_version: 1
     listen: {}
     row: 2
-    col: 10
-    width: 4
+    col: 9
+    width: 6
     height: 4
   - title: Avg 52 Wk Change Equity
     name: Avg 52 Wk Change Equity
@@ -1073,7 +1073,7 @@
     listen: {}
     row: 2
     col: 2
-    width: 4
+    width: 7
     height: 4
   - title: Avg 7d Change  Crypto
     name: Avg 7d Change  Crypto
@@ -1114,8 +1114,8 @@
     listen:
       Coin Highlight: market_data.coin_highlight
     row: 2
-    col: 14
-    width: 4
+    col: 15
+    width: 7
     height: 4
   - title: tickerscroll
     name: tickerscroll
@@ -1156,106 +1156,6 @@
     col: 2
     width: 20
     height: 1
-  - title: Avg Equity High
-    name: Avg Equity High
-    model: portfolio
-    explore: stock_info
-    type: single_value
-    fields: [average_of_high]
-    limit: 500
-    column_limit: 50
-    dynamic_fields:
-    - _kind_hint: measure
-      _type_hint: number
-      based_on: stock_history_with_date_crossjoin.high
-      expression: ''
-      label: Average of High
-      measure: average_of_high
-      type: average
-    custom_color_enabled: true
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    color_application:
-      collection_id: google-theme
-      palette_id: google-theme-categorical-0
-    conditional_formatting: [{type: greater than, value: 0, background_color: "#1A73E8",
-        font_color: !!null '', color_application: {collection_id: google-theme, palette_id: google-theme-sequential-0},
-        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
-    show_view_names: false
-    hidden_pivots: {}
-    defaults_version: 1
-    show_row_numbers: true
-    transpose: false
-    truncate_text: true
-    hide_totals: false
-    hide_row_totals: false
-    size_to_fit: true
-    table_theme: white
-    limit_displayed_rows: false
-    header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
-    listen: {}
-    row: 2
-    col: 6
-    width: 4
-    height: 4
-  - title: Avg ATH
-    name: Avg ATH
-    model: portfolio
-    explore: market_data
-    type: single_value
-    fields: [average_of_all_time_high]
-    filters: {}
-    limit: 500
-    column_limit: 50
-    dynamic_fields:
-    - _kind_hint: measure
-      _type_hint: number
-      based_on: market_data.price_change_percentage_7d_in_currency
-      expression: ''
-      label: Average of Price Change Percentage in currency - 7 days
-      measure: average_of_price_change_percentage_in_currency_7_days
-      type: average
-    - _kind_hint: measure
-      _type_hint: number
-      based_on: market_data.ath
-      expression: ''
-      label: Average of All-time High
-      measure: average_of_all_time_high
-      type: average
-    custom_color_enabled: true
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    color_application:
-      collection_id: google-theme
-      palette_id: google-theme-categorical-0
-    conditional_formatting: [{type: greater than, value: 0, background_color: "#1A73E8",
-        font_color: "#FFF", color_application: {collection_id: google-theme, palette_id: google-theme-sequential-0},
-        bold: false, italic: false, strikethrough: false, fields: !!null ''}, {type: less
-          than, value: 0, background_color: "#1A73E8", font_color: "#FFF", color_application: {
-          collection_id: google-theme, palette_id: google-theme-diverging-0}, bold: false,
-        italic: false, strikethrough: false, fields: !!null ''}]
-    defaults_version: 1
-    hidden_pivots: {}
-    listen:
-      Coin Highlight: market_data.coin_highlight
-    row: 2
-    col: 18
-    width: 4
-    height: 4
   - name: Market Benchmark
     type: text
     title_text: Market Benchmark
