@@ -13,7 +13,6 @@
     type: looker_grid
     fields: [market_data.id, market_data.symbol, market_data.market_cap, market_data.market_cap_change_percentage_24h,
       market_data.market_cap_change_24h, market_data.fully_diluted_valuation]
-    filters: {}
     limit: 500
     column_limit: 50
     show_view_names: false
@@ -55,16 +54,15 @@
     listen:
       ID: market_data.id
     row: 7
-    col: 14
-    width: 8
-    height: 3
+    col: 8
+    width: 14
+    height: 4
   - title: 24hr High
     name: 24hr High
     model: portfolio
     explore: market_data
     type: single_value
     fields: [market_data.id, market_data.high_24h, market_data.ath]
-    filters: {}
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -106,7 +104,6 @@
     explore: market_data
     type: single_value
     fields: [market_data.current_price]
-    filters: {}
     sorts: [market_data.current_price]
     limit: 500
     column_limit: 50
@@ -176,7 +173,6 @@
     explore: market_data
     type: single_value
     fields: [market_data.id, market_data.low_24h, market_data.atl]
-    filters: {}
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -274,14 +270,13 @@
     hidden_fields: [market_data.id]
     listen:
       ID: market_data.id
-    row: 10
-    col: 14
-    width: 8
-    height: 3
+    row: 11
+    col: 8
+    width: 14
+    height: 4
   - name: ''
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: "---"
     row: 5
     col: 2
@@ -290,16 +285,14 @@
   - name: " (2)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: "---"
-    row: 22
+    row: 24
     col: 2
     width: 20
     height: 1
   - name: " (3)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: ''
     row: 0
     col: 0
@@ -308,7 +301,6 @@
   - name: " (4)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: ''
     row: 0
     col: 22
@@ -317,10 +309,9 @@
   - name: " (5)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: '[{"type":"h3","children":[{"text":"Documentation Resources:"}],"align":"center"}]'
     rich_content_json: '{"format":"slate"}'
-    row: 23
+    row: 25
     col: 2
     width: 20
     height: 2
@@ -330,7 +321,6 @@
     explore: market_data
     type: single_value
     fields: [market_data.price_change_percentage_1h_in_currency]
-    filters: {}
     sorts: [market_data.price_change_percentage_1h_in_currency]
     limit: 500
     column_limit: 50
@@ -369,15 +359,14 @@
       ID: market_data.id
     row: 7
     col: 2
-    width: 4
-    height: 6
+    width: 6
+    height: 4
   - title: 24hrs
     name: 24hrs
     model: portfolio
     explore: market_data
     type: single_value
     fields: [market_data.price_change_percentage_24h_in_currency]
-    filters: {}
     sorts: [market_data.price_change_percentage_24h_in_currency]
     limit: 500
     column_limit: 50
@@ -415,17 +404,16 @@
     defaults_version: 1
     listen:
       ID: market_data.id
-    row: 7
-    col: 6
-    width: 4
-    height: 6
+    row: 11
+    col: 2
+    width: 3
+    height: 4
   - title: 7 Days
     name: 7 Days
     model: portfolio
     explore: market_data
     type: single_value
     fields: [market_data.price_change_percentage_7d_in_currency]
-    filters: {}
     sorts: [market_data.price_change_percentage_7d_in_currency]
     limit: 500
     column_limit: 50
@@ -462,10 +450,10 @@
     defaults_version: 1
     listen:
       ID: market_data.id
-    row: 7
-    col: 10
-    width: 4
-    height: 6
+    row: 11
+    col: 5
+    width: 3
+    height: 4
   - title: Average Price
     name: Average Price
     model: portfolio
@@ -510,6 +498,11 @@
     y_axis_combined: true
     show_null_points: true
     interpolation: linear
+    color_application:
+      collection_id: google-theme
+      palette_id: google-theme-categorical-0
+      options:
+        steps: 5
     x_axis_label: Month
     x_axis_zoom: true
     y_axis_zoom: true
@@ -518,7 +511,7 @@
     title_hidden: true
     listen:
       ID: market_data.id
-    row: 14
+    row: 16
     col: 2
     width: 11
     height: 8
@@ -584,27 +577,34 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
+    color_application:
+      collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+      palette_id: 5d189dfc-4f46-46f3-822b-bfb0b61777b1
+      options:
+        steps: 5
+    x_axis_zoom: true
+    y_axis_zoom: true
+    series_colors: {}
     hidden_pivots: {}
     defaults_version: 1
     title_hidden: true
     listen:
       ID: market_data.id
-    row: 14
+    row: 16
     col: 13
     width: 9
     height: 8
   - type: button
-    name: button_134
+    name: button_1736
     rich_content_json: '{"text":"go/crypto-docs","description":"Go link for project
       documentation","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8","href":"go/crypto-docs"}'
-    row: 25
+    row: 27
     col: 2
     width: 20
     height: 1
   - name: Price Change Information
     type: text
     title_text: Price Change Information
-    subtitle_text: ''
     body_text: ''
     row: 6
     col: 2
@@ -613,7 +613,6 @@
   - name: Market & Supply Information
     type: text
     title_text: Market & Supply Information
-    subtitle_text: ''
     body_text: ''
     row: 6
     col: 14
@@ -622,9 +621,8 @@
   - name: Price Trends
     type: text
     title_text: Price Trends
-    subtitle_text: ''
     body_text: ''
-    row: 13
+    row: 15
     col: 2
     width: 20
     height: 1
@@ -634,7 +632,6 @@
     explore: market_data
     type: single_value
     fields: [market_data.id, market_data.market_cap_rank]
-    filters: {}
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -676,7 +673,6 @@
     explore: market_data
     type: single_value
     fields: [market_data.image]
-    filters: {}
     sorts: [market_data.image]
     limit: 500
     column_limit: 50
