@@ -407,7 +407,7 @@
   - type: button
     name: button_1846
     rich_content_json: '{"text":"View My Portfolio","description":"Navigate to your
-      personal portfolio to view your holdings.","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8","href":"https://b772aff5-4b93-454c-9b34-147289eb2172.looker.app/dashboards/jqkqrA1RP7nEsgj4XFneiu"}'
+      personal portfolio to view your holdings.","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8","href":"https://googledemo2.cloud.looker.com/dashboards/121"}'
     row: 54
     col: 10
     width: 4
