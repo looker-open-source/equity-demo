@@ -19,11 +19,11 @@ price_date_unnested as (
   SELECT
   id
   ,DATE(TIMESTAMP_MILLIS(prices_epoch_time)) AS price_date
-  ,prices_epoch_offset
+  , null as prices_epoch_offset
   FROM
   `kirby-looker-core-argolis.crypto_mvp.history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.prices.epoch_time) as prices_epoch_time WITH OFFSET as prices_epoch_offset
-  where prices_epoch_offset <=364
+  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.prices.epoch_time) as prices_epoch_time
+  group by 1,2,3
 )
 ,
 price_amount_unnested as (
