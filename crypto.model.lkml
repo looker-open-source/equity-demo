@@ -28,12 +28,12 @@ explore: stock_info {
     sql_on: ${stock_info.id} = ${stock_history_with_date_crossjoin.id} ;;
   }
 }
-explore:  portfolio_history {
-  label: "Holdings"
-  # join: portfolio_history {
-  #   relationship: one_to_many
-  #   sql_on: ${portfolio.id} = ${portfolio_history.id} ;;
-  # }
+explore:  portfolio {
+  label: "current Holdings"
+  join: portfolio_history {
+     relationship: one_to_many
+     sql_on: ${portfolio.id} = ${portfolio_history.id} ;;
+   }
 }
 
 
