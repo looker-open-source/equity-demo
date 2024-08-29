@@ -47,7 +47,7 @@ view: portfolio_history {
       ,price_amount_unnested.prices_amount as price
       ,price_amount_unnested.prices_amount_offset as price_offset
       ,"Crypto Currency" as investment_type
-      ,(FLOOR(RAND()*(10-5+1)+5)) as amount
+      ,(FLOOR(RAND()*(3-1+1)+5)) as amount
 
       FROM date_and_id_cte
       INNER JOIN price_date_unnested
