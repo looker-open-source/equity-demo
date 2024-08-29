@@ -1,3 +1,4 @@
+---
 - dashboard: chain_trends
   title: Chain Trends
   layout: newspaper
@@ -471,6 +472,11 @@
     y_axis_combined: true
     show_null_points: true
     interpolation: linear
+    color_application:
+      collection_id: google-theme
+      palette_id: google-theme-categorical-0
+      options:
+        steps: 5
     y_axes: [{label: Average Transaction Size (Bytes), orientation: left, series: [
           {axisId: average_of_transaction_size, id: bitcoin - average_of_transaction_size,
             name: bitcoin}, {axisId: average_of_transaction_size, id: bitcoin-cash
@@ -561,6 +567,11 @@
     y_axis_combined: true
     show_null_points: true
     interpolation: linear
+    color_application:
+      collection_id: google-theme
+      palette_id: google-theme-categorical-0
+      options:
+        steps: 5
     y_axes: [{label: Average Count of Transactions per Block, orientation: left, series: [
           {axisId: full_public_dataset.avg_transaction_count, id: bitcoin - full_public_dataset.avg_transaction_count,
             name: bitcoin}, {axisId: full_public_dataset.avg_transaction_count, id: bitcoin-cash
@@ -604,7 +615,6 @@
   - name: ''
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: "---"
     row: 31
     col: 2
@@ -661,6 +671,11 @@
     y_axis_combined: true
     show_null_points: true
     interpolation: linear
+    color_application:
+      collection_id: google-theme
+      palette_id: google-theme-categorical-0
+      options:
+        steps: 5
     y_axes: [{label: Average Size of Blocks (Bytes), orientation: left, series: [
           {axisId: average_of_block_size, id: bitcoin - average_of_block_size, name: bitcoin},
           {axisId: average_of_block_size, id: bitcoin-cash - average_of_block_size,
@@ -702,7 +717,6 @@
   - name: " (2)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: '[{"type":"h1","children":[{"text":"Average Transaction Size","color":"hsl(0,
       0%, 0%)"}],"align":"center"}]'
     rich_content_json: '{"format":"slate"}'
@@ -713,7 +727,6 @@
   - name: " (Copy 2)"
     type: text
     title_text: " (Copy 2)"
-    subtitle_text: ''
     body_text: '[{"type":"h1","children":[{"text":"Average Block Size","color":"hsl(0,
       0%, 0%)"}],"align":"center"}]'
     rich_content_json: '{"format":"slate"}'
@@ -724,7 +737,6 @@
   - name: " (3)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: "---"
     row: 46
     col: 2
@@ -733,7 +745,6 @@
   - name: " (4)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: "---"
     row: 12
     col: 2
@@ -742,7 +753,6 @@
   - name: " (5)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: '[{"type":"h1","children":[{"text":"Transaction Fees","color":"hsl(0,
       0%, 0%)"}],"align":"center"}]'
     rich_content_json: '{"format":"slate"}'
@@ -753,7 +763,6 @@
   - name: " (Copy 3)"
     type: text
     title_text: " (Copy 3)"
-    subtitle_text: ''
     body_text: '[{"type":"h1","children":[{"text":"Average Transaction Count Per Block","color":"hsl(0,
       0%, 0%)"}],"align":"center"}]'
     rich_content_json: '{"format":"slate"}'
@@ -764,7 +773,6 @@
   - name: " (6)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: ''
     row: 0
     col: 0
@@ -773,7 +781,6 @@
   - name: " (7)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: " "
     row: 0
     col: 22
@@ -782,7 +789,6 @@
   - name: " (8)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: "###Learn more about this project, the data sources, architecture,\
       \ and how to best use this and other related dashboards:"
     row: 53
@@ -790,9 +796,9 @@
     width: 5
     height: 5
   - type: button
-    name: button_136
+    name: button_1763
     rich_content_json: '{"text":"go/crypto-docs","description":"Internal project documentation
-      go-link","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8","href":"go/crypto-docs"}'
+      go-link","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8","href":"https://docs.google.com/document/d/174luN1cBlKDsWAwxJ-iWQlcfu9VvmluxuGXjbxeCJBo/edit?usp=sharing&resourcekey=0-lHgn7xfc58ETpklp9xzgNA"}'
     row: 53
     col: 15
     width: 5
@@ -800,7 +806,6 @@
   - name: " (9)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: '[{"type":"p","children":[{"text":""}],"id":"imocu"},{"type":"h1","children":[{"text":"Note:","fontSize":"10.5pt","backgroundColor":"transparent","color":"rgb(38,
       45, 51)","bold":true},{"text":" To dig further into a single chain, click on
       the three dots to the right of the chain name in a chart to navigate to a dashboard
@@ -841,14 +846,25 @@
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
+    header_font_size: '12'
+    rows_font_size: '12'
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    color_application:
+      collection_id: google-theme
+      palette_id: google-theme-categorical-0
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
     minimum_column_width: 75
-    defaults_version: 1
     series_column_widths:
       full_public_dataset.coin_id: 156
+    series_cell_visualizations:
+      average_of_block_size:
+        is_active: true
+    defaults_version: 1
+    listen: {}
     row: 26
     col: 2
     width: 7
