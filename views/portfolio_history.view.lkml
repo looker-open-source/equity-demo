@@ -23,6 +23,7 @@ view: portfolio_history {
       FROM
       `@{database}.crypto_mvp.history`
       LEFT JOIN UNNEST(`@{database}.crypto_mvp.history`.prices.epoch_time) as prices_epoch_time WITH OFFSET as prices_epoch_offset
+      group by 1,2,3
       )
       ,
       price_amount_unnested as (
@@ -50,11 +51,11 @@ view: portfolio_history {
 
       FROM date_and_id_cte
       INNER JOIN price_date_unnested
-      ON date_and_id_cte.id = price_date_unnested.id AND date_and_id_cte.day = price_date_unnested.price_date
+      ON date_and_id_cte.id = price_date_unnested.id
+      AND date_and_id_cte.day = price_date_unnested.price_date
       INNER JOIN price_amount_unnested
       ON date_and_id_cte.id = price_amount_unnested.id AND price_date_unnested.prices_epoch_offset = price_amount_unnested.prices_amount_offset
       )
-
       ,
 
       stock_date_cte as
@@ -114,14 +115,31 @@ view: portfolio_history {
       INNER JOIN close_unnested
       ON stock_date_and_id_cte.id = close_unnested.id AND date_unnested.date_offset = close_unnested.close_offset
       )
-
+      ,
+      stock_join_cte as(
       select
+      id
+      ,CURRENT_DATE() as day
+      ,CURRENT_DATE() as date
+      , 252 as date_offset
+      ,CAST(currentPrice as NUMERIC) as price
+      ,252 as price_offset
+      ,"Equity" as investment_type
+      ,(FLOOR(RAND()*(100-5+1)+5)) as amount
+      FROM `@{database}.crypto_mvp.stock_info`
+      UNION ALL
+      SELECT * FROM stock_history_set
+      )
+
+      (select
       *
       FROM crypto_history
+      where id in ('bitcoin','solana','ethereum')and date_offset <=364)
       UNION ALL
-      SELECT
+      (SELECT
       *
-      FROM stock_history_set
+      FROM stock_join_cte
+      where id in ('NVDA','GOOG','TSLA', 'meta','NFLX','WMT','UNH','AMT'))
       ;;
   }
 
