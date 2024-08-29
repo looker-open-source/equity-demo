@@ -1,10 +1,10 @@
 ---
-- dashboard: portfolio
-  title: Portfolio
+- dashboard: portfolio_imported_3
+  title: Portfolio (imported 3)
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: jqkqrA1RP7nEsgj4XFneiu
+  preferred_slug: 2SLIwwSGqN5O72n4IMbh70
   elements:
   - title: Portfolio Value
     name: Portfolio Value
@@ -93,6 +93,11 @@
     value_labels: legend
     label_type: labPer
     inner_radius: 70
+    color_application:
+      collection_id: google-theme
+      palette_id: google-theme-categorical-0
+      options:
+        steps: 5
     hidden_pivots: {}
     x_axis_gridlines: false
     y_axis_gridlines: true
@@ -166,6 +171,11 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
+    color_application:
+      collection_id: google-theme
+      palette_id: google-theme-categorical-0
+      options:
+        steps: 5
     y_axes: [{label: '', orientation: bottom, series: [{axisId: Crypto Currency -
               portfolio.total_value, id: Crypto Currency - portfolio.total_value,
             name: Crypto Currency}, {axisId: Equity - portfolio.total_value, id: Equity
@@ -175,6 +185,7 @@
     y_axis_zoom: true
     series_colors:
       Equity: "#F9AB00"
+      Crypto Currency - portfolio_history.total_value: "#1A73E8"
     value_labels: labels
     label_type: labPer
     hidden_pivots: {}
@@ -187,7 +198,6 @@
   - name: ''
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: " "
     row: 0
     col: 0
@@ -196,7 +206,6 @@
   - name: " (2)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: "  "
     row: 0
     col: 22
@@ -205,14 +214,13 @@
   - name: Portfolio Distribution by Value
     type: text
     title_text: Portfolio Distribution by Value
-    subtitle_text: ''
     body_text: ''
     row: 8
     col: 2
     width: 20
     height: 2
   - type: button
-    name: button_192
+    name: button_1900
     rich_content_json: '{"text":"Market Overview","description":"Take a peek at how
       the market is performing as a whole.","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8","href":"https://b772aff5-4b93-454c-9b34-147289eb2172.looker.app/dashboards/LBbTIdJk3stYt85L3CDo1p?Coin%20Highlight=Bitcoin&History%20Granularity=month"}'
     row: 28
@@ -222,7 +230,6 @@
   - name: Investment History
     type: text
     title_text: Investment History
-    subtitle_text: ''
     body_text: ''
     row: 19
     col: 2
@@ -283,7 +290,7 @@
     show_comparison: true
     comparison_type: value
     comparison_reverse_colors: false
-    show_comparison_label: true
+    show_comparison_label: false
     enable_conditional_formatting: true
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
