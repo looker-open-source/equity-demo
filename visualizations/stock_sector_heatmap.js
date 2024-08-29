@@ -7,6 +7,55 @@ looker.plugins.visualizations.add({
       label: "Minimum Font Size",
       default: 8,
       section: "Style"
+    },
+    color_negative_high: {
+      type: "string",
+      label: "Color for High Negative Change",
+      default: "#67000d",
+      section: "Colors",
+      display: "color"
+    },
+    color_negative_medium: {
+      type: "string",
+      label: "Color for Medium Negative Change",
+      default: "#a50f15",
+      section: "Colors",
+      display: "color"
+    },
+    color_negative_low: {
+      type: "string",
+      label: "Color for Low Negative Change",
+      default: "#cb181d",
+      section: "Colors",
+      display: "color"
+    },
+    color_neutral: {
+      type: "string",
+      label: "Color for Neutral Change",
+      default: "#252525",
+      section: "Colors",
+      display: "color"
+    },
+    color_positive_low: {
+      type: "string",
+      label: "Color for Low Positive Change",
+      default: "#41ab5d",
+      section: "Colors",
+      display: "color"
+    },
+    color_positive_medium: {
+      type: "string",
+      label: "Color for Medium Positive Change",
+      default: "#238b45",
+      section: "Colors",
+      display: "color"
+    },
+    color_positive_high: {
+      type: "string",
+      label: "Color for High Positive Change",
+      default: "#005a32",
+      section: "Colors",
+      display: "color"
     }
   },
   create: function(element, config) {
@@ -55,9 +104,25 @@ looker.plugins.visualizations.add({
       const width = element.clientWidth;
       const height = element.clientHeight;
 
+      // Calculate the min and max change values
+      const minChange = d3.min(stocks, d => d.change);
+      const maxChange = d3.max(stocks, d => d.change);
+
+      // Create a symmetric domain centered around 0
+      const maxAbsChange = Math.max(Math.abs(minChange), Math.abs(maxChange));
+      const domain = [-maxAbsChange, -maxAbsChange/2, -maxAbsChange/4, 0, maxAbsChange/4, maxAbsChange/2, maxAbsChange];
+
       const colorScale = d3.scaleLinear()
-        .domain([-10, -5, -2, 0, 2, 5, 10])
-        .range(["#67000d", "#a50f15", "#cb181d", "#252525", "#41ab5d", "#238b45", "#005a32"]);
+        .domain(domain)
+        .range([
+          config.color_negative_high || "#67000d",
+          config.color_negative_medium || "#a50f15",
+          config.color_negative_low || "#cb181d",
+          config.color_neutral || "#252525",
+          config.color_positive_low || "#41ab5d",
+          config.color_positive_medium || "#238b45",
+          config.color_positive_high || "#005a32"
+        ]);
 
       // Group stocks by sector
       const sectorMap = d3.group(stocks, d => d.sector);
@@ -160,6 +225,54 @@ looker.plugins.visualizations.add({
         .attr("fill", "none")
         .attr("stroke", "white")
         .attr("stroke-width", 1);
+
+      // Add a legend
+      const legendWidth = 200;
+      const legendHeight = 20;
+      const legendSvg = chart.append("svg")
+        .attr("width", legendWidth)
+        .attr("height", legendHeight)
+        .style("position", "absolute")
+        .style("top", "10px")
+        .style("right", "10px");
+
+      const gradientScale = d3.scaleLinear()
+        .domain([0, 1])
+        .range([domain[0], domain[domain.length - 1]]);
+
+      const legendGradient = legendSvg.append("defs")
+        .append("linearGradient")
+        .attr("id", "legend-gradient")
+        .attr("x1", "0%")
+        .attr("y1", "0%")
+        .attr("x2", "100%")
+        .attr("y2", "0%");
+
+      legendGradient.selectAll("stop")
+        .data(d3.range(0, 1.1, 0.1))
+        .enter().append("stop")
+        .attr("offset", d => d * 100 + "%")
+        .attr("stop-color", d => colorScale(gradientScale(d)));
+
+      legendSvg.append("rect")
+        .attr("width", legendWidth)
+        .attr("height", legendHeight)
+        .style("fill", "url(#legend-gradient)");
+
+      legendSvg.append("text")
+        .attr("x", 0)
+        .attr("y", legendHeight + 15)
+        .text(domain[0].toFixed(2) + "%")
+        .attr("font-size", "12px")
+        .attr("fill", "white");
+
+      legendSvg.append("text")
+        .attr("x", legendWidth - 40)
+        .attr("y", legendHeight + 15)
+        .text(domain[domain.length - 1].toFixed(2) + "%")
+        .attr("font-size", "12px")
+        .attr("fill", "white")
+        .attr("text-anchor", "end");
 
     } catch (error) {
       console.error("Error in drawChart:", error);
