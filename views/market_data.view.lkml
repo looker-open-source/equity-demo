@@ -166,7 +166,7 @@ view: market_data {
     }
     link: {
       label: "Dive Deeper!"
-      url: "https://b772aff5-4b93-454c-9b34-147289eb2172.looker.app/dashboards/RZbF4ReRz00O3655QMLfG7?ID={{ market_data.id._value }}"
+      url: "https://googledemo2.cloud.looker.com/dashboards/113?ID={{ market_data.id._value }}"
     }
     link: {
       label: "View on Coinbase"
