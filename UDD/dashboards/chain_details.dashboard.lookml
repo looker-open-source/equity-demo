@@ -597,7 +597,7 @@
   - type: button
     name: button_1736
     rich_content_json: '{"text":"go/crypto-docs","description":"Go link for project
-      documentation","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8","href":"go/crypto-docs"}'
+      documentation","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8","href":"https://docs.google.com/document/d/174luN1cBlKDsWAwxJ-iWQlcfu9VvmluxuGXjbxeCJBo/edit?usp=sharing&resourcekey=0-lHgn7xfc58ETpklp9xzgNA"}'
     row: 27
     col: 2
     width: 20
