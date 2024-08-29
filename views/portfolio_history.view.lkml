@@ -19,10 +19,10 @@ price_date_unnested as (
   SELECT
   id
   ,DATE(TIMESTAMP_MILLIS(prices_epoch_time)) AS price_date
-  , null as prices_epoch_offset
+  ,prices_epoch_offset
   FROM
   `kirby-looker-core-argolis.crypto_mvp.history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.prices.epoch_time) as prices_epoch_time
+  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.prices.epoch_time) as prices_epoch_time WITH OFFSET as prices_epoch_offset
   group by 1,2,3
 )
 ,
@@ -134,7 +134,7 @@ stock_join_cte as(
 (select
 *
 FROM crypto_history
-where id in ('bitcoin','solana','ethereum'))
+where id in ('bitcoin','solana','ethereum')and date_offset <=364)
 UNION ALL
 (SELECT
 *
