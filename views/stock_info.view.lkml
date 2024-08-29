@@ -579,7 +579,7 @@ view: stock_info {
     }
     link: {
       label: "Take a Deep Dive"
-      url: "https://b772aff5-4b93-454c-9b34-147289eb2172.looker.app/dashboards/W8b8wacUnIY9GLXVwWDy60?ID={{stock_info.id._value}}"
+      url: "https://googledemo2.cloud.looker.com/dashboards/115?ID={{stock_info.id._value}}"
     }
   }
   dimension: short_ratio {
