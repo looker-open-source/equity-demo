@@ -16,9 +16,15 @@ looker.plugins.visualizations.add({
       label: "Corner Radius",
       default: 10,
       section: "Style"
+    },
+    custom_title: {
+      type: "string",
+      label: "Custom Title",
+      default: "Analyst Recommendation:",
+      section: "Content"
     }
   },
-  
+
   create: function(element, config) {
     element.innerHTML = `
       <style>
@@ -65,14 +71,10 @@ looker.plugins.visualizations.add({
       <div class="analyst-recommendation-container">
         <div class="analyst-recommendation">
           <div>
-            <h3>Analyst Recommendation:</h3>
+            <h3 class="custom-title"></h3>
             <div class="recommendation"></div>
           </div>
           <div class="additional-info">
-            <div class="info-item">
-              <h4>Recommendation Mean:</h4>
-              <div class="mean"></div>
-            </div>
             <div class="info-item">
               <h4>Number of Analysts:</h4>
               <div class="analysts"></div>
@@ -92,25 +94,23 @@ looker.plugins.visualizations.add({
     }
 
     const recommendationField = queryResponse.fields.dimensions.find(d => d.name.includes('key'));
-    const meanField = queryResponse.fields.dimensions.find(d => d.name.includes('mean'));
     const analystsField = queryResponse.fields.dimensions.find(d => d.name.includes('analyst'));
 
-    if (!recommendationField || !meanField || !analystsField) {
-      this.addError({title: "Invalid Data", message: "This visualization requires recommendation, mean, and analysts dimensions."});
+    if (!recommendationField || !analystsField) {
+      this.addError({title: "Invalid Data", message: "This visualization requires recommendation and analysts dimensions."});
       return;
     }
 
     const recommendation = data[0][recommendationField.name].value;
-    const mean = data[0][meanField.name].value;
     const analysts = data[0][analystsField.name].value;
 
     const container = element.querySelector('.analyst-recommendation');
+    const titleElement = element.querySelector('.custom-title');
     const recommendationElement = element.querySelector('.recommendation');
-    const meanElement = element.querySelector('.mean');
     const analystsElement = element.querySelector('.analysts');
 
+    titleElement.textContent = config.custom_title;
     recommendationElement.textContent = recommendation.toUpperCase();
-    meanElement.textContent = mean;
     analystsElement.textContent = analysts;
 
     // Apply conditional formatting
