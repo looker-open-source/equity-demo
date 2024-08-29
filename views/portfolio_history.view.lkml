@@ -11,7 +11,7 @@ date_and_id_cte as (
 SELECT
 id
 ,day
-FROM `kirby-looker-core-argolis.crypto_mvp.history`
+FROM `@{database}.crypto_mvp.history`
 CROSS JOIN date_cte
 )
 ,
@@ -21,8 +21,8 @@ price_date_unnested as (
   ,DATE(TIMESTAMP_MILLIS(prices_epoch_time)) AS price_date
   ,prices_epoch_offset
   FROM
-  `kirby-looker-core-argolis.crypto_mvp.history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.prices.epoch_time) as prices_epoch_time WITH OFFSET as prices_epoch_offset
+  `@{database}.crypto_mvp.history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.history`.prices.epoch_time) as prices_epoch_time WITH OFFSET as prices_epoch_offset
   group by 1,2,3
 )
 ,
@@ -32,8 +32,8 @@ price_amount_unnested as (
   ,prices_amount
   ,prices_amount_offset
    FROM
-  `kirby-looker-core-argolis.crypto_mvp.history`
-  LEFT JOIN UNNEST(`kirby-looker-core-argolis.crypto_mvp.history`.prices.amount) as prices_amount WITH OFFSET as prices_amount_offset
+  `@{database}.crypto_mvp.history`
+  LEFT JOIN UNNEST(`@{database}.crypto_mvp.history`.prices.amount) as prices_amount WITH OFFSET as prices_amount_offset
 
 )
 ,
@@ -126,7 +126,7 @@ stock_join_cte as(
   ,252 as price_offset
   ,"Equity" as investment_type
 ,(FLOOR(RAND()*(100-5+1)+5)) as amount
-  FROM `kirby-looker-core-argolis.crypto_mvp.stock_info`
+  FROM `@{database}.crypto_mvp.stock_info`
   UNION ALL
   SELECT * FROM stock_history_set
 )
