@@ -28,11 +28,13 @@ view: stock_info {
     sql: ${TABLE}.address1 ;;
   }
   dimension: ask {
-    type: string
+    type: number
+    description: "The ask price"
     sql: ${TABLE}.ask ;;
   }
   dimension: ask_size {
-    type: string
+    type: number
+    description: "Ask size represents the quantity of a security that people are willing to sell at a specified ask (offered) price. Ask size is usually shown in round lots representing 100 shares each. Therefore, an ask size of four represents 400 shares."
     sql: ${TABLE}.askSize ;;
   }
   dimension: audit_risk {
@@ -55,19 +57,23 @@ view: stock_info {
   }
   dimension: average_volume10days {
     group_label: "Averages"
+    description: "Average volume over the last 10 days"
     type: string
     sql: ${TABLE}.averageVolume10days ;;
   }
   dimension: beta {
+    description: "A measure of the relative volatility of a stock. Beta is calculated in relation to a benchmark, such as the S&P 500 for U.S. stocks. A beta of 1.0 means that a stock has historically demonstrated volatility in line with its benchmark."
     type: string
     sql: ${TABLE}.beta ;;
   }
   dimension: bid {
-    type: string
+    description: "The bid is the highest price that someone is willing to pay for a stock"
+    type: number
     sql: ${TABLE}.bid ;;
   }
   dimension: bid_size {
-    type: string
+    description: "Bid size is the number of shares that investors are willing to buy at the bid price"
+    type: number
     sql: ${TABLE}.bidSize ;;
   }
   dimension: board_risk {
@@ -77,16 +83,20 @@ view: stock_info {
     sql: ${TABLE}.boardRisk ;;
   }
   dimension: book_value {
+    description: "Book value is the total value of a company's assets minus its total liabilities, which is the same as a company's total shareholders' equity. It's calculated by subtracting a company's total liabilities from its total assets, which is usually the same as a company's common stockholders' equity on its balance sheet.
+"
     value_format: "0.00"
     type: number
     sql: ${TABLE}.bookValue ;;
   }
   dimension: city {
     group_label: "Contact Information"
+    description: "City of company headquarters location"
     type: string
     sql: ${TABLE}.city ;;
   }
   dimension: compensation_as_of_epoch_date {
+    hidden: yes
     type: string
     sql: ${TABLE}.compensationAsOfEpochDate ;;
   }
@@ -98,17 +108,20 @@ view: stock_info {
   }
   dimension: country {
     group_label: "Contact Information"
+    description: "Country of company headquarters location"
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
   }
   dimension: currency {
     group_label: "Company Details"
+    description: "Currency"
     type: string
     sql: ${TABLE}.currency ;;
   }
   dimension: current_price {
     group_label: "Current Data"
+    description: "Current price"
     value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.currentPrice ;;
@@ -121,34 +134,47 @@ view: stock_info {
     sql: ${TABLE}.currentRatio ;;
   }
   dimension: date_short_interest {
-    type: string
+    type: number
+    hidden: yes
     sql: ${TABLE}.dateShortInterest ;;
   }
+  dimension_group: short_interest_date {
+    description: "Short Interest Date"
+    type: time
+    timeframes: [date, week, month, year]
+    datatype: date
+    sql: DATE(TIMESTAMP_SECONDS(CAST(${date_short_interest} AS INT64))) ;;
+  }
   dimension: day_high {
+    description: "High price for the day"
     group_label: "Highs"
     value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.dayHigh ;;
   }
   dimension: day_low {
+    description: "Low price for the day"
     group_label: "Lows"
     value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.dayLow ;;
   }
   dimension: debt_to_equity {
-    type: string
+    description: "The debt-to-equity (D/E) ratio is a financial metric that compares a company's liabilities to its shareholder equity to determine how much of its assets are financed by debt. Yahoo Finance defines the D/E ratio as a measure of a company's financial leverage. It is determined by dividing a company's total debt (short-term and long-term) by its total equity. A higher D/E ratio indicates that a company is more likely to have trouble covering its liabilities, while a lower ratio suggests that the company has more equity capital to weather a downturn.
+"
+    type: number
     sql: ${TABLE}.debtToEquity ;;
   }
   dimension: dividend_rate {
     group_label: "Dividend Data"
-    description: "Dividend rate"
-    type: string
+    description: "Dividend rate is the amount per share an investor receives at the time the dividend is paid out. It applies to a stock, as well as other investment vehicles like mutual funds and exchange-traded funds (ETFs)."
+    type: number
     sql: ${TABLE}.dividendRate ;;
   }
   dimension: dividend_yield {
     group_label: "Dividend Data"
-    type: string
+    description: "Dividend yield is a numerical figure describing the relationship between a stock’s annual dividend payment and its stock price. "
+    type: number
     sql: ${TABLE}.dividendYield ;;
   }
   dimension: earnings_growth {
@@ -556,21 +582,29 @@ view: stock_info {
   }
   dimension: shares_short {
     group_label: "Shares Data"
-    type: string
+    type: number
     sql: ${TABLE}.sharesShort ;;
   }
   dimension: shares_short_previous_month_date {
     group_label: "Shares Data"
-    type: string
+    type: number
+    hidden: yes
     sql: ${TABLE}.sharesShortPreviousMonthDate ;;
+  }
+  dimension_group: previous_month_shares_short_date {
+    type: time
+    datatype: date
+    timeframes: [date, week, month, year]
+    sql: DATE(TIMESTAMP_SECONDS(CAST(${shares_short_previous_month_date} AS INT64))) ;;
   }
   dimension: shares_short_prior_month {
     group_label: "Shares Data"
-    type: string
+    type: number
     sql: ${TABLE}.sharesShortPriorMonth ;;
   }
   dimension: short_name {
     group_label: "Company Details"
+    label: "Company Name"
     type: string
     sql: ${TABLE}.shortName ;;
     link: {
