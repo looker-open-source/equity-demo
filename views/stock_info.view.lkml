@@ -175,6 +175,7 @@ view: stock_info {
     group_label: "Dividend Data"
     description: "Dividend yield is a numerical figure describing the relationship between a stock’s annual dividend payment and its stock price. "
     type: number
+    value_format: "0.00%"
     sql: ${TABLE}.dividendYield ;;
   }
   dimension: earnings_growth {
@@ -692,23 +693,28 @@ view: stock_info {
   }
   dimension: trailing_annual_dividend_rate {
     group_label: "Dividend Data"
-    type: string
+    type: number
+    value_format: "0.00"
     sql: ${TABLE}.trailingAnnualDividendRate ;;
   }
   dimension: trailing_annual_dividend_yield {
     group_label: "Dividend Data"
-    type: string
+    type: number
+    value_format: "0.00%"
     sql: ${TABLE}.trailingAnnualDividendYield ;;
   }
   dimension: trailing_eps {
     group_label: "EPS Data"
     label: "EPS (TTM)"
-    type: string
+    description: "Trailing earnings per share (EPS) is a company's earnings over a prior period, usually a fiscal year, reported on a per-share basis. The term trailing means that the value is calculated on a rolling basis, so the period used for trailing EPS can change as new earnings are added and older earnings are dropped."
+    type: number
+    value_format: "$#.00;($#.00)"
     sql: ${TABLE}.trailingEps ;;
   }
   dimension: trailing_pe {
     label: "P/E Ratio (TTM)"
     type: number
+    description: "Trailing P/E is calculated by dividing the current market value, or share price, by the earnings per share over the previous 12 months"
     value_format: "0.00"
     sql: ${TABLE}.trailingPE ;;
   }
@@ -716,11 +722,15 @@ view: stock_info {
     type: number
     label: "PEG Ratio (TTM)"
     value_format: "0.00"
+    description: "The trailing PEG ratio is a valuation metric that's calculated by dividing a company's trailing P/E ratio by its expected future growth. The trailing P/E ratio uses earnings per share from the previous 12 months.
+"
     sql: ${TABLE}.trailingPegRatio ;;
   }
   dimension: two_hundred_day_average {
     group_label: "Averages"
     type: number
+    value_format: "$#.00;($#.00)"
+    description: "The 200 Day Average shows the stock's average closing price over the past 200 trading days"
     sql: ${TABLE}.twoHundredDayAverage ;;
   }
   dimension: underlying_symbol {
