@@ -257,7 +257,7 @@ view: stock_info {
     sql: ${TABLE}.financialCurrency ;;
   }
   dimension: first_trade_date_epoch_utc {
-    type: string
+    type: number
     sql: ${TABLE}.firstTradeDateEpochUtc ;;
   }
   dimension: float_shares {
@@ -278,7 +278,7 @@ view: stock_info {
     sql: ${TABLE}.forwardPE ;;
   }
   dimension: free_cashflow {
-    type: string
+    type: number
     sql: ${TABLE}.freeCashflow ;;
   }
   dimension: full_time_employees {
@@ -292,24 +292,25 @@ view: stock_info {
     sql: ${TABLE}.gmtOffSetMilliseconds ;;
   }
   dimension: governance_epoch_date {
-    type: string
+    type: number
     sql: ${TABLE}.governanceEpochDate ;;
   }
   dimension: gross_margins {
-    type: string
+    type: number
     sql: ${TABLE}.grossMargins ;;
   }
   dimension: held_percent_insiders {
-    type: string
+    type: number
     sql: ${TABLE}.heldPercentInsiders ;;
   }
   dimension: held_percent_institutions {
-    type: string
+    type: number
     sql: ${TABLE}.heldPercentInstitutions ;;
   }
   dimension: implied_shares_outstanding {
     group_label: "Shares Data"
-    type: string
+    type: number
+    value_format: "0.000,,,\" B\""
     sql: ${TABLE}.impliedSharesOutstanding ;;
   }
   dimension: industry {
@@ -573,17 +574,19 @@ view: stock_info {
   }
   dimension: shares_outstanding {
     group_label: "Shares Data"
-    type: string
+    value_format: "0.000,,,\" B\""
+    type: number
     sql: ${TABLE}.sharesOutstanding ;;
   }
   dimension: shares_percent_shares_out {
     group_label: "Shares Data"
-    type: string
+    type: number
     sql: ${TABLE}.sharesPercentSharesOut ;;
   }
   dimension: shares_short {
     group_label: "Shares Data"
     type: number
+    value_format: "0.000,,\" M\""
     sql: ${TABLE}.sharesShort ;;
   }
   dimension: shares_short_previous_month_date {
@@ -601,6 +604,7 @@ view: stock_info {
   dimension: shares_short_prior_month {
     group_label: "Shares Data"
     type: number
+    value_format: "0.000,,\" M\""
     sql: ${TABLE}.sharesShortPriorMonth ;;
   }
   dimension: short_name {
@@ -618,7 +622,8 @@ view: stock_info {
     }
   }
   dimension: short_ratio {
-    type: string
+    description: "The short ratio is the number of shares sold short (short interest or bets that the stock will go lower in price) divided by the average daily volume."
+    type: number
     sql: ${TABLE}.shortRatio ;;
   }
   dimension: state {
@@ -675,24 +680,28 @@ view: stock_info {
   }
   dimension: total_cash_per_share {
     group_label: "Totals"
-    value_format: "0.00"
+    description: "Cash per share is a financial metric that shows how much of a company's share price is available for use, such as paying down debt, returning money to shareholders, or strengthening the business. It's calculated by dividing a company's total cash and short-term investments by the number of shares outstanding."
+    value_format: "$#.00;($#.00)"
     type: number
     sql: ${TABLE}.totalCashPerShare ;;
   }
   dimension: total_debt {
     group_label: "Totals"
     type: number
+    description: "Total debt is the total amount of money a company owes to creditors or lenders, including short-term and long-term debt. It's reported on a company's balance sheet as a liability."
     value_format: "0.000,,,\" B\""
     sql: ${TABLE}.totalDebt ;;
   }
   dimension: total_revenue {
     group_label: "Totals"
+    description: "Total revenue is the total amount of money a company earns from its business activities before deducting expenses."
     type: number
     value_format: "0.000,,,\" B\""
     sql: ${TABLE}.totalRevenue ;;
   }
   dimension: trailing_annual_dividend_rate {
     group_label: "Dividend Data"
+    description: "The trailing annual dividend rate is a company's actual dividend payments over the previous year, relative to its share price. "
     type: number
     value_format: "0.00"
     sql: ${TABLE}.trailingAnnualDividendRate ;;
@@ -700,6 +709,7 @@ view: stock_info {
   dimension: trailing_annual_dividend_yield {
     group_label: "Dividend Data"
     type: number
+    description: "Trailing dividend yield gives the dividend percentage paid over a prior period, typically one year."
     value_format: "0.00%"
     sql: ${TABLE}.trailingAnnualDividendYield ;;
   }
