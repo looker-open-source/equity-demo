@@ -32,6 +32,14 @@ explore:  portfolio {
   }
 }
 
+### EXPLORE FOR MATCHED PRODUCTS ONLY ###
+explore: stock_info_semantic_search {
+  join: stock_history_with_date_crossjoin {
+    relationship: one_to_many
+    sql_on: ${stock_info_semantic_search.matched_stock_id} = ${stock_history_with_date_crossjoin.id} ;;
+  }
+}
+
 
 
 datagroup: history {
