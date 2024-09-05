@@ -4,10 +4,10 @@ constant: database {
   value: "looker-private-demo"
 }
 
-# This is the ID of the BQML MODEL setup with the remote connect
-constant: BQML_REMOTE_CONNECTION_MODEL_ID {
-  value: "looker-private-demo.crypto.stock_info_model" # replace these defaults
-}
+# # This is the ID of the BQML MODEL setup with the remote connect
+# constant: BQML_REMOTE_CONNECTION_MODEL_ID {
+#   value: "looker-private-demo.crypto_mvp.stock_info_embeddings_model" # replace these defaults
+# }
 
 # This is the ID of the remote connection setup in BigQuery
 constant: BQML_REMOTE_CONNECTION_ID {
