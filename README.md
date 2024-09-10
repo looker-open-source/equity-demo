@@ -1,2 +1,2 @@
-# crypto-mvp
-repo for crypto MVP project
+# equity-demo
+repo for equity demo project
