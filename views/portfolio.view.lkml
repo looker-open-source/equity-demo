@@ -1,35 +1,35 @@
 view: portfolio {
   derived_table: {
-     sql: with coins as(
-    SELECT
-    id
-    ,name as name
-    ,"Crypto Currency" as investment_type
-    ,"Alternative Currencies" as sector
-    ,current_price
-    ,(FLOOR(RAND()*(3-1+1)+5)) as amount
-    FROM `@{database}.crypto_mvp.market_data`
-    )
-    ,
-    stock as (
-    SELECT
-    id
-    ,shortName as short_name
-    ,"Equity" as investment_type
-    ,sector
-    ,currentPrice as current_price
-    ,(FLOOR(RAND()*(100-5+1)+5)) as amount
-    FROM `@{database}.crypto_mvp.stock_info`
-    )
+    sql: with coins as(
+          SELECT
+          id
+          ,name as name
+          ,"Crypto Currency" as investment_type
+          ,"Alternative Currencies" as sector
+          ,current_price
+          ,(FLOOR(RAND()*(3-1+1)+5)) as amount
+          FROM `@{database}.crypto_mvp.market_data`
+          )
+          ,
+          stock as (
+          SELECT
+          id
+          ,shortName as short_name
+          ,"Equity" as investment_type
+          ,sector
+          ,currentPrice as current_price
+          ,(FLOOR(RAND()*(100-5+1)+5)) as amount
+          FROM `@{database}.crypto_mvp.stock_info`
+          )
 
-    (SELECT *
-    FROM coins
-    where id in ('bitcoin','solana','ethereum'))
-    UNION ALL
-    (SELECT *
-    FROM stock
-    where id in ('NVDA','GOOG','TSLA', 'meta','NFLX','WMT','UNH','AMT')
-    )
+      (SELECT *
+      FROM coins
+      where id in ('bitcoin','solana','ethereum'))
+      UNION ALL
+      (SELECT *
+      FROM stock
+      where id in ('NVDA','GOOG','TSLA', 'meta','NFLX','WMT','UNH','AMT')
+      )
       ;;
   }
   dimension: id {
@@ -104,33 +104,3 @@ view: portfolio {
   }
 }
 
-
-
-
-#
-#   # Define your dimensions and measures here, like this:
-#   dimension: user_id {
-#     description: "Unique ID for each user that has ordered"
-#     type: number
-#     sql: ${TABLE}.user_id ;;
-#   }
-#
-#   dimension: lifetime_orders {
-#     description: "The total number of orders for each user"
-#     type: number
-#     sql: ${TABLE}.lifetime_orders ;;
-#   }
-#
-#   dimension_group: most_recent_purchase {
-#     description: "The date when each user last ordered"
-#     type: time
-#     timeframes: [date, week, month, year]
-#     sql: ${TABLE}.most_recent_purchase_at ;;
-#   }
-#
-#   measure: total_lifetime_orders {
-#     description: "Use this for counting lifetime orders across many users"
-#     type: sum
-#     sql: ${lifetime_orders} ;;
-#   }
-# }

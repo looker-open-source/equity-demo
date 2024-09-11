@@ -28,11 +28,13 @@ view: stock_info {
     sql: ${TABLE}.address1 ;;
   }
   dimension: ask {
-    type: string
+    type: number
+    description: "The ask price"
     sql: ${TABLE}.ask ;;
   }
   dimension: ask_size {
-    type: string
+    type: number
+    description: "Ask size represents the quantity of a security that people are willing to sell at a specified ask (offered) price. Ask size is usually shown in round lots representing 100 shares each. Therefore, an ask size of four represents 400 shares."
     sql: ${TABLE}.askSize ;;
   }
   dimension: audit_risk {
@@ -55,19 +57,23 @@ view: stock_info {
   }
   dimension: average_volume10days {
     group_label: "Averages"
+    description: "Average volume over the last 10 days"
     type: string
     sql: ${TABLE}.averageVolume10days ;;
   }
   dimension: beta {
+    description: "A measure of the relative volatility of a stock. Beta is calculated in relation to a benchmark, such as the S&P 500 for U.S. stocks. A beta of 1.0 means that a stock has historically demonstrated volatility in line with its benchmark."
     type: string
     sql: ${TABLE}.beta ;;
   }
   dimension: bid {
-    type: string
+    description: "The bid is the highest price that someone is willing to pay for a stock"
+    type: number
     sql: ${TABLE}.bid ;;
   }
   dimension: bid_size {
-    type: string
+    description: "Bid size is the number of shares that investors are willing to buy at the bid price"
+    type: number
     sql: ${TABLE}.bidSize ;;
   }
   dimension: board_risk {
@@ -77,16 +83,19 @@ view: stock_info {
     sql: ${TABLE}.boardRisk ;;
   }
   dimension: book_value {
+    description: "Book value is the total value of a company's assets minus its total liabilities, which is the same as a company's total shareholders' equity. It's calculated by subtracting a company's total liabilities from its total assets, which is usually the same as a company's common stockholders' equity on its balance sheet."
     value_format: "0.00"
     type: number
     sql: ${TABLE}.bookValue ;;
   }
   dimension: city {
     group_label: "Contact Information"
+    description: "City of company headquarters location"
     type: string
     sql: ${TABLE}.city ;;
   }
   dimension: compensation_as_of_epoch_date {
+    hidden: yes
     type: string
     sql: ${TABLE}.compensationAsOfEpochDate ;;
   }
@@ -98,17 +107,20 @@ view: stock_info {
   }
   dimension: country {
     group_label: "Contact Information"
+    description: "Country of company headquarters location"
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
   }
   dimension: currency {
     group_label: "Company Details"
+    description: "Currency"
     type: string
     sql: ${TABLE}.currency ;;
   }
   dimension: current_price {
     group_label: "Current Data"
+    description: "Current price"
     value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.currentPrice ;;
@@ -121,34 +133,48 @@ view: stock_info {
     sql: ${TABLE}.currentRatio ;;
   }
   dimension: date_short_interest {
-    type: string
+    type: number
+    hidden: yes
     sql: ${TABLE}.dateShortInterest ;;
   }
+  dimension_group: short_interest_date {
+    description: "Short Interest Date"
+    type: time
+    timeframes: [date, week, month, year]
+    datatype: date
+    sql: DATE(TIMESTAMP_SECONDS(CAST(${date_short_interest} AS INT64))) ;;
+  }
   dimension: day_high {
+    description: "High price for the day"
     group_label: "Highs"
     value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.dayHigh ;;
   }
   dimension: day_low {
+    description: "Low price for the day"
     group_label: "Lows"
     value_format: "$#,##0.00;($#,##0.00)"
     type: number
     sql: ${TABLE}.dayLow ;;
   }
   dimension: debt_to_equity {
-    type: string
+    description: "The debt-to-equity (D/E) ratio is a financial metric that compares a company's liabilities to its shareholder equity to determine how much of its assets are financed by debt. Yahoo Finance defines the D/E ratio as a measure of a company's financial leverage. It is determined by dividing a company's total debt (short-term and long-term) by its total equity. A higher D/E ratio indicates that a company is more likely to have trouble covering its liabilities, while a lower ratio suggests that the company has more equity capital to weather a downturn."
+    type: number
     sql: ${TABLE}.debtToEquity ;;
   }
   dimension: dividend_rate {
     group_label: "Dividend Data"
-    description: "Dividend rate"
-    type: string
+    description: "Dividend rate is the amount per share an investor receives at the time the dividend is paid out. It applies to a stock, as well as other investment vehicles like mutual funds and exchange-traded funds (ETFs)."
+    type: number
     sql: ${TABLE}.dividendRate ;;
   }
   dimension: dividend_yield {
     group_label: "Dividend Data"
-    type: string
+
+    description: "Dividend yield is a numerical figure describing the relationship between a stock’s annual dividend payment and its stock price. "
+    type: number
+    value_format: "0.00%"
     sql: ${TABLE}.dividendYield ;;
   }
   dimension: earnings_growth {
@@ -230,7 +256,8 @@ view: stock_info {
     sql: ${TABLE}.financialCurrency ;;
   }
   dimension: first_trade_date_epoch_utc {
-    type: string
+    type: number
+    hidden: yes
     sql: ${TABLE}.firstTradeDateEpochUtc ;;
   }
   dimension: float_shares {
@@ -251,7 +278,7 @@ view: stock_info {
     sql: ${TABLE}.forwardPE ;;
   }
   dimension: free_cashflow {
-    type: string
+    type: number
     sql: ${TABLE}.freeCashflow ;;
   }
   dimension: full_time_employees {
@@ -265,24 +292,25 @@ view: stock_info {
     sql: ${TABLE}.gmtOffSetMilliseconds ;;
   }
   dimension: governance_epoch_date {
-    type: string
+    type: number
     sql: ${TABLE}.governanceEpochDate ;;
   }
   dimension: gross_margins {
-    type: string
+    type: number
     sql: ${TABLE}.grossMargins ;;
   }
   dimension: held_percent_insiders {
-    type: string
+    type: number
     sql: ${TABLE}.heldPercentInsiders ;;
   }
   dimension: held_percent_institutions {
-    type: string
+    type: number
     sql: ${TABLE}.heldPercentInstitutions ;;
   }
   dimension: implied_shares_outstanding {
     group_label: "Shares Data"
-    type: string
+    type: number
+    value_format: "0.000,,,\" B\""
     sql: ${TABLE}.impliedSharesOutstanding ;;
   }
   dimension: industry {
@@ -361,7 +389,7 @@ view: stock_info {
     label: "Most Recent Quarter"
     type: date
     sql: TIMESTAMP_SECONDS(${most_recent_quarter}) ;;
-    }
+  }
   dimension: net_income_to_common {
     type: string
     sql: ${TABLE}.netIncomeToCommon ;;
@@ -546,31 +574,41 @@ view: stock_info {
   }
   dimension: shares_outstanding {
     group_label: "Shares Data"
-    type: string
+    value_format: "0.000,,,\" B\""
+    type: number
     sql: ${TABLE}.sharesOutstanding ;;
   }
   dimension: shares_percent_shares_out {
     group_label: "Shares Data"
-    type: string
+    type: number
     sql: ${TABLE}.sharesPercentSharesOut ;;
   }
   dimension: shares_short {
     group_label: "Shares Data"
-    type: string
+    value_format: "0.000,,\" M\""
     sql: ${TABLE}.sharesShort ;;
   }
   dimension: shares_short_previous_month_date {
     group_label: "Shares Data"
-    type: string
+    type: number
+    hidden: yes
     sql: ${TABLE}.sharesShortPreviousMonthDate ;;
+  }
+  dimension_group: previous_month_shares_short_date {
+    type: time
+    datatype: date
+    timeframes: [date, week, month, year]
+    sql: DATE(TIMESTAMP_SECONDS(CAST(${shares_short_previous_month_date} AS INT64))) ;;
   }
   dimension: shares_short_prior_month {
     group_label: "Shares Data"
-    type: string
+    type: number
+    value_format: "0.000,,\" M\""
     sql: ${TABLE}.sharesShortPriorMonth ;;
   }
   dimension: short_name {
     group_label: "Company Details"
+    label: "Company Name"
     type: string
     sql: ${TABLE}.shortName ;;
     link: {
@@ -579,11 +617,12 @@ view: stock_info {
     }
     link: {
       label: "Take a Deep Dive"
-      url: "https://b772aff5-4b93-454c-9b34-147289eb2172.looker.app/dashboards/W8b8wacUnIY9GLXVwWDy60?ID={{stock_info.id._value}}"
+      url: "https://googledemo2.cloud.looker.com/dashboards/115?ID={{stock_info.id._value}}"
     }
   }
   dimension: short_ratio {
-    type: string
+    description: "The short ratio is the number of shares sold short (short interest or bets that the stock will go lower in price) divided by the average daily volume."
+    type: number
     sql: ${TABLE}.shortRatio ;;
   }
   dimension: state {
@@ -640,41 +679,52 @@ view: stock_info {
   }
   dimension: total_cash_per_share {
     group_label: "Totals"
-    value_format: "0.00"
+    description: "Cash per share is a financial metric that shows how much of a company's share price is available for use, such as paying down debt, returning money to shareholders, or strengthening the business. It's calculated by dividing a company's total cash and short-term investments by the number of shares outstanding."
+    value_format: "$#.00;($#.00)"
     type: number
     sql: ${TABLE}.totalCashPerShare ;;
   }
   dimension: total_debt {
     group_label: "Totals"
     type: number
+    description: "Total debt is the total amount of money a company owes to creditors or lenders, including short-term and long-term debt. It's reported on a company's balance sheet as a liability."
     value_format: "0.000,,,\" B\""
     sql: ${TABLE}.totalDebt ;;
   }
   dimension: total_revenue {
     group_label: "Totals"
+    description: "Total revenue is the total amount of money a company earns from its business activities before deducting expenses."
     type: number
     value_format: "0.000,,,\" B\""
     sql: ${TABLE}.totalRevenue ;;
   }
   dimension: trailing_annual_dividend_rate {
     group_label: "Dividend Data"
-    type: string
+    description: "The trailing annual dividend rate is a company's actual dividend payments over the previous year, relative to its share price. "
+    type: number
+    value_format: "0.00"
     sql: ${TABLE}.trailingAnnualDividendRate ;;
   }
   dimension: trailing_annual_dividend_yield {
     group_label: "Dividend Data"
-    type: string
+
+    type: number
+    description: "Trailing dividend yield gives the dividend percentage paid over a prior period, typically one year."
+    value_format: "0.00%"
     sql: ${TABLE}.trailingAnnualDividendYield ;;
   }
   dimension: trailing_eps {
     group_label: "EPS Data"
     label: "EPS (TTM)"
-    type: string
+    description: "Trailing earnings per share (EPS) is a company's earnings over a prior period, usually a fiscal year, reported on a per-share basis. The term trailing means that the value is calculated on a rolling basis, so the period used for trailing EPS can change as new earnings are added and older earnings are dropped."
+    type: number
+    value_format: "$#.00;($#.00)"
     sql: ${TABLE}.trailingEps ;;
   }
   dimension: trailing_pe {
     label: "P/E Ratio (TTM)"
     type: number
+    description: "Trailing P/E is calculated by dividing the current market value, or share price, by the earnings per share over the previous 12 months"
     value_format: "0.00"
     sql: ${TABLE}.trailingPE ;;
   }
@@ -682,11 +732,14 @@ view: stock_info {
     type: number
     label: "PEG Ratio (TTM)"
     value_format: "0.00"
+    description: "The trailing PEG ratio is a valuation metric that's calculated by dividing a company's trailing P/E ratio by its expected future growth. The trailing P/E ratio uses earnings per share from the previous 12 months."
     sql: ${TABLE}.trailingPegRatio ;;
   }
   dimension: two_hundred_day_average {
     group_label: "Averages"
     type: number
+    value_format: "$#.00;($#.00)"
+    description: "The 200 Day Average shows the stock's average closing price over the past 200 trading days"
     sql: ${TABLE}.twoHundredDayAverage ;;
   }
   dimension: underlying_symbol {
@@ -719,5 +772,6 @@ view: stock_info {
     group_label: "Contact Information"
     type: string
     sql: ${TABLE}.zip ;;
-    }
   }
+}
+
