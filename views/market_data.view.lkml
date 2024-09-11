@@ -232,3 +232,4 @@ view: market_data {
     drill_fields: [id, name]
   }
 }
+

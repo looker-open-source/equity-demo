@@ -1,3 +1,4 @@
+
 project_name: "finance_portfolio_demo"
 
 constant: database {
@@ -74,3 +75,4 @@ visualization: {
   label: "Ticker Scroll"
   file: "visualizations/ticker_scroll.js"
 }
+

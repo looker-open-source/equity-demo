@@ -199,3 +199,4 @@ view: portfolio_history {
     drill_fields: [id,investment_type,amount,value]
   }
 }
+
