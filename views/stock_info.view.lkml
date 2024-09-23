@@ -3,6 +3,7 @@ view: stock_info {
   sql_table_name: `@{database}.crypto_mvp.stock_info`  ;;
   drill_fields: [id]
 
+
   dimension: id {
     # label: "ID"
     primary_key: yes
