@@ -83,7 +83,8 @@ view: stock_info {
     sql: ${TABLE}.boardRisk ;;
   }
   dimension: book_value {
-    description: "Book value is the total value of a company's assets minus its total liabilities, which is the same as a company's total shareholders' equity. It's calculated by subtracting a company's total liabilities from its total assets, which is usually the same as a company's common stockholders' equity on its balance sheet."
+    description: "Book value is the total value of a company's assets minus its total liabilities, which is the same as a company's total shareholders' equity. It's calculated by subtracting a company's total liabilities from its total assets, which is usually the same as a company's common stockholders' equity on its balance sheet.
+"
     value_format: "0.00"
     type: number
     sql: ${TABLE}.bookValue ;;
@@ -159,7 +160,8 @@ view: stock_info {
     sql: ${TABLE}.dayLow ;;
   }
   dimension: debt_to_equity {
-    description: "The debt-to-equity (D/E) ratio is a financial metric that compares a company's liabilities to its shareholder equity to determine how much of its assets are financed by debt. Yahoo Finance defines the D/E ratio as a measure of a company's financial leverage. It is determined by dividing a company's total debt (short-term and long-term) by its total equity. A higher D/E ratio indicates that a company is more likely to have trouble covering its liabilities, while a lower ratio suggests that the company has more equity capital to weather a downturn."
+    description: "The debt-to-equity (D/E) ratio is a financial metric that compares a company's liabilities to its shareholder equity to determine how much of its assets are financed by debt. Yahoo Finance defines the D/E ratio as a measure of a company's financial leverage. It is determined by dividing a company's total debt (short-term and long-term) by its total equity. A higher D/E ratio indicates that a company is more likely to have trouble covering its liabilities, while a lower ratio suggests that the company has more equity capital to weather a downturn.
+"
     type: number
     sql: ${TABLE}.debtToEquity ;;
   }
@@ -171,7 +173,6 @@ view: stock_info {
   }
   dimension: dividend_yield {
     group_label: "Dividend Data"
-
     description: "Dividend yield is a numerical figure describing the relationship between a stock’s annual dividend payment and its stock price. "
     type: number
     value_format: "0.00%"
@@ -257,7 +258,6 @@ view: stock_info {
   }
   dimension: first_trade_date_epoch_utc {
     type: number
-    hidden: yes
     sql: ${TABLE}.firstTradeDateEpochUtc ;;
   }
   dimension: float_shares {
@@ -585,6 +585,7 @@ view: stock_info {
   }
   dimension: shares_short {
     group_label: "Shares Data"
+    type: number
     value_format: "0.000,,\" M\""
     sql: ${TABLE}.sharesShort ;;
   }
@@ -617,7 +618,7 @@ view: stock_info {
     }
     link: {
       label: "Take a Deep Dive"
-      url: "https://googledemo2.cloud.looker.com/dashboards/115?ID={{stock_info.id._value}}"
+      url: "/dashboards/W8b8wacUnIY9GLXVwWDy60?ID={{stock_info.id._value}}"
     }
   }
   dimension: short_ratio {
@@ -707,7 +708,6 @@ view: stock_info {
   }
   dimension: trailing_annual_dividend_yield {
     group_label: "Dividend Data"
-
     type: number
     description: "Trailing dividend yield gives the dividend percentage paid over a prior period, typically one year."
     value_format: "0.00%"
@@ -732,7 +732,8 @@ view: stock_info {
     type: number
     label: "PEG Ratio (TTM)"
     value_format: "0.00"
-    description: "The trailing PEG ratio is a valuation metric that's calculated by dividing a company's trailing P/E ratio by its expected future growth. The trailing P/E ratio uses earnings per share from the previous 12 months."
+    description: "The trailing PEG ratio is a valuation metric that's calculated by dividing a company's trailing P/E ratio by its expected future growth. The trailing P/E ratio uses earnings per share from the previous 12 months.
+"
     sql: ${TABLE}.trailingPegRatio ;;
   }
   dimension: two_hundred_day_average {
@@ -774,4 +775,3 @@ view: stock_info {
     sql: ${TABLE}.zip ;;
   }
 }
-

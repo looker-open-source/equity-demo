@@ -2,6 +2,8 @@ view: market_data {
   sql_table_name: `@{database}.crypto_mvp.market_data` ;;
   drill_fields: [id]
 
+
+
   dimension: id {
     primary_key: yes
     type: string
@@ -162,7 +164,7 @@ view: market_data {
       ;;
     link: {
       label: "Dive Deeper!"
-      url: "https://googledemo2.cloud.looker.com/dashboards/113?ID={{ market_data.id._value }}"
+      url: "/dashboards/RZbF4ReRz00O3655QMLfG7?ID={{ market_data.id._value }}"
     }
     link: {
       label: "View on Coinbase"
@@ -232,4 +234,3 @@ view: market_data {
     drill_fields: [id, name]
   }
 }
-

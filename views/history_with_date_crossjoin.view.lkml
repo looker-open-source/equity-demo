@@ -154,4 +154,3 @@ view: history_with_date_crossjoin {
   }
 
 }
-

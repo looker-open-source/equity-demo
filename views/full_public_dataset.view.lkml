@@ -268,7 +268,8 @@ view: full_public_dataset {
     description: "Block creation timestamp specified in block header"
     timeframes: [raw, date, week, month, quarter, year]
     sql: CAST(${TABLE}.real_block_timestamp as TIMESTAMP);;
-   }
+  }
+
   dimension_group: block_timestamp {
     hidden: yes
     type: time

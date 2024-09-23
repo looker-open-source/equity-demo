@@ -103,4 +103,3 @@ view: portfolio {
     fields: [id, sector, current_price, investment_type, name]
   }
 }
-
