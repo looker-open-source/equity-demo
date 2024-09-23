@@ -3,6 +3,7 @@ view: market_data {
   drill_fields: [id]
 
 
+
   dimension: id {
     primary_key: yes
     type: string

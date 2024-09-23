@@ -111,6 +111,8 @@ view: stock_history_with_date_crossjoin {
       INNER JOIN volume_unnested
       ON date_and_id_cte.id = volume_unnested.id AND date_unnested.date_offset = volume_unnested.volume_offset ;;
   }
+
+
   dimension: id {
     label: "Symbol"
     description: "Equity Symbol (ticker)"
@@ -193,5 +195,6 @@ view: stock_history_with_date_crossjoin {
     type: number
     sql: ${TABLE}.volume_offset ;;
   }
+
 
 }

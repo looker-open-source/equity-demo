@@ -269,6 +269,7 @@ view: full_public_dataset {
     timeframes: [raw, date, week, month, quarter, year]
     sql: CAST(${TABLE}.real_block_timestamp as TIMESTAMP);;
   }
+
   dimension_group: block_timestamp {
     hidden: yes
     type: time
