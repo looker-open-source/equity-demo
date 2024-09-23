@@ -618,7 +618,7 @@ view: stock_info {
     }
     link: {
       label: "Take a Deep Dive"
-      url: "https://googledemo2.cloud.looker.com/dashboards/115?ID={{stock_info.id._value}}"
+      url: "/dashboards/W8b8wacUnIY9GLXVwWDy60?ID={{stock_info.id._value}}"
     }
   }
   dimension: short_ratio {
