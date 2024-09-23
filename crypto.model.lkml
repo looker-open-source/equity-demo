@@ -19,12 +19,12 @@ include: "/**/*.view.lkml"                 # include all views in this project
 #   }
 # }
 #creating a test explore with one view for now
-explore: bitcoin_blocks {
-  label: "Coin Data"
-  join: bitcoin_transactions {
-    relationship: one_to_many
-    sql_on: ${bitcoin_blocks.hash} = ${bitcoin_transactions.block_hash} ;;
-  }
-}
+# explore: bitcoin_blocks {
+#   label: "Coin Data"
+#   join: bitcoin_transactions {
+#     relationship: one_to_many
+#     sql_on: ${bitcoin_blocks.hash} = ${bitcoin_transactions.block_hash} ;;
+#   }
+# }
 
 #join blocks to transaction on hash, one block to many transactions
