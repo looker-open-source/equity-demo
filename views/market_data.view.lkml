@@ -2,6 +2,7 @@ view: market_data {
   sql_table_name: `@{database}.crypto_mvp.market_data` ;;
   drill_fields: [id]
 
+
   dimension: id {
     primary_key: yes
     type: string
